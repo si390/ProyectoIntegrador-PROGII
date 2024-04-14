@@ -124,7 +124,17 @@ const basedatos = {
                         fotoPerfil: "./maqueta/users/default-image.png"
                     },]
             },
-
+            {
+                nombre: "Producto",
+                descripcion: "Descripción",
+                imagen: "../maqueta/images.image.jpg",
+                comentarios: [
+                    {
+                        usuario: "usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "./maqueta/users/default-image.png"
+                    },]
+            },
         ]
     }
 };
