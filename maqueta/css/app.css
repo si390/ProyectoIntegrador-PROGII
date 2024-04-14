@@ -1,18 +1,44 @@
 /*====== Fonts ======*/
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Bebas+Neue&display=swap');
 
 /*====== Variables ======*/
 :root {
-  --yellow: #EAC926;
+  --yellow:  #a344cbed;
   --dark-blue: #03264C;
-  --light-blue: #1259c3;
+  --light-blue: #4e8be8;
   --gray: #666666;
   --light-gray: #ebebeb;
   --green: #39b54a;
-  --base-font-family: 'Roboto', sans-serif
+  --base-font-family: "Bebas Neue", sans-serif;
 }
 
+/*====== Forms ======*/
+.formularios {
+    background-color:rgb(252, 149, 52);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  .formularios div {
+    margin-bottom: 20px; 
+    width: 100%;
+  }
+  .boton {
+    background: linear-gradient(135deg, #972fbd, #c994ec, #bc5df3);
+    border: 2px solid;
+    border-radius: 20px; 
+    padding: 5px 30px; 
+    font-size: 16px; 
+    font-family: "Barlow Condensed", sans-serif;
+  }
+ 
+  
 
 /*====== Basics ======*/
 * {
@@ -29,7 +55,9 @@ body {
 body {
   font-family: var(--base-font-family);
   font-weight: 300;
-  background-color: var(--light-gray);
+  background-image: url('https://i.pinimg.com/564x/35/3b/fa/353bfa73215c7574524217557f5fe9d9.jpg');
+  background-size: cover;
+  background-position: center; 
 }
 
 ul,
@@ -42,7 +70,8 @@ ol {
 a {
   display: inline-block;
   text-decoration: none;
-  color: inherit;
+  color: #000000;
+  font-size: 22px;
 }
 
 figure {
@@ -57,6 +86,7 @@ img {
 input,
 textarea {
   font-family: inherit;
+
 }
 
 hr {
@@ -74,6 +104,7 @@ hr {
 .main-header_home-link,
 .main-header_credit-link {
   display: block;
+  font-size: 22px;
 }
 
 .main-header_credit-link {
@@ -171,7 +202,7 @@ hr {
 .products-title {
   font-size: 2.4em;
   font-weight: 400;
-  color: var(--gray);
+  color: black;
 }
 
 .product-box {
@@ -191,6 +222,7 @@ hr {
 }
 
 .product-box_data {
+  font-family: "Barlow Condensed", sans-serif;
   padding: 15px;
   position: relative;
   display: flex;
@@ -202,6 +234,7 @@ hr {
   font-size: 2.4em;
   font-weight: 300;
   margin: 0;
+  color: black;
 }
 
 .product-box_data span {
@@ -274,13 +307,13 @@ hr {
 }
 
 .footer-data h2 {
-  color: var(--gray);
+  color: black;
   font-size: 2.4em;
   font-weight: 400;
 }
 
 .footer-data p {
-  color: var(--gray);
+  color: rgb(70, 68, 72);
   font-size: 1.5em;
   font-weight: 300;
 }
@@ -302,6 +335,7 @@ hr {
   background-color: #ffffff;
   border-radius: 8px;
   overflow: hidden;
+  font-family: "Barlow Condensed", sans-serif;
 }
 
 .product-detail-img {
@@ -470,10 +504,10 @@ textarea.form-input {
 }
 
 .btn{
-  background-color: #1259c3;
+  background-color: rgba(250, 154, 28, 0.942);
   padding: 10px 20px;
   border-radius: 4px;
-  color: #fff;
+  color: #000000;
 }
 
 
