@@ -38,7 +38,11 @@
     font-family: "Barlow Condensed", sans-serif;
   }
  
-  
+
+.imagelogo{
+  width: 90px;
+  height: 90px;
+}
 
 /*====== Basics ======*/
 * {
@@ -231,8 +235,8 @@ hr {
 }
 
 .product-box_data h2 {
-  font-size: 2.4em;
-  font-weight: 300;
+  font-size: 1.4em;
+  font-weight: 400;
   margin: 0;
   color: black;
 }
