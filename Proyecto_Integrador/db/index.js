@@ -15,7 +15,7 @@ const basedatos = {
             {
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "buzoantisocial.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -32,7 +32,7 @@ const basedatos = {
             {
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "buzoastroworld.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -43,7 +43,7 @@ const basedatos = {
             {
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "buzobutterfly.jpg",
                 comentarios: [
                     {
                         usuario: "Usuario",
@@ -54,7 +54,7 @@ const basedatos = {
             {
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "buzocar.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -65,7 +65,7 @@ const basedatos = {
             {
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "buzochicago.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -76,7 +76,7 @@ const basedatos = {
             {
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "buzoeminem.png",
                 comentarios: [
                     {
                         usuario: "Usuario",
@@ -87,7 +87,18 @@ const basedatos = {
             {
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "buzofuture.jpg",
+                comentarios: [
+                    {
+                        usuario: "usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "default-image.png"
+                    },]
+            },
+            {
+                nombre: "Producto",
+                descripcion: "Descripción",
+                imagen: "buzokingofthekongo.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -98,7 +109,7 @@ const basedatos = {
             {
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "buzolosangeles.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -109,7 +120,7 @@ const basedatos = {
             {
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "buzored.png",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -120,18 +131,7 @@ const basedatos = {
             {
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
-                comentarios: [
-                    {
-                        usuario: "usuario",
-                        mensaje: "Me encantó el producto",
-                        fotoPerfil: "/images/users/default-image.png"
-                    },]
-            },
-            {
-                nombre: "Producto",
-                descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "buzotupac.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",

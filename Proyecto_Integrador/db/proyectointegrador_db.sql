@@ -1,16 +1,15 @@
 CREATE SCHEMA proyectointegrador;
 
-create table usuarios(
-id int unsigned primary key auto_increment,
-email varchar(100) not null, 
-contraseña varchar(12) not null,
-fecha datetime not null,
-dni int unique not null, 
-foto text,
-
-createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-updatedAt  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-deletedAt TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
+CREATE TABLE usuarios(
+	id int unsigned primary key auto_increment,
+	email varchar(100) not null, 
+	contraseña varchar(12) not null,
+	fecha datetime not null,
+	dni int unique not null, 
+	foto text,
+	createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updatedAt  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	deletedAt TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
@@ -39,6 +38,8 @@ CREATE TABLE comentarios(
     FOREIGN KEY (producto_id) REFERENCES productos(id)
 );
 
+INSERT INTO usuarios
+values
 
 
 
