@@ -12,17 +12,4 @@ router.get('/comentario/id/:id/:ok?', productController.comentario);
 
 //página de inicio//
 
-//Registrarse//
-router.get('/registro', registroController.registrarUsuario);
-
-//Mi perfil//
-
-
-//Agregar producto//
-router.get('/agregarProducto',addproductController.agregarProducto);
-
-
-//Editar perfil//
-
-
-module.exports = router;
+//Página de usuario//
