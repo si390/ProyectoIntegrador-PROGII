@@ -54,19 +54,18 @@ values
 (DEFAULT, DEFAULT, "Buzo Butterfly", "Buzo con explosión visual.","Blanco"),
 (DEFAULT, DEFAULT, "Buzo Car", "Buzo inspirado en la serie de Fast and Furious.","Blanco"),
 (DEFAULT, DEFAULT, "Buzo Future", "Buzo en tendencia con tela extra suave.","Verde"),
-(DEFAULT, DEFAULT, "Buzo Eminem", "Buzo inspirado en el albúm de Eminem","blanco");
-
+(DEFAULT, DEFAULT, "Buzo Eminem", "Buzo inspirado en el albúm de Eminem","blanco"),
 (DEFAULT, DEFAULT, "Buzo Astrowold", "Buzo con colores vibrantes","Beige"),
 (DEFAULT, DEFAULT, "Buzo King of the Kongo", "Hermoso buzo Buenos Aires a la moda","Azul"),
 (DEFAULT, DEFAULT, "Buzo Tupac", "Buzo inspirado en el gran artista Tupac","Naranja"),
 (DEFAULT, DEFAULT, "Buzo Undefined", "Buzo de gran calidad, nueva colección undefined.","Negro"),
 (DEFAULT, DEFAULT, "Buzo Los Ángeles", "Buzo estilo oversize de gran calidad.","Marrón");
 
-INSERT INTO productos
+INSERT INTO comentarios
 values
-(DEFAULT, DEFAULT, "Buzo Car", "Lo recomiendo"),
-(DEFAULT, DEFAULT, "Buzo Future", "Me gustó"),
-(DEFAULT, DEFAULT, "Buzo Eminem", "Me encantó");
+(DEFAULT,"Rene Ryan","Lo recomiendo"),
+(DEFAULT, "Michele Ford", "Me gustó"),
+(DEFAULT, "Elijah Jimenez", "Me encantó");
 
 
 
