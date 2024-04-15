@@ -9,7 +9,3 @@ const addproductController = require("../controllers/addproductController");
 router.get('/', productController.usuario);
 router.get('/id', productController.producto);
 router.get('/comentario/id/:id/:ok?', productController.comentario);
-
-//página de inicio//
-
-//Página de usuario//
