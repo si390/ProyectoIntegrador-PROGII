@@ -5,6 +5,6 @@ var router = express.Router();
 //Mi perfil//
 router.get('/', profileController.nombre);
 
-router.get('/mail', profileController.email);
+router.get('/email', profileController.email);
 
 module.exports = router;
