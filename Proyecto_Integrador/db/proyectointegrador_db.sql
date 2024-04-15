@@ -11,8 +11,6 @@ foto text,
 createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 updatedAt  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 deletedAt TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
-
-foreign key () references () 
 );
 
 
@@ -26,7 +24,7 @@ CREATE TABLE productos(
     updatedAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	deletedAT TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
 
-foreign key () references () 
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
 
 CREATE TABLE comentarios(
@@ -37,7 +35,8 @@ CREATE TABLE comentarios(
 	updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	deletedAt TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP 
 
-foreign key () references () 
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
 );
 
 
