@@ -1,5 +1,7 @@
 const products = require('../db/index');
 
+
+
 const registroController = {
 
 registrarUsuario: function(req, res){
@@ -16,7 +18,7 @@ registrarUsuario: function(req, res){
             };
 
         basedatos.perfil = nuevoUsuario;
-            res.send('Usuario registrado correctamente');
+        return res.send('Usuario registrado correctamente');
             }
 };
 
