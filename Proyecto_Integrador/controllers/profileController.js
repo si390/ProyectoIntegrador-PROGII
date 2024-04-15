@@ -3,14 +3,11 @@ const datos = usuario.perfil;
 
 const profileController = {
 
-    nombre: function (req, res){
-        return res.render('profile', {nombre: datos.nombre});
-    },
+    mostrarPerfil: function (req, res) {
 
-    email: function (req, res){
-        return res.render('profile', {email: datos.email});
-    },
+        return res.render('profile', { nombre: datos.nombre, email: datos.email });
 
-}
+    }
+};
 
 module.exports = profileController;

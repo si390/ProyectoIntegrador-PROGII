@@ -4,9 +4,7 @@ const profileController = require('../controllers/profileController');
 
 //Mi perfil//
 
-router.get('/', profileController.nombre);
-
-router.get('/email', profileController.email);
+router.get('/', profileController.mostrarPerfil);
 
 module.exports = router;
 
