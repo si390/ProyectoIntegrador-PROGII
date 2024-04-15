@@ -17,7 +17,7 @@ router.get('/comentario/id/:id/:ok?', productController.comentario);
 
 
 //Mi perfil//
-
+app.get('/perfil', perfilController.mostrarPerfil);
 
 
 
