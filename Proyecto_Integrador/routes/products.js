@@ -11,6 +11,4 @@ router.get('/producto', productController.producto);
 
 router.get('/comentarios', productController.comentario);
 
-//página de inicio//
-
-//Página de usuario//
+module.exports = router;
