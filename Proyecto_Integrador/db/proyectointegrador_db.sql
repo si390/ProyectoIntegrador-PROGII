@@ -23,7 +23,7 @@ CREATE TABLE productos(
     updatedAT TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	deletedAT TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
 
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+    FOREIGN KEY (nombre) REFERENCES usuarios(id)
 );
 
 CREATE TABLE comentarios(
@@ -34,15 +34,25 @@ CREATE TABLE comentarios(
 	updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	deletedAt TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP 
 
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
-    FOREIGN KEY (producto_id) REFERENCES productos(id)
+    FOREIGN KEY (usuario) REFERENCES usuarios(id),
+    FOREIGN KEY (id) REFERENCES productos(id)
 );
 
 INSERT INTO usuarios
 values
+(DEFAULT, "user1@gmail.com", "contraseña1", 1993-02-19, 99999999, "/images/users/default-image.png"),
+(DEFAULT, "user2@gmail.com", "contraseña2", 1982-03-24, 33658954, "/images/users/default-image.png"),
+(DEFAULT, "user3@gmail.com", "contraseña3", 2003-07-18, 22548902, "/images/users/default-image.png"),
+(DEFAULT, "user4@gmail.com", "contraseña4", 1996-10-14, 10257836, "/images/users/default-image.png"),
+(DEFAULT, "user5@gmail.com", "contraseña5", 2001-07-06, 45856321, "/images/users/default-image.png");
 
-
-
+INSERT INTO productos
+values
+(DEFAULT, DEFAULT, "Buzo Red", "Muy bueno"),
+(DEFAULT, DEFAULT, "Buzo Butterfly", "Excelente calidad"),
+(DEFAULT, DEFAULT, "Buzo Car", "Lo recomiendo"),
+(DEFAULT, DEFAULT, "Buzo Future", "Me gustó"),
+(DEFAULT, DEFAULT, "Buzo Eminem", "Me encantó");
 
 
 
