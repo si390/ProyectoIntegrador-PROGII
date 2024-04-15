@@ -1,17 +1,14 @@
-const products = require('../db/index');
+const usuario = require('../db/index');
 
 const profileController = {
 
 nombre: function (req, res){
-    let nombre = req.params.nombre;
-};
+    return res.render('profile', usuario.perfil.nombre);
+},
 
 email: function (req, res){
-    let email = req.params.email;
-};
-
-
-
+    return res.render('profile', usuario.perfil.email);
+},
 
 }
 

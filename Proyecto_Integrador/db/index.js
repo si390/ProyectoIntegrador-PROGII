@@ -6,7 +6,7 @@ const basedatos = {
         contraseña: "contraseña",
         fechaNacimiento: "2004-12-12",
         email: "email@gmail.com",
-        fotoPerfil: "./maqueta/users/default-image.png",
+        fotoPerfil: "/images/users/default-image.png",
         dni: 4994939,
     },
 
@@ -16,16 +16,16 @@ const basedatos = {
                 id: 1,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "./maqueta/images/products/buzokingofthekongo.jpg",
+                imagen: "/images/products/default-image.png",
                 comentarios: [
                     {
                         usuario: "usuario",
                         mensaje: "Me encantó el producto",
-                        fotoPerfil: "./maqueta/users/default-image.png"
+                        fotoPerfil: "/images/users/default-image.png"
                     },
                     {
                         usuario: "usuario",
-                        mensaje: "¡Los colores súper vibrantes y la tela muy suave!",
+                        mensaje: "Me encantó el producto",
                         fotoPerfil: "./maqueta/users/default-image.png"
                     },
                 ]
@@ -34,35 +34,35 @@ const basedatos = {
                 id: 2,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "./maqueta/images/products/buzoundefined.jpg",
+                imagen: "../maqueta/images.image.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
                         mensaje: "No me gustó el producto",
-                        fotoPerfil: "./maqueta/users/default-image.png"
+                        fotoPerfil: "/images/users/default-image.png"
                     },]
             },
             {
                 id: 3, 
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "./maqueta/images/products/butterfly.jpg",
+                imagen: "../maqueta/images.image.jpg",
                 comentarios: [
                     {
                         usuario: "Usuario",
                         mensaje: "Buenísimo!",
-                        fotoPerfil: "./maqueta/users/default-image.png"
+                        fotoPerfil: "/images/users/default-image.png"
                     },]
             },
             {
                 id: 4,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "./maqueta/images/products/buzotupac.jpg",
+                imagen: "../maqueta/images.image.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
-                        mensaje: "¡Ahora sí estoy en onda!",
+                        mensaje: "Me encantó el producto",
                         fotoPerfil: "./maqueta/users/default-image.png"
                     },]
             },
@@ -70,11 +70,11 @@ const basedatos = {
                 id: 5,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "./maqueta/images/products/red.jpg",
+                imagen: "../maqueta/images.image.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
-                        mensaje: "Amé el diseño y los colores",
+                        mensaje: "Me encantó el producto",
                         fotoPerfil: "./maqueta/users/default-image.png"
                     },]
             },
@@ -82,12 +82,12 @@ const basedatos = {
                 id: 6,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "./maqueta/images/products/buzolosangeles.jpg",
+                imagen: "../maqueta/images.image.jpg",
                 comentarios: [
                     {
                         usuario: "Usuario",
                         mensaje: "Me encantó el producto",
-                        fotoPerfil: "./maqueta/users/default-image.png"
+                        fotoPerfil: "/images/users/default-image.png"
                     },]
             },
             {
@@ -106,7 +106,19 @@ const basedatos = {
                 id: 8,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "./maqueta/images/products/buzofuture.jpg",
+                imagen: "../maqueta/images.image.jpg",
+                comentarios: [
+                    {
+                        usuario: "usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    },]
+            },
+            {
+                id: 9,
+                nombre: "Producto",
+                descripcion: "Descripción",
+                imagen: "../maqueta/images.image.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -115,26 +127,14 @@ const basedatos = {
                     },]
             },
             {
-                id: 9,
-                nombre: "Producto",
-                descripcion: "Descripción",
-                imagen: "./maqueta/images/products/buzocar.jpg",
-                comentarios: [
-                    {
-                        usuario: "usuario",
-                        mensaje: "¡Traigan más modelos como este!",
-                        fotoPerfil: "./maqueta/users/default-image.png"
-                    },]
-            },
-            {
                 id: 10,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "./maqueta/images/products/buzochicago.jpg",
+                imagen: "../maqueta/images.image.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
-                        mensaje: "Muy cómodo y lindo",
+                        mensaje: "Me encantó el producto",
                         fotoPerfil: "./maqueta/users/default-image.png"
                     },]
             },
@@ -142,11 +142,11 @@ const basedatos = {
                 id: 11, 
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "./maqueta/images/products/buzoantisocial.jpg",
+                imagen: "../maqueta/images.image.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
-                        mensaje: "¿Tienen más colores?",
+                        mensaje: "Me encantó el producto",
                         fotoPerfil: "./maqueta/users/default-image.png"
                     },]
             },
@@ -154,11 +154,11 @@ const basedatos = {
                 id: 12, 
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "./maqueta/images/products/buzofuture.jpg",
+                imagen: "../maqueta/images.image.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
-                        mensaje: "Hermosos diseños",
+                        mensaje: "Me encantó el producto",
                         fotoPerfil: "./maqueta/users/default-image.png"
                     },]
             },
