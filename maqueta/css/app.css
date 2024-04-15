@@ -38,10 +38,11 @@
     font-family: "Barlow Condensed", sans-serif;
   }
  
-
+/*====== Logo ======*/
 .imagelogo{
   width: 90px;
   height: 90px;
+  border-radius: 40px;
 }
 
 /*====== Basics ======*/
@@ -75,7 +76,7 @@ a {
   display: inline-block;
   text-decoration: none;
   color: #000000;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 figure {
