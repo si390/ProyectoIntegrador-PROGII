@@ -1,7 +1,7 @@
 const products = require('../db/index');
 
-const usuario = products.usuario;
-const productos = products.productos;
+const usuario = products.perfil;
+const productos = products.productos.lista;
 
 const productController = {
   usuario: function (req, res) {
@@ -18,17 +18,17 @@ const productController = {
     return res.render('product', { title: "Detalle Productos", producto: producto });
   },
   comentario: function (req, res) {
-    let producto;
-    for (let i = 0; i < producto.length; i++) {
+    let comentario;
+    for (let i = 0; i < comentario.length; i++) {
       if (productos[i].comentarios == req.params.comentarios) {
-        producto = productos[i];
+        comentario = productos[i];
       }
     }
 
     if (req.params.ok == "ok") {
-      return res.render('product-add', { title: "Comentario de producto", producto: producto, ok: true });
+      return res.render('product-add', { title: "Comentario de producto", producto: comentario, ok: true });
     } else {
-      return res.render('product-add', { title: "Comentario de producto", producto: producto, ok: false });
+      return res.render('product-add', { title: "Comentario de producto", producto: comentario, ok: false });
     }
   }
 };
