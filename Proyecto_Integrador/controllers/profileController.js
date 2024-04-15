@@ -10,7 +10,7 @@ const profileController = {
     email: function (req, res){
         return res.render('profile', {email: datos.email});
     },
-    
+
 }
 
 module.exports = profileController;
