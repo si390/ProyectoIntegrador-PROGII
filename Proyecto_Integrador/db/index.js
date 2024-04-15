@@ -1,15 +1,15 @@
 const basedatos = {
 
-    perfil: {
-
-        nombre: "nombre", 
-        contraseña: "contraseña",
-        fechaNacimiento: "2004-12-12",
-        email: "email@gmail.com",
-        fotoPerfil: "/images/users/default-image.png",
-        dni: 4994939,
-    },
-
+    usuarios: {
+        lista: [{
+            nombre: "nombre", 
+            contraseña: "contraseña",
+            fechaNacimiento: "2004-12-12",
+            email: "email@gmail.com",
+            fotoPerfil: "/images/users/default-image.png",
+            dni: 4994939,  }]
+    },  
+    
     productos: {
         lista: [
             {
@@ -21,7 +21,7 @@ const basedatos = {
                     {
                         usuario: "usuario",
                         mensaje: "Me encantó el producto",
-                        fotoPerfil: "/images/users/default-image.png"
+                        fotoPerfil: "default-image.png"
                     },
                     {
                         usuario: "usuario",

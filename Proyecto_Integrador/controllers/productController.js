@@ -4,6 +4,7 @@ const usuario = products.perfil;
 const productos = products.productos.lista;
 
 const productController = {
+
   usuario: function (req, res) {
     return res.render('index', { title: "Home", usuario: usuario });
   },
