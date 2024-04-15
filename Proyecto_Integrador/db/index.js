@@ -16,7 +16,7 @@ const basedatos = {
                 id: 1,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "buzoantisocial.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -34,7 +34,7 @@ const basedatos = {
                 id: 2,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "../maqueta/images.image.jpg",
+                imagen: "buzoastroworld.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -46,7 +46,7 @@ const basedatos = {
                 id: 3, 
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "../maqueta/images.image.jpg",
+                imagen: "/images/products/default-image.png",
                 comentarios: [
                     {
                         usuario: "Usuario",
@@ -58,7 +58,7 @@ const basedatos = {
                 id: 4,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "../maqueta/images.image.jpg",
+                imagen: "/images/products/default-image.png",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -70,7 +70,7 @@ const basedatos = {
                 id: 5,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "../maqueta/images.image.jpg",
+                imagen: "/images/products/default-image.png",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -82,7 +82,7 @@ const basedatos = {
                 id: 6,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "../maqueta/images.image.jpg",
+                imagen: "/images/products/default-image.png",
                 comentarios: [
                     {
                         usuario: "Usuario",
@@ -106,19 +106,19 @@ const basedatos = {
                 id: 8,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "../maqueta/images.image.jpg",
+                imagen: "/images/products/default-image.png",
                 comentarios: [
                     {
                         usuario: "usuario",
                         mensaje: "Me encantó el producto",
-                        fotoPerfil: "/images/users/default-image.png"
+                        fotoPerfil: "default-image.png"
                     },]
             },
             {
                 id: 9,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "../maqueta/images.image.jpg",
+                imagen: "/images/products/default-image.png",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -130,7 +130,7 @@ const basedatos = {
                 id: 10,
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "../maqueta/images.image.jpg",
+                imagen: "/images/products/default-image.png",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -142,7 +142,7 @@ const basedatos = {
                 id: 11, 
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "../maqueta/images.image.jpg",
+                imagen: "/images/products/default-image.png",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -154,7 +154,7 @@ const basedatos = {
                 id: 12, 
                 nombre: "Producto",
                 descripcion: "Descripción",
-                imagen: "../maqueta/images.image.jpg",
+                imagen: "/images/products/default-image.png",
                 comentarios: [
                     {
                         usuario: "usuario",
