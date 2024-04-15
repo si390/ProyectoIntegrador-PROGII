@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+  <%- include('partials/head.ejs'); -%>
   <body>
+    <%- include('partials/headerLogueado.ejs'); -%>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <!-- Banner -->
@@ -20,26 +22,11 @@
           <section class="product-box">
             <a href="./product.ejs">
               <figure class="product-box_image">
-                <img src="/images/products/default-image.png" alt="cafetera moulinex">
+                <img src="/images/products/buzored.jpg" alt="cafetera moulinex">
               </figure>
               <article class="product-box_data">
                 <h2>Nombre del producto</h2>
                 <p>Descripción corta del producto Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque delectus ex</p>
-                <p>Comentarios: 12</p>
-              </article>
-            </a>
-          </section>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-3">
-          <section class="product-box">
-            <a href="./product.ejs">
-              <figure class="product-box_image">
-                <img src="/images/products/default-image.png" alt="cafetera moulinex">
-              </figure>
-              <article class="product-box_data">
-                <h2>Nombre del producto</h2>
-                <p>Descripción corta del producto Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-                  delectus ex</p>
                 <p>Comentarios: 12</p>
               </article>
             </a>
@@ -59,7 +46,7 @@
           <section class="product-box">
             <a href="./product.ejs">
               <figure class="product-box_image">
-                <img src="/images/products/default-image.png" alt="cafetera moulinex">
+                <img src="/images/products/buzochicago.jpg" alt="cafetera moulinex">
               </figure>
               <article class="product-box_data">
                 <h2>Nombre del producto</h2>
@@ -73,4 +60,5 @@
     </div>
     <!-- /Más comentados -->
   </body>
+  <%- include('partials/footer.ejs'); -%>
 </html>

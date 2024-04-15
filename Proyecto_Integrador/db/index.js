@@ -2,8 +2,11 @@ const basedatos = {
 
     perfil: {
         usuario: "nombre",
+        contraseña: "contraseña",
+        fechaNacimiento: 2004-12-12,
         email: "email@gmail.com",
         fotoPerfil: "./maqueta/users/default-image.png",
+        dni: 4994939,
     },
 
     productos: {

@@ -1,8 +1,6 @@
-const perfil = require()
-const productos = require()
+const products = require('../db/index');
 
 const controlador = {
-  
 
 }
 
