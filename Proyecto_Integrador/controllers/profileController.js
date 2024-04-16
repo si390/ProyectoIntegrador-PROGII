@@ -1,13 +1,12 @@
-const basedatos = require('../db/index');
-const usuario = require('../db/index');
-const datos =  basedatos.usuarios.lista;
+const datos = require('../db/index');
 
 const profileController = {
-
+    
     mostrarPerfil: function (req, res) {
 
-        return res.render('profile', {nombre: datos[0].nombre, email: datos[0].email });
+        const user = datos.usuarios.lista[0];
 
+        return res.render('profile', {nombre: user.nombre, email: user.email });
     }
 };
 

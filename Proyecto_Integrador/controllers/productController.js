@@ -3,6 +3,10 @@ const products = require('../db/index');
 const productos = products.productos.lista;
 
 const productController = {
+
+  usuario: function (req, res) {
+    return res.render('index', { title: "Home", usuario: usuario });
+  },
   producto: function (req, res) {
     for (let i = 0; i < productos.length; i++) {
       if (productos[i].nombre == req.params.nombre) {
