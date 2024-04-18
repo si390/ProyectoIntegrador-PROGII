@@ -1,7 +1,6 @@
 const basedatos = {
 
-    perfil: {
-
+    usuarios: {
         nombre: "nombre", 
         contraseña: "contraseña",
         fechaNacimiento: "2004-12-12",
