@@ -9,3 +9,4 @@ router.get('/', productController.producto);
 router.get('/comentarios', productController.comentario);
 
 module.exports = router;
+

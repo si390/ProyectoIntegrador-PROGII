@@ -1,12 +1,56 @@
 const basedatos = {
 
     usuarios: {
+<<<<<<< HEAD
         nombre: "nombre", 
         contraseña: "contraseña",
         fechaNacimiento: "2004-12-12",
         email: "email@gmail.com",
         fotoPerfil: "/images/users/default-image.png",
         dni: 4994939,
+=======
+        lista: [{
+            nombre: "nombre",
+            contraseña: "contraseña",
+            fechaNacimiento: "2004-12-12",
+            email: "email@gmail.com",
+            fotoPerfil: "/images/users/default-image.png",
+            dni: 4994939,
+        },
+        {
+            nombre: "nombre",
+            contraseña: "contraseña",
+            fechaNacimiento: "2004-12-12",
+            email: "email@gmail.com",
+            fotoPerfil: "/images/users/default-image.png",
+            dni: 4994939,
+        },
+        {
+            nombre: "nombre",
+            contraseña: "contraseña",
+            fechaNacimiento: "2004-12-12",
+            email: "email@gmail.com",
+            fotoPerfil: "/images/users/default-image.png",
+            dni: 4994939,
+        },
+        {
+            nombre: "nombre",
+            contraseña: "contraseña",
+            fechaNacimiento: "2004-12-12",
+            email: "email@gmail.com",
+            fotoPerfil: "/images/users/default-image.png",
+            dni: 4994939,
+        },
+        {
+            nombre: "nombre",
+            contraseña: "contraseña",
+            fechaNacimiento: "2004-12-12",
+            email: "email@gmail.com",
+            fotoPerfil: "/images/users/default-image.png",
+            dni: 4994939,
+        },
+        ]
+>>>>>>> 16d59b3c2a6960de73980e27bcfdedf488e36401
     },
 
     productos: {
@@ -20,7 +64,7 @@ const basedatos = {
                     {
                         usuario: "usuario",
                         mensaje: "Me encantó el producto",
-                        fotoPerfil: "/images/users/default-image.png"
+                        fotoPerfil: "default-image.png"
                     },
                     {
                         usuario: "usuario",
@@ -42,7 +86,7 @@ const basedatos = {
                     },]
             },
             {
-                id: 3, 
+                id: 3,
                 nombre: "Producto",
                 descripcion: "Descripción",
                 imagen: "/images/products/default-image.png",
@@ -138,7 +182,7 @@ const basedatos = {
                     },]
             },
             {
-                id: 11, 
+                id: 11,
                 nombre: "Producto",
                 descripcion: "Descripción",
                 imagen: "/images/products/default-image.png",
@@ -150,7 +194,7 @@ const basedatos = {
                     },]
             },
             {
-                id: 12, 
+                id: 12,
                 nombre: "Producto",
                 descripcion: "Descripción",
                 imagen: "/images/products/default-image.png",
