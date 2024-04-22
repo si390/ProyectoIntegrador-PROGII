@@ -49,7 +49,7 @@ const basedatos = {
             {
                 id: 1,
                 nombre: "Producto",
-                descripcion: "Descripción",
+                descripcion: "buzoantisocial.buzodeexcelentesotura",
                 imagen: "buzoantisocial.jpg",
                 comentarios: [
                     {
