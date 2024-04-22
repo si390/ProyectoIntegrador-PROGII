@@ -22,6 +22,13 @@ const profileController = {
 
         return res.render('login', {nombre: user.nombre, email: user.email });
         
+    },
+    edit: function (req, res) {
+
+        const user = datos.usuarios.lista[0];
+
+        return res.render('profile-edit', {nombre: user.nombre, email: user.email });
+        
     }
 };
 

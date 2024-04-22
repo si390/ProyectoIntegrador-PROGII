@@ -6,7 +6,7 @@ const Controller = {
         return res.render('product', {nombre: producto.nombre, fotoproducto: producto.imagen, descripcion: producto.descripcion, comentarios: producto.comentarios, usuario: producto.comentarios.usuario })
     },
     
-    index: function(req, res){
+    detalle: function(req, res){
         const producto = datos.productos.lista[0];
         
         let descripcioncorta = '';
@@ -16,7 +16,7 @@ const Controller = {
                 break;
     }
         
-    }return res.render('index', {nombre: producto.nombre, fotoproducto: producto.imagen, descripcioncorta: descripcioncorta})
+    }return res.render('product', {nombre: producto.nombre, fotoproducto: producto.imagen, descripcioncorta: descripcioncorta})
 
 }}
 module.exports = Controller;
