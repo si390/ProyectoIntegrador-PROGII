@@ -1,5 +1,3 @@
-
-
 const datos = require('../db/index')
 
 const Controller = {
