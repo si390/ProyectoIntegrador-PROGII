@@ -13,7 +13,7 @@ const productController = {
         productos = productos[i];
       }
     }
-    return res.render('index', { title: "Detalle Productos", productos: productos });
+    return res.render('product', { title: "Detalle Productos", productos: productos });
   },
   comentario: function (req, res) {
     let comentario;
