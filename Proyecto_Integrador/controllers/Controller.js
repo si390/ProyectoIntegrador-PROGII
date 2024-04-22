@@ -4,6 +4,10 @@ const productController = {
         const product = datos.productos.lista[0];
         return res.render('product', {nombre: product.nombre});
     },
+    fotoproducto: function(req,res){
+        const fotoproducto = datos.productos.lista[0];
+        return res.render('product', {fotoproducto: fotoproducto.imagen});
+    },
     descripcion: function(req,res){
         const descripcion = datos.productos.lista[0];
         return res.render('product', {descripcion: descripcion.descripcion});
