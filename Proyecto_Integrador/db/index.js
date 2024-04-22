@@ -1,14 +1,6 @@
 const basedatos = {
 
     usuarios: {
-<<<<<<< HEAD
-        nombre: "nombre", 
-        contraseña: "contraseña",
-        fechaNacimiento: "2004-12-12",
-        email: "email@gmail.com",
-        fotoPerfil: "/images/users/default-image.png",
-        dni: 4994939,
-=======
         lista: [{
             nombre: "nombre",
             contraseña: "contraseña",
@@ -50,7 +42,6 @@ const basedatos = {
             dni: 4994939,
         },
         ]
->>>>>>> 16d59b3c2a6960de73980e27bcfdedf488e36401
     },
 
     productos: {
