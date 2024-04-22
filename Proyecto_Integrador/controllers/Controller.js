@@ -9,13 +9,13 @@ const Controller = {
     index: function(res, res){
         const producto = datos.productos.lista[0];
         
-        const descripcionCorta = '';
+        const descripcioncorta = '';
         for (let i = 0; i < producto.descripcion.length; i++) {
         descripcionCorta += producto.descripcion[i];
         if (producto.descripcion[i] === '.') {
         break;
     }
-        return res.render('index', {nombre: producto.nombre, fotoproducto: producto.imagen, descripcion: descripcionCorta})
+        return res.render('index', {nombre: producto.nombre, fotoproducto: producto.imagen, descripcioncorta: descripcioncorta})
 
     }
 }}
