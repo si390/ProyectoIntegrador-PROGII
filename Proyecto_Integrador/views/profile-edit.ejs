@@ -3,23 +3,12 @@
 
     <ul class="right-navbar">
         <li><a href="/profile">
-            <%= nombre %> <i class="fas fa-user"></i>
+            Nombre de usuario: <%= nombre %> <i class="fas fa-user"></i>
             </a>
-        </li>
-        <li>
-            <form action="" method="post">
-                <button class="logout" type="submit">
-                    Cerrar sesión <i class="fas fa-sign-in-alt"></i>
-                </button>
-            </form>
-        </li>
-        
-        <li>
-                    <a href="/profile/register">Creá tu cuenta <i class="far fa-address-card"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="/profile/login">Ingresá <i class="fas fa-sign-in-alt"></i></a>
-                </li>>
+         </li>
+        <li>Mail: <%= email %></li>
+		<li>Productos: 8 productos</li>
+		<li>Seguidores: 200 seguidores</li>
+		<li>Comentarios: 300 comentarios</li>
     </ul>
 <%- include('partials/footer.ejs'); -%>

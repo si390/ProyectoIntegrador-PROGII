@@ -2,44 +2,44 @@ const basedatos = {
 
     usuarios: {
         lista: [{
-            nombre: "nombre",
-            contraseña: "contraseña",
+            nombre: "Juan",
+            contraseña: "lock100",
             fechaNacimiento: "2004-12-12",
-            email: "email@gmail.com",
+            email: "juan25@gmail.com",
+            fotoPerfil: "/images/users/default-image.png",
+            dni: 35852150,
+        },
+        {
+            nombre: "Maria",
+            contraseña: "contra123",
+            fechaNacimiento: "2004-12-12",
+            email: "mariaperez@gmail.com",
             fotoPerfil: "/images/users/default-image.png",
             dni: 4994939,
         },
         {
-            nombre: "nombre",
-            contraseña: "contraseña",
+            nombre: "Baltazar",
+            contraseña: "password",
             fechaNacimiento: "2004-12-12",
-            email: "email@gmail.com",
+            email: "baltar@gmail.com",
             fotoPerfil: "/images/users/default-image.png",
-            dni: 4994939,
+            dni: 23698540,
         },
         {
-            nombre: "nombre",
-            contraseña: "contraseña",
+            nombre: "Agostina",
+            contraseña: "micontraseña10",
             fechaNacimiento: "2004-12-12",
-            email: "email@gmail.com",
+            email: "agos50@gmail.com",
             fotoPerfil: "/images/users/default-image.png",
-            dni: 4994939,
+            dni: 15783025,
         },
         {
-            nombre: "nombre",
-            contraseña: "contraseña",
+            nombre: "Pedro",
+            contraseña: "asdfgh",
             fechaNacimiento: "2004-12-12",
-            email: "email@gmail.com",
+            email: "pedrolopez@gmail.com",
             fotoPerfil: "/images/users/default-image.png",
-            dni: 4994939,
-        },
-        {
-            nombre: "nombre",
-            contraseña: "contraseña",
-            fechaNacimiento: "2004-12-12",
-            email: "email@gmail.com",
-            fotoPerfil: "/images/users/default-image.png",
-            dni: 4994939,
+            dni: 52102580,
         },
         ]
     },
@@ -48,37 +48,37 @@ const basedatos = {
         lista: [
             {
                 id: 1,
-                nombre: "Producto",
-                descripcion: "buzoantisocial.buzodeexcelentesotura",
+                nombre: "Buzo Antisocial",
+                descripcion: "Un buzo diseñado a tu medida",
                 imagen: "buzoantisocial.jpg",
                 comentarios: [
                     {
-                        usuario: "usuario",
+                        usuario: "Juan",
                         mensaje: "Me encantó el producto",
                         fotoPerfil: "default-image.png"
                     },
                     {
-                        usuario: "usuario",
+                        usuario: "Maria",
                         mensaje: "Me encantó el producto",
-                        fotoPerfil: "./maqueta/users/default-image.png"
+                        fotoPerfil: "default-image.png"
                     },
                 ]
             },
             {
                 id: 2,
-                nombre: "Producto",
-                descripcion: "Descripción",
+                nombre: "Buzo AreoWorld",
+                descripcion: "Un buzo para todos",
                 imagen: "buzoastroworld.jpg",
                 comentarios: [
                     {
-                        usuario: "usuario",
+                        usuario: "Pedro",
                         mensaje: "No me gustó el producto",
                         fotoPerfil: "/images/users/default-image.png"
                     },]
             },
             {
                 id: 3,
-                nombre: "Producto",
+                nombre: "Buzo Eminem",
                 descripcion: "Descripción",
                 imagen: "/images/products/default-image.png",
                 comentarios: [

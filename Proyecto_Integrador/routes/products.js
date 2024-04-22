@@ -8,7 +8,7 @@ router.get('/', productController.mostrarProducto);
 //Index//
 router.get('/add', productController.detalle);
 
-
+router.get('/search', productController.search);
 
 
 
