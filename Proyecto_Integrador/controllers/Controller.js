@@ -16,7 +16,7 @@ const Controller = {
                 break;
     }
         
-    }return res.render('product', {nombre: producto.nombre, fotoproducto: producto.imagen, descripcioncorta: descripcioncorta})
+    }return res.render('product-add', {nombre: producto.nombre, fotoproducto: producto.imagen, descripcioncorta: descripcioncorta})
 
 }}
 module.exports = Controller;

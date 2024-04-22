@@ -14,15 +14,15 @@
 			<h2 class="col-12">
                 <form action="" method="GET">
                     <div>
-                        <label for="imagen">Imagen:</label>
+                        <label for="imagen">Imagen:<%= fotoproducto %></label>
                         <input id="imagen" type="text" name="imagen" required>
                     </div>
                     <div>
-                        <label for="nombreProducto">Nombre del Producto:</label>
+                        <label for="nombreProducto">Nombre del Producto: <%= nombre %></label>
                         <input id="nombreProducto" type="text" name="nombreProducto" required>
                     </div>
                     <div>
-                        <label for="descripcion">Descripción:</label>
+                        <label for="descripcion">Descripción:<%= descripcioncorta %></label>
                         <input id="descripcion" type="text" name="descripcion" required>
                     </div>
                     <button type="submit">Agregar Producto</button>
