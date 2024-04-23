@@ -9,8 +9,6 @@ router.get('/', productController.mostrarProducto);
 router.get('/add', productController.detalle);
 router.get('/search', productController.search);
 
-//Index//
-router.get('/index', productController.mostrarIndex);
 
 module.exports = router;
 

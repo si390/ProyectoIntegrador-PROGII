@@ -14,7 +14,7 @@ const Controller = {
                 novedades.push(productos[i]);
             }
         }
-        return res.render('index', {masComentados, novedades});
+        return res.render('index', {masComentados: masComentados, novedades: novedades});
    },
 
     mostrarProducto : function(req, res){
