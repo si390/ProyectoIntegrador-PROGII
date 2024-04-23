@@ -2,22 +2,20 @@ const datos = require('../db/index')
 
 const Controller = {
 
-    novedades: function(req, res){
-        const producto = datos.productos.lista;
-        return res.render('index', {novedades: producto });
-    },
-        
-    mascomentados: function(req, res){
-        const productos = datos.productos.lista;
-        const mascomentados = [];
+   mostrarIndex: function(req,res) {
+    const productos = datos.productos.lista;
+        const masComentados = [];
+        const novedades = [];
 
         for (let i = 0; i < productos.length; i++) {
             if (productos[i].comentarios.length > 4) {
-                mascomentados.push(productos[i]);
+                masComentados.push(productos[i]);
+            } else {
+                novedades.push(productos[i]);
             }
         }
-        return res.render('index', {mascomentados: mascomentados});
-    },
+        return res.render('index', {masComentados, novedades });
+   },
 
     mostrarProducto : function(req, res){
         const producto = datos.productos.lista[0];
