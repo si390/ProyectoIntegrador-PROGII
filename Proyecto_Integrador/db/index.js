@@ -98,6 +98,23 @@ const basedatos = {
                         usuario: "usuario",
                         mensaje: "Me encantó el producto",
                         fotoPerfil: "./maqueta/users/default-image.png"
+                    },
+                    {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
                     },]
             },
             {
@@ -119,6 +136,22 @@ const basedatos = {
                 imagen: "/images/products/default-image.png",
                 comentarios: [
                     {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
                         usuario: "Usuario",
                         mensaje: "Me encantó el producto",
                         fotoPerfil: "/images/users/default-image.png"
@@ -158,6 +191,22 @@ const basedatos = {
                         usuario: "usuario",
                         mensaje: "Me encantó el producto",
                         fotoPerfil: "./maqueta/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
                     },]
             },
             {
@@ -194,6 +243,30 @@ const basedatos = {
                         usuario: "usuario",
                         mensaje: "Me encantó el producto",
                         fotoPerfil: "./maqueta/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
+                    }, {
+                        usuario: "Usuario",
+                        mensaje: "Me encantó el producto",
+                        fotoPerfil: "/images/users/default-image.png"
                     },]
             },
         ]
