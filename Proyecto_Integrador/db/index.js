@@ -49,7 +49,7 @@ const basedatos = {
             {
                 id: 1,
                 nombre: "Buzo Antisocial",
-                descripcion: "Un buzo diseñado a tu medida",
+                descripcion: "¡Un buzo diseñado a tu medida!. Elegí el color que más te guste.",
                 imagen: "/images/products/buzoantisocial.jpg",
                 comentarios: [
                     {
