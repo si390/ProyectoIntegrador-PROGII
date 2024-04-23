@@ -63,7 +63,6 @@ values
 
 INSERT INTO comentarios
 values
-
 (DEFAULT, 'Diego Salischiker', 'Me gustó mucho el producto. Tienen muy buena calidad y diseños :))))))))'), 
 (DEFAULT, 'Laura María', 'Tienen en rojo?'),
 (DEFAULT, "Antonia Antonels", "¿De qué es la tela?"),
