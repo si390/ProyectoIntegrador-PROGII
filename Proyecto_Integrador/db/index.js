@@ -4,9 +4,9 @@ const basedatos = {
         lista: [{
             nombre: "Juan",
             contraseña: "lock100",
-            fechaNacimiento: "2004-12-12",
+            fechaNacimiento: "1970-12-12",
             email: "juan25@gmail.com",
-            fotoPerfil: "/images/users/default-image.png",
+            fotoPerfil: "/images/users/juan.png",
             dni: 35852150,
         },
         {
@@ -50,7 +50,7 @@ const basedatos = {
                 id: 1,
                 nombre: "Buzo Antisocial",
                 descripcion: "Un buzo diseñado a tu medida",
-                imagen: "buzoantisocial.jpg",
+                imagen: "/images/products/buzoantisocial.jpg",
                 comentarios: [
                     {
                         usuario: "Juan",
@@ -68,7 +68,7 @@ const basedatos = {
                 id: 2,
                 nombre: "Buzo AreoWorld",
                 descripcion: "Un buzo para todos",
-                imagen: "buzoastroworld.jpg",
+                imagen: "/images/products/buzoastroworld.jpg",
                 comentarios: [
                     {
                         usuario: "Pedro",
@@ -78,9 +78,9 @@ const basedatos = {
             },
             {
                 id: 3,
-                nombre: "Buzo Eminem",
+                nombre: "Buzo Future",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "/images/products/buzofuture.jpg",
                 comentarios: [
                     {
                         usuario: "Usuario",
@@ -90,9 +90,9 @@ const basedatos = {
             },
             {
                 id: 4,
-                nombre: "Producto",
+                nombre: "Buzo Butterfly",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "/images/products/buzobutterfly.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -119,9 +119,9 @@ const basedatos = {
             },
             {
                 id: 5,
-                nombre: "Producto",
+                nombre: "Buzo Car",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "/images/products/buzocar.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -131,9 +131,9 @@ const basedatos = {
             },
             {
                 id: 6,
-                nombre: "Producto",
+                nombre: "Buzo Chicago",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "/images/products/buzochicago.jpg",
                 comentarios: [
                     {
                         usuario: "Usuario",
@@ -159,9 +159,9 @@ const basedatos = {
             },
             {
                 id: 7,
-                nombre: "Producto",
+                nombre: "Buzo Eminem",
                 descripcion: "Descripción",
-                imagen: "./maqueta/images/products/astroworld.jpg",
+                imagen: "/images/products/buzoeminem.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -171,9 +171,9 @@ const basedatos = {
             },
             {
                 id: 8,
-                nombre: "Producto",
+                nombre: "Buzo King Of The Kongo",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "/images/products/buzokingofthekongo.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -183,9 +183,9 @@ const basedatos = {
             },
             {
                 id: 9,
-                nombre: "Producto",
+                nombre: "Buzo Los Angeles",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "/images/products/buzolosangeles.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -211,9 +211,9 @@ const basedatos = {
             },
             {
                 id: 10,
-                nombre: "Producto",
+                nombre: "Buzo Red",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "/images/products/buzored.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -223,9 +223,9 @@ const basedatos = {
             },
             {
                 id: 11,
-                nombre: "Producto",
+                nombre: "Buzo Tupac",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "/images/products/buzotupac.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",
@@ -235,9 +235,9 @@ const basedatos = {
             },
             {
                 id: 12,
-                nombre: "Producto",
+                nombre: "Buzo Undefined",
                 descripcion: "Descripción",
-                imagen: "/images/products/default-image.png",
+                imagen: "/images/products/buzoundefined.jpg",
                 comentarios: [
                     {
                         usuario: "usuario",

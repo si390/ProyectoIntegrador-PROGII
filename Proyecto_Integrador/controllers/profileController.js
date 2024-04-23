@@ -6,7 +6,7 @@ const profileController = {
 
         const user = datos.usuarios.lista[0];
 
-        return res.render('profile', {nombre: user.nombre, email: user.email });
+        return res.render('profile', {nombre: user.nombre, email: user.email, foto: user.fotoPerfil });
 
     },
     registro: function (req, res) {
