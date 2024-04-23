@@ -1,73 +1,69 @@
 <!DOCTYPE html>
 <html>
+<body>
 <%- include('partials/head.ejs'); -%>
+<%- include('partials/headerLogueado.ejs'); -%>
 
-  <body>
-    <%- include('partials/headerLogueado.ejs'); -%>
-
-      <h1>
-        <%= title %>
-      </h1>
-      <p>Welcome to <%= title %>
-      </p>
+      <h1><%= title %></h1>
+      <p>Welcome to <%= title %></p>
 
       <!-- Banner -->
       <div class="banner">
-        <img src="/images/img-home-banner.jpg" alt="Banner de ofertas">
+      <img src="/images/img-home-banner.jpg" alt="Banner de ofertas">
       </div>
       <!-- /Banner -->
 
       <!-- Novedades -->
       <div class="container products-wrapper">
-        <div class="row">
-          <div class="col-12">
-            <h2 class="products-title">Novedades</h2>
-          </div>
-          <!-- Show the "ultimos" products -->
-          <div class="col-12 col-sm-6 col-lg-3">
-            <section class="product-box">
-              <a href="/product">
-                <figure class="product-box_image">
-                  <img src="/images/products/buzofuture.jpg" alt="cafetera moulinex">
-                </figure>
+      <div class="row">
+      <div class="col-12">
+      <h2 class="products-title">Novedades</h2>
+      </div>
+
+      <!-- Show the "ultimos" products -->
+      <div class="col-12 col-sm-6 col-lg-3">
+      <section class="product-box">
+            <a href="/product">
+            
+            <figure class="product-box_image">
+            <img src="/images/products/buzofuture.jpg" alt="cafetera moulinex"></figure>
 
                 <article class="product-box_data">
                   <h2></h2>
                   <p></p>
                   <p></p>
-                </article></a>
-            </section>
-          </div>
+                </article>
+              </a>
+        </section>
         </div>
-      </div>
+        </div>
+        </div>
+      
       <!-- /Novedades -->
       <!-- Más comentados -->
       <div class="container products-wrapper">
-        <div class="row">
+          <div class="row">
           <div class="col-12">
             <h2 class="products-title">Más comentados</h2>
           </div>
+         
           <!-- Show the "ultimos" products -->
           <div class="col-12 col-sm-6 col-lg-3">
-            <section class="product-box">
-              <a href="/product">
-                <figure class="product-box_image">
-                  <img src="/images/products/buzochicago.jpg" alt="cafetera moulinex">
-                </figure>
-                <article class="product-box_data">
+          <section class="product-box">
+          <a href="/product">
+          <figure class="product-box_image">
+          <img src="/images/products/buzochicago.jpg" alt="cafetera moulinex"></figure>
+            
+            <article class="product-box_data">
                   <h2>Nombre del producto</h2>
                   <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque delectus ex</p>
-                  <p>Comentarios: 12</p>
-                </article>
+                  <p>Comentarios: 12</p></article>
               </a>
-            </section>
-          </div>
+             </section>
         </div>
-      </div>
-      
-      
-      <!-- /Más comentados -->
-  </body>
-  <%- include('partials/footer.ejs'); -%>
+        </div>
+        </div>
 
+<%- include('partials/footer.ejs'); -%> 
+</body>
 </html>

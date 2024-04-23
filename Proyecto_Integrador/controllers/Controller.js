@@ -24,4 +24,5 @@ const Controller = {
     }return res.render('product-add', {nombre: producto.nombre, fotoproducto: producto.imagen, descripcioncorta: descripcioncorta})
 
 }}
+
 module.exports = Controller;
