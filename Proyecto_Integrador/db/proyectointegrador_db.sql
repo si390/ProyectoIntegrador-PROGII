@@ -63,17 +63,43 @@ values
 
 INSERT INTO comentarios
 values
+
+(DEFAULT, 'Diego Salischiker', 'Me gustó mucho el producto. Tienen muy buena calidad y diseños :))))))))'), 
+(DEFAULT, 'Laura María', 'Tienen en rojo?'),
+(DEFAULT, "Antonia Antonels", "¿De qué es la tela?"),
+
 (DEFAULT,"Rene Ryan","Lo recomiendo"),
 (DEFAULT, "Michele Ford", "Me gustó"),
-(DEFAULT, "Elijah Jimenez", "Me encantó");
+(DEFAULT, "Elijah Jimenez", "Me encantó"),
 
+(DEFAULT, 'María Rodríguez', 'Lo recomendaría'), 
+(DEFAULT, 'Carlos González', 'Excelente producto'),
+(DEFAULT, "Elijah Jimenez", "Me gustó muchísimo!!!"),
 
+(DEFAULT, 'Sol Martinez', 'Muy fachero'), 
+(DEFAULT, 'Carlos Berto', 'Muy buena calidad!!!'),
+(DEFAULT, "Lionel Messi", "Me encantó, lo amé :))))"),
 
+(DEFAULT, 'Sabrina Lopez', 'Los amo, hagan más diseños'), 
+(DEFAULT, 'Sabrina Carpenter', 'Muy buena calidad y diseños'),
+(DEFAULT, "Natalia Margarita", "Super cómodo"),
 
+(DEFAULT, 'Milagros Marquez', 'Excelente producto, me encantó y lo compraría mil y una veces más <3<3<3'), 
+(DEFAULT, 'Juan Ezequiel', 'Excelente!!'),
+(DEFAULT, "Laura Jimenez", "Ameeeee"),
 
+(DEFAULT, 'Jessica Bler', 'Hermoso'), 
+(DEFAULT, 'Malena Garzia', '¿Hacen envíos a Chile?'),
+(DEFAULT, "Ian Bon", "no me gustó"),
 
+(DEFAULT, 'María Marta', 'Me molesta no poder comprarme todos!'), 
+(DEFAULT, 'Lucia Luciani', 'Quiero todos!!!!!!!'),
+(DEFAULT, "Lara Ven", "Me lo voy a autoregalar"),
 
+(DEFAULT, 'Lucas Faiad', 'Son super calentitos<3<3<3<3'), 
+(DEFAULT, 'Santiago Santini', 'Excelente producto'),
+(DEFAULT, "Marcos Marcocini", "Amé las ofertas"),
 
-
-
-
+(DEFAULT, 'Marzía Rodrígues', 'Lo recomiendooooooooo'), 
+(DEFAULT, 'Leonardo Juan', 'malísimo'),
+(DEFAULT, "Macarena Maca", "Colores super llamativos :))");
