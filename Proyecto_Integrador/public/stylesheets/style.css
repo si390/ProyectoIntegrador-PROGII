@@ -45,24 +45,6 @@
   font-style: normal;
 }
  
-/*====== footer ======*/
-.fa-palette {
-    font-size: 24px; 
-    color: rgb(113, 39, 233); 
-}
-
-.fa-heart {
-  font-size: 24px; 
-  color: rgb(230, 32, 32); 
-}
-
-.fa-tag {
-  font-size: 24px; 
-  color: rgb(255, 236, 70); 
-}
-
-
-
 
 .imagelogo{
   width: 90px;
@@ -336,9 +318,19 @@ hr {
   text-align: center;
 }
 
-.footer-data i {
-  color: var(--light-blue);
-  font-size: 3.5em;
+.footer-data i.fa-palette {
+  font-size: 24px; 
+  color: rgb(62, 75, 158); 
+}
+
+.footer-data i.fa-heart {
+  font-size: 24px; 
+  color: rgb(230, 32, 32); 
+}
+
+.footer-data i.fa-tag {
+  font-size: 24px; 
+  color: rgb(255, 236, 70); 
 }
 
 .footer-data h2 {

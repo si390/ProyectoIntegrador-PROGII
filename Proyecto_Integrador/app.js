@@ -25,6 +25,10 @@ app.use(session( {
 	resave: false,
 	saveUninitialized: true 
 }));
+app.use(function(req,res,next){
+  res.locals.newUser = req.session.newUser;
+  return next();
+})
 
 app.use('/', indexRouter);
 app.use('/profile', usersRouter);
