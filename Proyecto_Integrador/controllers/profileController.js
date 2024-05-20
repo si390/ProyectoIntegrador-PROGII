@@ -12,7 +12,9 @@ const profileController = {
     registro: function (req, res) {
 
         const user = datos.usuarios.lista[0];
-
+        let nuevoUsuario = req.body.email;
+        req.session.newUser = nuevoUsuario;
+        res.cookie('UsuarioNuevo', nuevoUsuario, {maxAge: 1000*60*1})
         return res.render('register', {nombre: user.nombre, email: user.email });
         
     },
@@ -26,7 +28,6 @@ const profileController = {
     edit: function (req, res) {
 
         const user = datos.usuarios.lista[0];
-
         return res.render('profile-edit', {nombre: user.nombre, email: user.email });
         
     }

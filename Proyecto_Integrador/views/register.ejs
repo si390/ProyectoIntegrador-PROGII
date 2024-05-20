@@ -2,9 +2,9 @@
 <%- include('partials/headerLogueado.ejs'); -%>
 
 <!-- form para registrarse-->
-
+<%= locals.newUser %>
     <section class="formularios">
-        <form action="/profile/registro" method="post">
+        <form action="/profile/register" method="get">
             <div>
                 <label for="email">Email:</label>
                 <input id="email" type="email" name="email" value="">

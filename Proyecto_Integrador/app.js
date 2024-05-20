@@ -29,6 +29,12 @@ app.use(function(req,res,next){
   res.locals.newUser = req.session.newUser;
   return next();
 })
+app.use(function(req, res, next) {
+	if (req.session.newUser != undefined) {
+		res.locals.newUser = req.session.newUser
+     }
+return next();
+});
 
 app.use('/', indexRouter);
 app.use('/profile', usersRouter);
