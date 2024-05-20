@@ -4,7 +4,7 @@ CREATE TABLE usuarios(
 	id int unsigned primary key auto_increment,
 	nombre varchar(100) not null,
 	email varchar(100) not null, 
-	contraseña varchar(12) not null,
+	contrasenia varchar(12) not null,
 	fecha datetime not null,
 	dni int unique not null, 
 	foto text,
