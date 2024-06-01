@@ -27,6 +27,11 @@ const Controller = {
         const producto = datos.productos.lista[0];
         return res.render('search-results', {nombre: producto.nombre, descripcion: producto.descripcion, comentarios: producto.comentarios});
     },
+
+    informacion : function(req, res){
+        const producto = datos.productos.lista[0];
+        return res.render('product', {nombre: producto.nombre, fotoproducto: producto.imagen, descripcion: producto.descripcion, comentarios: producto.comentarios, usuario: producto.comentarios.usuario })
+    },
     
     detalle: function(req, res){
         const producto = datos.productos.lista[0];

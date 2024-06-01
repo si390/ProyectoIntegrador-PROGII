@@ -1,5 +1,5 @@
 CREATE SCHEMA proyectointegrador;
-
+USE proyectointegrador;
 CREATE TABLE usuarios(
 	id int unsigned primary key auto_increment,
 	nombre varchar(100) not null,
@@ -101,4 +101,4 @@ values
 
 (DEFAULT, 'Marzía Rodrígues', 'Lo recomiendooooooooo'), 
 (DEFAULT, 'Leonardo Juan', 'malísimo'),
-(DEFAULT, "Macarena Maca", "Colores super llamativos :))");
+(DEFAULT, "Macarena Maca", "Colores super llamativos :))")
