@@ -38,17 +38,21 @@ const Controller = {
     },
 
     detalle: function(req, res) {
-        const producto = datos.productos; 
+        const productId = parseInt(req.params.id);
+        const producto = datos.productos.find(p => p.id === productId);
 
-        return res.render('product', {
-            id: producto.id,
-            nombre: producto.nombre,
-            fotoproducto: producto.imagen,
-            descripcion: producto.descripcion,
-            comentarios: producto.comentarios,
-        });
+        if (producto) {
+            return res.render('product', {
+                id: producto.id,
+                nombre: producto.nombre,
+                fotoproducto: producto.imagen,
+                descripcion: producto.descripcion,
+                comentarios: producto.comentarios,
+            });
+        } else {
+            res.status(404).send('Product not found');
+        }
     }
-
-}
+};
 
 module.exports = Controller;
