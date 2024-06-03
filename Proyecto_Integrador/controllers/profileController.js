@@ -4,14 +4,14 @@ const profileController = {
     
     mostrarPerfil: function (req, res) {
 
-        const user = datos.usuarios.lista[0];
+        const user = datos.usuarios[0];
 
         return res.render('profile', {nombre: user.nombre, email: user.email, foto: user.fotoPerfil });
 
     },
     registro: function (req, res) {
 
-        const user = datos.usuarios.lista[0];
+        const user = datos.usuarios[0];
         let nuevoUsuario = req.body.email;
         req.session.newUser = nuevoUsuario;
         res.cookie('UsuarioNuevo', nuevoUsuario, {maxAge: 1000*60*1})
@@ -20,14 +20,14 @@ const profileController = {
     },
     login: function (req, res) {
 
-        const user = datos.usuarios.lista[0];
+        const user = datos.usuarios[0];
 
         return res.render('login', {nombre: user.nombre, email: user.email });
         
     },
     edit: function (req, res) {
 
-        const user = datos.usuarios.lista[0];
+        const user = datos.usuarios[0];
         return res.render('profile-edit', {nombre: user.nombre, email: user.email });
         
     }

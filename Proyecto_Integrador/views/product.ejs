@@ -1,46 +1,53 @@
-<!-- product detail -->
+
 <%- include('partials/head.ejs'); -%>
 <%- include('partials/header.ejs'); -%>
 <section>
-        <div class="container products-wrapper">
-            <div class="d-flex align-items-center">
-                <p class="product-detail-description">
-                    <a href="/product/add"><%= nombre %></a>
-                </p>
-            </div>
+    <div class="container products-wrapper">
+        <div class="d-flex align-items-center">
+            <p class="product-detail-description">
+                <a href="/product/add"><%= nombre %></a>
+            </p>
+        </div>
 
-            <!-- Descripción del producto -->
-            <div class="product-detail">
-                <div class="row">
-                    <article class="col-12 col-lg-8 product-detail-info">
-                        <img src="" alt="" class="product-detail-img">
+        <!-- Descripción del producto -->
+        <div class="product-detail">
+            <div class="row">
+                <article class="col-12 col-lg-8 product-detail-info">
+                    <img src="<%= fotoproducto %>" alt="<%= nombre %>" class="product-detail-img">
 
-                        <p class="product-detail-description"><%= descripcion %></p>
-                    </article>
+                    <p class="product-detail-description"><%= descripcion %></p>
+                </article>
 
-                <!-- comentarios del producto -->
-                    <div class="col-12 col-lg-4">
-                        <section class="comments">
-                            <article>
-                                <img src="https://via.placeholder.com/35" alt="">
-                                <div class="data">
-                                    <p class="user">
-                                        <strong> <a href="/profile">Nombre usuario: <%= usuario %></a> </strong>
-                                        <%= comentarios %>
-                                    </p>
-                                </div>
-                            </article>
-                        </section>
-                        <form class="form" action="/product/:id" method="get">
-                            <input class="form-input" type="text" value="" placeholder="Agregar comentario">
-                            <button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
-                        </form>
-                        <hr>
-                    </div>
+                <!-- Comentarios del producto -->
+                <div class="col-12 col-lg-4">
+                    <section class="comments">
+                        <% if (comentarios && comentarios.length > 0) { %>
+                            <% comentarios.forEach(comentario => { %>
+                                <article class="comment">
+                                    <img src="https://via.placeholder.com/35" alt="Usuario" class="comment-avatar">
+                                    <div class="comment-data">
+                                        <p class="comment-user">
+                                            <strong>
+                                                <a href="/profile"><%= comentario.usuario %></a>
+                                            </strong>
+                                            <br>
+                                            <%= comentario.texto %>
+                                        </p>
+                                    </div>
+                                </article>
+                            <% }) %>
+                        <% } else { %>
+                            <p>No hay comentarios todavía. ¡Sé el primero en comentar!</p>
+                        <% } %>
+                    </section>
+                    <form class="comment-form" action="/product/:id?<%= id %>" method="post">
+                        <input class="form-input" type="text" name="comment" placeholder="Agregar comentario" required>
+                        <button type="submit" class="add-comment-button">AGREGAR COMENTARIO</button>
+                    </form>
+                    <hr>
                 </div>
             </div>
         </div>
-        
-    </section>
-        <!-- /product detail -->
-        <%- include('partials/footer.ejs'); -%>
+    </div>
+</section>
+<%- include('partials/footer.ejs'); -%>

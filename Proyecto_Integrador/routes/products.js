@@ -4,10 +4,9 @@ var router = express.Router();
 const productController = require('../controllers/Controller');
 
 //página descripción de producto//
-router.get('/', productController.mostrarProducto);
+router.get('/add', productController.mostrarProducto);
 //Agregar producto//
-router.get('/add', productController.detalle);
-router.get('/:id', productController.informacion);
+router.get('/:id?', productController.detalle);
 router.get('/search', productController.search);
 
 
