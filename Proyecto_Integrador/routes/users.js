@@ -6,8 +6,11 @@ const profileController = require('../controllers/profileController');
 
 router.get('/', profileController.mostrarPerfil);
 router.get('/register', profileController.registro);
-router.get('/login', profileController.login);
 router.get('/edit', profileController.edit);
+
+router.get('/login', profileController.mostrarLogin);
+router.post('/login', profileController.login);
+
 module.exports = router;
 
 

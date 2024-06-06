@@ -18,19 +18,42 @@ const profileController = {
         return res.render('register', {nombre: user.nombre, email: user.email });
         
     },
-    login: function (req, res) {
+    edit: function (req, res) {
+
+        const user = datos.usuarios[0];
+        return res.render('profile-edit', {nombre: user.nombre, email: user.email });
+        
+    },
+    mostrarLogin: function (req, res) {
 
         const user = datos.usuarios[0];
 
         return res.render('login', {nombre: user.nombre, email: user.email });
         
     },
-    edit: function (req, res) {
+    login: function (req, res) {
+        const { email, contrasenia } = req.body;
 
-        const user = datos.usuarios[0];
-        return res.render('profile-edit', {nombre: user.nombre, email: user.email });
-        
-    }
+        db.Usuario.findOne({ where: { email: email, contrasenia: contrasenia } }) 
+            .then(function (usuarioLogueado){
+
+                if (!usuarioLogueado) {
+
+                    return res.render("login", { error: "Usuario no registrado" });
+
+                } else if (usuarioLogueado.contrasenia !== contrasenia) {
+
+                    return res.render("login", { error: "Contraseña incorrecta" });
+
+                } else {
+
+                    return res.render("profile", { usuario: usuarioLogueado }); 
+                }
+            })
+            .catch(function (error) {
+                return res.render("login", { error: "Error al buscar usuario" });
+            });
+    },
 };
 
 module.exports = profileController;
