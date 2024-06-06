@@ -5,7 +5,7 @@ const Controller = {
     mostrarIndex: function(req, res) {
 
         db.Product.findAll({
-            order: [['created_at', 'DESC']], 
+            order: ['created_at', 'DESC'], 
             limit: 10 
         })
         .then(function(productos) {
