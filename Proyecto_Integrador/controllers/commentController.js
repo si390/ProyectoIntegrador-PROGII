@@ -7,11 +7,11 @@ const commentController = {
     },
 
     mostrarComentarios: function (req, res) {
-        db.Product.findAll({
+        db.Comentario.findAll({
             order: [['createdAt', 'DESC']]
         })
         .then(function(comentarios){
-
+            res.render("product", { comentarios: comentario });
         })
         .catch(function(error){
             return res.render("product", { error: "error al mostrar comentarios" });

@@ -13,6 +13,9 @@ module.exports = function(sequelize, dataTypes){
         texto:{
             type: dataTypes.STRING,
         },
+        fotoPerfil: {
+            type: dataTypes.STRING,         
+        },
     }
 
     let config = {

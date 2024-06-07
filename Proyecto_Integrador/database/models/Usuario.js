@@ -22,7 +22,7 @@ module.exports = function(sequelize, dataTypes){
         dni:{
             type: dataTypes.INTEGER,
         },
-        foto:{
+        fotoPerfil:{
             type: dataTypes.STRING,
         }
     }
