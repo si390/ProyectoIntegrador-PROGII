@@ -24,7 +24,13 @@ module.exports = function(sequelize, dataTypes){
         },
         fotoPerfil:{
             type: dataTypes.STRING,
-        }
+        },
+        created_at: {
+            type: dataTypes.DATE,
+        },
+        updated_at: {
+            type: dataTypes.DATE,
+        },
     }
 
     let config = {
@@ -33,6 +39,10 @@ module.exports = function(sequelize, dataTypes){
         underscored: true
     }
 
-    let Usuario = sequelize.define(alias, cols, config)
+    let Usuario = sequelize.define(alias, cols, config);
+
+
+    //CONECTAR ACÁ CON COMENTARIO//
+
     return Usuario
 }

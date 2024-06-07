@@ -4,17 +4,23 @@ module.exports = function(sequelize, dataTypes){
     let cols = {
         id:{
             autoIncrement: true,
-            primaryKey: true,
+            primaryKey: true,               //Sacar primary key//
             type: dataTypes.INTEGER,
         },
         usuario:{
             type: dataTypes.STRING,
         },
+        fotoPerfil: {
+            type: dataTypes.STRING,         
+        },
         texto:{
             type: dataTypes.STRING,
         },
-        fotoPerfil: {
-            type: dataTypes.STRING,         
+        created_at: {
+            type: dataTypes.DATE,
+        },
+        updated_at: {
+            type: dataTypes.DATE,
         },
     }
 
@@ -25,5 +31,8 @@ module.exports = function(sequelize, dataTypes){
     }
 
     let Comentario = sequelize.define(alias, cols, config)
+
+    //CONECTAR ACÁ CON USUARIO Y PRODUCTO//
+
     return Comentario
 }

@@ -19,6 +19,12 @@ module.exports = function(sequelize, dataTypes){
         color:{
             type: dataTypes.STRING,
         },
+        created_at: {
+            type: dataTypes.DATE,
+        },
+        updated_at: {
+            type: dataTypes.DATE,
+        },
     }
 
     let config = {
@@ -28,5 +34,9 @@ module.exports = function(sequelize, dataTypes){
     }
 
     let Product = sequelize.define(alias, cols, config)
+
+    //conectar acá con comentario//
+
+    
     return Product
 }
