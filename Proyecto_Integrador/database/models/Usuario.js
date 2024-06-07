@@ -2,7 +2,7 @@ module.exports = function(sequelize, dataTypes){
     let alias = "Usuario"
 
     let cols = {
-        id:{
+        usuarioId:{
             autoIncrement: true,
             primaryKey: true,
             type: dataTypes.INTEGER,
@@ -41,8 +41,14 @@ module.exports = function(sequelize, dataTypes){
 
     let Usuario = sequelize.define(alias, cols, config);
 
-
-    //CONECTAR ACÁ CON COMENTARIO//
+    Usuario.associate = function(models){
+        Usuario.belongsToMany(models.Product,{
+            as: 'productos',
+            through: models.Comentario,
+            foreignKey: 'usuarioId',
+            timestamps: true,
+        });
+    };
 
     return Usuario
 }

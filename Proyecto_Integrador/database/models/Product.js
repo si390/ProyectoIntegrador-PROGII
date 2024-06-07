@@ -2,12 +2,12 @@ module.exports = function(sequelize, dataTypes){
     let alias = "Product"
 
     let cols = {
-        id:{
+        productoId:{
             autoIncrement: true,
             primaryKey: true,
             type: dataTypes.INTEGER,
         },
-        nombr_imagen:{
+        imagen:{
             type: dataTypes.STRING,
         },
         nombre:{
@@ -35,8 +35,14 @@ module.exports = function(sequelize, dataTypes){
 
     let Product = sequelize.define(alias, cols, config)
 
-    //conectar acá con comentario//
+    Product.associate = function(models){
+        Product.belongsToMany(models.Usuario, {
+            as: 'usuarios',
+            through: models.Comentario,
+            foreignKey: 'productoId',
+            timestamps: true,
+        });
+    };
 
-    
     return Product
 }

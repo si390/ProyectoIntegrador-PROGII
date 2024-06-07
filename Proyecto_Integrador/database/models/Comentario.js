@@ -4,14 +4,22 @@ module.exports = function(sequelize, dataTypes){
     let cols = {
         id:{
             autoIncrement: true,
-            primaryKey: true,               //Sacar primary key//
+            primaryKey: true,               
             type: dataTypes.INTEGER,
         },
-        usuario:{
-            type: dataTypes.STRING,
+        usuarioId: { 
+            type: dataTypes.INTEGER,
+            references: {
+                model: 'Usuario',
+                key: 'id'
+            }
         },
-        fotoPerfil: {
-            type: dataTypes.STRING,         
+        productoId: { 
+            type: dataTypes.INTEGER,
+            references: {
+                model: 'Product',
+                key: 'id'
+            }
         },
         texto:{
             type: dataTypes.STRING,
@@ -32,7 +40,12 @@ module.exports = function(sequelize, dataTypes){
 
     let Comentario = sequelize.define(alias, cols, config)
 
-    //CONECTAR ACÁ CON USUARIO Y PRODUCTO//
+    /*Comentario es una tabla intermedia*/
+
+    Comentario.associate = function(models){
+        Comentario.belongsTo(models.Product, { foreignKey: 'usuarioId' });
+        Comentario.belongsTo(models.Usuario, { foreignKey: 'productoId' });
+    };
 
     return Comentario
 }
