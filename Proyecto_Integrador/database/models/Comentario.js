@@ -43,8 +43,8 @@ module.exports = function(sequelize, dataTypes){
     /*Comentario es una tabla intermedia*/
 
     Comentario.associate = function(models){
-        Comentario.belongsTo(models.Product, { foreignKey: 'usuarioId' });
-        Comentario.belongsTo(models.Usuario, { foreignKey: 'productoId' });
+        Comentario.belongsTo(models.Product, { foreignKey: 'productoId' });
+        Comentario.belongsTo(models.Usuario, { foreignKey: 'usuarioId' });
     };
 
     return Comentario
