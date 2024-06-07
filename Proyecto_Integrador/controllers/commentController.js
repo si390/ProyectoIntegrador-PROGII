@@ -3,12 +3,25 @@ const db = require('../database/models');
 const commentController = {
 
     crearComentarios: function (req, res) {
-    if (req.session.user != undefined){
-         return res.redirect("/")
-    } else{
-        return res.redirect("/login")
-    }
-    },
+        if (req.session.user == undefined){
+
+            return res.redirect("/login")
+        } else{
+            const texto = req.body.comment;
+            const productId = req.params.id;
+
+            Comentario.create({
+                texto: texto,
+                productoId: productId,
+                usuarioId: req.session.user.id,
+            })
+            .then(function(comentario) {
+                return res.redirect(`/product/${productId}`);
+            })
+            .catch(function(error){
+                return res.render("product", {error: "Error al subir comentario" });
+            });
+        }},
 
 };
 
