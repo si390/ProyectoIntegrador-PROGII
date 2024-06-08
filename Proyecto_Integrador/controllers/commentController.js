@@ -3,7 +3,8 @@ const { validationResult } = require("express-validator");
 
 const commentController = {
 
-    crearComentarios: function (req, res) {
+    
+    crearComentario: function (req, res) {
         let errors = validationResult(req);
 
         if (req.session.user == undefined) {
