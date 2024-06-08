@@ -42,23 +42,24 @@ const profileController = {
             return res.render('login');
         }
     },
-    login: function (req, res) {         /*agregar cookies y hash*/
+    login: function (req, res) {
         const { email, contrasenia } = req.body;
-
-        db.Usuario.findOne({ where: { email: email, contrasenia: contrasenia } })
+        
+        db.Usuario.findOne({ where: { email: email } })
             .then(function (usuarioLogueado) {
-
                 if (!usuarioLogueado) {
-
                     return res.render("login", { error: "Usuario no registrado" });
-
-                } else if (usuarioLogueado.contrasenia !== contrasenia) {
-
-                    return res.render("login", { error: "Contraseña incorrecta" });
-
                 } else {
-
-                    return res.render("profile", { usuario: usuarioLogueado });
+                    let comparacion = bcrypt.compareSync(contrasenia, usuarioLogueado.contrasenia);
+                    if (!comparacion) {
+                        return res.render("login", { errorContraseña: "Contraseña incorrecta" });
+                    } else {
+                        req.session.user = usuarioLogueado;
+                        if (req.body.recordarme) {
+                            res.cookie('user', usuarioLogueado.id, { maxAge:  1000 * 60 * 1  }); 
+                        }
+                        return res.redirect('/profile'); 
+                    }
                 }
             })
             .catch(function (error) {
