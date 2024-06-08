@@ -51,6 +51,7 @@ const profileController = {
     },
 
     login: function (req, res) {
+        let errors = validationResult(req);
         const { email, contrasenia } = req.body;
 
         db.Usuario.findOne({ where: { email: email } })
