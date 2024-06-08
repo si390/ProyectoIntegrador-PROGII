@@ -1,5 +1,8 @@
 const datos = require('../db/index');
 const db = require('../database/models')
+const {validationsResult} =require("express-validator");
+
+
 const profileController = {
 
     registro: function (req, res) {

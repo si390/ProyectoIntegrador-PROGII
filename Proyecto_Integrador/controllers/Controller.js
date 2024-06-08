@@ -1,7 +1,9 @@
 const datos = require('../db/index');
 const db = require('../database/models');
+const {validationsResult} =require("express-validator");
 
 const Controller = {
+    
     mostrarIndex: function(req, res) {
                                                      /*agregar include con comentarios*/
         db.Product.findAll({
