@@ -4,12 +4,43 @@ const profileController = require('../controllers/profileController');
 const {body}=require("express-validator");
 
 
+
 /*Mi perfil*/
 router.get('/', profileController.mostrarPerfil);
 router.get('/edit', profileController.edit);
 
 /*Register*/
-router.get('/register', profileController.registro);
+let registroValidations = [
+    body("email")
+    .notEmpty().withMessage("Debes agregar un email").bail()
+    .isEmail()
+    .custom(function(value){
+        return db.Usuario.findOne({
+            where : {email: value}
+        })
+        .then(function(user){
+            if(user){
+                throw new Error('El email ingresado ya se encuentra registrado');
+            }
+        })
+    }),
+    body("usuario")
+    .notEmpty().withMessage("Debes agregar un usuario").bail()
+    .isAlphanumeric(),
+    body("contrasenia")
+    .notEmpty().withMessage("No puedes dejar el campo contraseña vacío").bail()
+    .isAscii()
+    .isLength({ min: 4 }).withMessage("La contraseña debe tener al menos 6 caracteres"),
+    body("fechaNacimiento")
+    .isDate(),
+    body("nroDocumento")
+    .isInt(),
+    body("fotoPerfil")
+    .isAlphanumeric(),
+];
+router.get('/register', registroValidations ,profileController.registro);
+
+
 
 /*Login*/
 let validacionesLogin = [

@@ -1,5 +1,6 @@
 const datos = require('../db/index');
 const db = require('../database/models');
+const op = db.Sequelize.Op;
 const {validationResult} =require("express-validator");
 
 const Controller = {

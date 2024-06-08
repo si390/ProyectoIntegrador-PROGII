@@ -1,12 +1,18 @@
 const datos = require('../db/index');
-const db = require('../database/models')
+const db = require('../database/models');
+let op = db.Sequelize.Op;
 const {validationResult} =require("express-validator");
 
 
 const profileController = {
 
     registro: function (req, res) {
-
+        let errors = validationResult(req);
+        if (errors.isEmpty()) {
+            //No hay errores, seguimos adelante
+        }else{
+            res.render('register', {errors: errors.mapped(), old: req.body});
+        }
         const user = datos.usuarios[0];
         let nuevoUsuario = req.body.email;
         req.session.newUser = nuevoUsuario;
