@@ -32,10 +32,11 @@ const profileController = {
          
      },*/
 
-    mostrarLogin: function (req, res) {      /*terminar*/
+    mostrarLogin: function (req, res) {                 /*Cambiar, el saludo tiene que estar en todas las vistas y se debe redirigir a home*/
         if (req.session.user !== undefined) { 
-
-            return res.redirect("/");
+            
+            let saludo = `¡Bienvenid@, ${req.session.user.nombre}!♡`;
+            return res.render('login', { saludo: saludo });
                                                    
         } else {
 
@@ -44,7 +45,7 @@ const profileController = {
     },
     login: function (req, res) {
         const { email, contrasenia } = req.body;
-        
+
         db.Usuario.findOne({ where: { email: email } })
             .then(function (usuarioLogueado) {
                 if (!usuarioLogueado) {
