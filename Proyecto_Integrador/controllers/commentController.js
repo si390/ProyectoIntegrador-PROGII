@@ -1,9 +1,11 @@
 const db = require('../database/models');
-const {validationsResult} =require("express-validator");
+const {validationResult} =require("express-validator");
 
 const commentController = {
 
     crearComentarios: function (req, res) {
+        let errors = validationResult(req);
+
         if (req.session.user == undefined) {
 
             return res.redirect("/login")
