@@ -3,7 +3,7 @@ const db = require('../database/models');
 
 const Controller = {
     mostrarIndex: function(req, res) {
-
+                                                     /*agregar include con comentarios*/
         db.Product.findAll({
             order: ['created_at', 'DESC'], 
             limit: 10 

@@ -32,17 +32,17 @@ const profileController = {
          
      },*/
 
-    mostrarLogin: function (req, res) {
+    mostrarLogin: function (req, res) {      /*terminar*/
         if (req.session.user !== undefined) { 
 
             return res.redirect("/");
-        
+                                                   
         } else {
-            
+
             return res.render('login');
         }
     },
-    login: function (req, res) {
+    login: function (req, res) {         /*agregar cookies y hash*/
         const { email, contrasenia } = req.body;
 
         db.Usuario.findOne({ where: { email: email, contrasenia: contrasenia } })
