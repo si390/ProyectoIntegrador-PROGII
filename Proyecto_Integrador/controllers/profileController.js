@@ -24,6 +24,7 @@ const profileController = {
      },
      mostrarPerfil: function (req, res) {
         const user = datos.usuarios[0];
+
         return res.render('profile', { nombre: user.nombre, email: user.email, foto: user.fotoPerfil });
 
     },*/
@@ -31,17 +32,17 @@ const profileController = {
     mostrarPerfil: function (req, res) {
         if (req.session.user !== undefined) {       /*Cambiar, tengo que agregar los productos*/
             const user = req.session.user;
-            return res.render('profile', {nombre: user.nombre, email: user.email, foto: user.fotoPerfil});
+            return res.render('profile', { nombre: user.nombre, email: user.email, foto: user.fotoPerfil });
         } else {
             return res.redirect('/login');
         }
     },
 
     mostrarLogin: function (req, res) {                 /*Cambiar, el saludo tiene que estar en todas las vistas y se debe redirigir a home*/
-        if (req.session.user !== undefined){ 
+        if (req.session.user !== undefined) {
             let saludo = `¡Bienvenid@, ${req.session.user.nombre}!♡`;
-            return res.render('login', {saludo: saludo});                                          
-        }else{
+            return res.render('login', { saludo: saludo });
+        } else {
             return res.render('login');
         }
     },
@@ -60,9 +61,9 @@ const profileController = {
                     } else {
                         req.session.user = usuarioLogueado;
                         if (req.body.recordarme) {
-                            res.cookie('user', usuarioLogueado.id, { maxAge:  1000 * 60 * 1  }); 
+                            res.cookie('user', usuarioLogueado.id, { maxAge: 1000 * 60 * 1 });
                         }
-                        return res.redirect('/profile'); 
+                        return res.redirect('/profile');
                     }
                 }
             })
