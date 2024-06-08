@@ -54,6 +54,10 @@ const profileController = {
         let errors = validationResult(req);
         const { email, contrasenia } = req.body;
 
+        if (!errors.isEmpty()) {
+            return res.render("login", { errors: errors.mapped(), old: req.body });
+        }
+        
         db.Usuario.findOne({ where: { email: email } })
             .then(function (usuarioLogueado) {
                 if (!usuarioLogueado) {
