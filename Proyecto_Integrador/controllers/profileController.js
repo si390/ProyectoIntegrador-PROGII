@@ -1,5 +1,6 @@
 const datos = require('../db/index');
 const db = require('../database/models');
+let bcrypt = require('bcryptjs');
 let op = db.Sequelize.Op;
 const {validationResult} =require("express-validator");
 
@@ -85,6 +86,12 @@ const profileController = {
                 return res.render("login", { error: "Error al buscar usuario" });
             });
     },
+    logout: function(req, res){
+        req.session.destroy();
+
+        return res.redirect('/');
+    }
+
 };
 
 module.exports = profileController;

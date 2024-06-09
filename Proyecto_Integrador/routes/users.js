@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const profileController = require('../controllers/profileController');
 const {body}=require("express-validator");
-
+let db = require("../database/models")
 
 
 /*Mi perfil*/
@@ -54,7 +54,9 @@ let validacionesLogin = [
 ];
 router.get('/login', validacionesLogin, profileController.mostrarLogin);
 router.post('/login', validacionesLogin, profileController.login);
+router.post('/logout', profileController.logout)
 
 module.exports = router;
+
 
 

@@ -18,7 +18,7 @@ const Controller = {
             return res.render("index", { error: "Error al mostrar el catálogo" });
         });
 
-       /* const productos = datos.productos;
+       const productos = datos.productos;
         const masComentados = [];
         const novedades = [];
 
@@ -29,7 +29,7 @@ const Controller = {
                 novedades.push(producto);
             }
         });
-        return res.render('index', { masComentados: masComentados, novedades: novedades }); */
+        return res.render('index', { masComentados: masComentados, novedades: novedades });
     },
 
     mostrarProducto: function(req, res) {

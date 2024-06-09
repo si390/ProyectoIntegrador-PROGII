@@ -4,6 +4,7 @@ const Controller = require('../controllers/Controller')
 const {body}=require("express-validator");
 
 
+
 router.get('/', Controller.mostrarIndex);
 
 module.exports = router;
