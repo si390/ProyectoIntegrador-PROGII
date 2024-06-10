@@ -92,7 +92,7 @@ const profileController = {
             })
             .catch(function (error) {
                 return res.render("login", { error: "Error al buscar usuario" });
-            });
+           });
     },
 
 
@@ -107,7 +107,7 @@ const profileController = {
 
         .then(function(salir{
             return res.redirect('/login');
-        }))
+        }));
         .catch(function (error) {
             return res.render("/index", { error: "Error al cerrar sesión" });
         });       

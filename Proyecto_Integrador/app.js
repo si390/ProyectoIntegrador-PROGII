@@ -58,4 +58,13 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// Usar nombre de usuario
+app.use(function (req,res,next) {
+  res.locals.usuarioLogueado ={
+    
+  }
+  return next();
+})
+
+
 module.exports = app;
