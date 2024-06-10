@@ -7,7 +7,7 @@ const {body}=require("express-validator");
 router.get('/add', productController.mostrarProducto);
 //Agregar producto//
 router.get('/:id', productController.detalle);
-router.get('/search', productController.search);
+router.get('/results', productController.search);
 
 module.exports = router;
 

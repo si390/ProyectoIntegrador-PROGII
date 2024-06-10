@@ -11,14 +11,16 @@
         <!-- Show mis productos -->
         <div class="col-12 col-sm-6 col-lg-3">
             <section class="product-box">
+                <h2>Resultados</h2>
                 <a href="/product">
+                    <nav><%= resultados %></nav>
                     <img src="/images/products/buzored.jpg" alt="cafetera moulinex">
                     <article class="product-box_data">
-                        <h2>Nombre: <%= resultados %></h2>
+                        <nav><%= resultados %></nav>
                     </article>
                 </a>
             </section>
         </div>
     </div>
-</div>
+</div> 
 <%- include('partials/footer.ejs'); -%>
