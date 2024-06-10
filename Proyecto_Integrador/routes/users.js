@@ -57,7 +57,7 @@ router.post('/login', validacionesLogin, profileController.login);
 
 /*Logout*/
 router.get('/logout', profileController.mostrarLogout)
-router.post('/logout', profileController.logout)
+router.post('/logout', profileController.mostrarLogout)
 
 
 module.exports = router;

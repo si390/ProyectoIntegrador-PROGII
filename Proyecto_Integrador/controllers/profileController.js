@@ -40,28 +40,35 @@ const profileController = {
     },*/
 
     mostrarPerfil: function (req, res) {
+        db.Usuario.findAll({
+            order: ['created_at', 'DESC'], 
+            limit: 10 
+        })
         .then(function(mostrarPerfil){
-           if (req.session.user !== undefined) {       /*Cambiar, tengo que agregar los productos*/
-            const user = req.session.user;
-            return res.render('profile', { nombre: user.nombre, email: user.email, foto: user.fotoPerfil });
-        } else {
-            return res.redirect('/login');
-        }})
+            if (req.session.user !== undefined) {       /*Cambiar, tengo que agregar los productos*/
+                const user = req.session.user;
+                return res.render('profile', { nombre: user.nombre, email: user.email, foto: user.fotoPerfil });
+            } else {
+                return res.redirect('/login');
+            }})
         .catch(function(error) {
             return res.render("profile" , {error: "Error al cargar página de perfil de usuario"})
         })  
-    },
+    }, 
 
     mostrarLogin: function (req, res) {  
+        db.Usuario.findAll({
+            order: ['created_at', 'DESC'], 
+            limit: 10 
+        })
         .then(function(mostrarLogin){
             if (req.session.user == undefined) {      
-
-             return res.render('login', { mostrarLogin: mostrarLogin});
+                return res.render('login', { mostrarLogin: mostrarLogin});
          } else {
-             return res.redirect('/index');
-         }}),
+                return res.redirect('/index');
+         }})
          .catch(function(error) {
-             return res.render("login", {error: "Error al cargar página de login"}),
+                return res.render("login", {error: "Error al cargar página de login"})
          }) 
     },
 
@@ -97,21 +104,13 @@ const profileController = {
 
 
     mostrarLogout: function(req, res){
-        
-        };       
-    },
-
-    logout: function(req, res){
-        
-        req.session.destroy();    
-
+        req.session.destroy()
         .then(function(salir){
             return res.redirect('/login');
         })
         .catch(function (error) {
             return res.render("/index", { error: "Error al cerrar sesión" });
-        });       
-    };
+        })         
+    },
 }
-
-module.exports = profileController;
+module.exports = profileController
