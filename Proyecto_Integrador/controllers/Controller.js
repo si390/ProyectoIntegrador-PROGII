@@ -17,11 +17,12 @@ const Controller = {
         .catch(function(error) {
             return res.render("index", { error: "Error al mostrar el catálogo" });
         });
-
-       const productos = datos.productos;
+    },
+       /* const productos = datos.productos;
         const masComentados = [];
         const novedades = [];
 
+       
         productos.forEach(producto => {
             if (producto.comentarios.length > 4) {
                 masComentados.push(producto);
@@ -40,7 +41,7 @@ const Controller = {
             fotoproducto: producto.imagen,
             descripcioncorta: producto.descripcion
         });
-    },
+    },*/
 
     search: function(req, res) {
         const query = req.query.q;
