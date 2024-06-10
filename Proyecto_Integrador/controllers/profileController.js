@@ -40,23 +40,32 @@ const profileController = {
     },*/
 
     mostrarPerfil: function (req, res) {
+        .then(function(mostrarPerfil)){
            if (req.session.user !== undefined) {       /*Cambiar, tengo que agregar los productos*/
             const user = req.session.user;
             return res.render('profile', { nombre: user.nombre, email: user.email, foto: user.fotoPerfil });
         } else {
             return res.redirect('/login');
-        }}, 
+        }},
+        .catch(function(error) {
+            return res.render("profile" {error: "Error al cargar página de perfil de usuario"}),
+        })  
     },
 
-    mostrarLogin: function(req, res) {
-        if (req.session.user == undefined) {
-            return res.render('login');
-        } else {
-            return res.redirect('/index');
-        }
+    mostrarLogin: function (req, res) {  
+        .then(function(mostrarLogin)){
+            if (req.session.user == undefined) {      
+
+             return res.render('login', { mostrarLogin: mostrarLogin});
+         } else {
+             return res.redirect('/index');
+         }},
+         .catch(function(error) {
+             return res.render("login" {error: "Error al cargar página de login"}),
+         }) 
     },
 
-    login: function (req, res) {
+    login: function(req, res) {
         let errors = validationResult(req);
         const { email, contrasenia } = req.body;
 
@@ -87,14 +96,16 @@ const profileController = {
     },
 
     logout: function(req, res){
+        
+        req.session.destroy();    
 
-        if (req.session.user !== undefined) {
-            req.session.destroy(); 
-            return res.render('login');
-        } else {
-            return res.redirect('/index');
-        }
-      },
+        .then(function(salir{
+            return res.redirect('/login');
+        }));
+        .catch(function (error) {
+            return res.render("/index", { error: "Error al cerrar sesión" });
+        });       
+    },
 };
 
 module.exports = profileController;
