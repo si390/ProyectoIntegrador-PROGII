@@ -15,9 +15,6 @@ const commentController = {
             const productId = req.params.id;
 
             if (errors.isEmpty()) {
-                const texto = req.body.comment;
-                const productId = req.params.id;
-
                 Comentario.create({
                     texto: texto,
                     productoId: productId,
