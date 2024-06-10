@@ -1,5 +1,9 @@
 <%- include('partials/head.ejs'); -%>
-<%- include('partials/header.ejs'); -%>
+  <% if(locals.user != undefined){ %>
+      <%- include('/partials/headerLogueado') %>
+  <%} else { %>
+      <%- include('partials/header') -%>
+  <% } %>
 <!-- form login-->
 <h2 class="col-12"> 
 

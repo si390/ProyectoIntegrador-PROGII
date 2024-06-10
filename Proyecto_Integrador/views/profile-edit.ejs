@@ -1,5 +1,9 @@
 <%- include('partials/head.ejs'); -%>
-<%- include('partials/headerLogueado.ejs'); -%>
+  <% if(locals.user != undefined){ %>
+      <%- include('/partials/headerLogueado') %>
+  <%} else { %>
+      <%- include('partials/header') -%>
+  <% } %>
 <%= locals.newUser %>
     <ul class="right-navbar">
         <li><a href="/profile">

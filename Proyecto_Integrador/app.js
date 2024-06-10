@@ -36,6 +36,13 @@ app.use(function(req, res, next) {
      }
 return next();
 });
+// Usar nombre de usuario
+app.use(function (req,res,next) {
+  if(req.session.usuarioLogueado != undefined){
+    res.locals.user =req.session.usuarioLogueado
+  }
+  return next();
+})
 
 app.use('/', indexRouter);
 app.use('/profile', usersRouter);
