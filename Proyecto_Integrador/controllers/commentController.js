@@ -9,7 +9,8 @@ const commentController = {
         let errors = validationResult(req);
 
         if (req.session.user == undefined) {
-            return res.redirect("/login")
+            let error = "Debes estar logueado para comentar"
+            return res.render(`/product/${productId}`, {loguearse: error})
         } else {
             const texto = req.body.comment;
             const productId = req.params.id;
