@@ -9,7 +9,8 @@ const Controller = {
                                                      /*agregar include con comentarios*/
         db.Product.findAll({
             order: ['created_at', 'DESC'], 
-            limit: 10 
+            limit: 10 ,
+            include:[ {association: "comentarios"},]
         })
         .then(function(productos) {
             return res.render('index', { productos: productos });
