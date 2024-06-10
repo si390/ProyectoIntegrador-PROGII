@@ -56,7 +56,12 @@ router.get('/login', validacionesLogin, profileController.mostrarLogin);
 router.post('/login', validacionesLogin, profileController.login);
 
 /*Logout*/
+<<<<<<< HEAD
 router.post('/logout', profileController.logout)
+=======
+router.get('/logout', profileController.mostrarLogout)
+router.post('/logout', profileController.mostrarLogout)
+>>>>>>> ce1e16a85b983859d78ee89088c258eb672f9fe0
 
 
 module.exports = router;

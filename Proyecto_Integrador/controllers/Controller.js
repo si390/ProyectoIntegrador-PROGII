@@ -9,7 +9,7 @@ const Controller = {
         db.Product.findAll({
             order: ['created_at', 'DESC'], 
             limit: 10 ,
-            include:[ {association: "comentarios"},]
+            include:[ {association: "comentarios"},{association: "usuario"}]
         })
         .then(function(productos) {
             return res.render('index', { productos: productos });
@@ -20,14 +20,15 @@ const Controller = {
     },
     
     detalleProducto: function(req, res){
-
-        if () {
-            
-        } else {
-            
-        }
-    }
-
+        const productId = parseInt(req.params.id, );
+        db.Product.findByPK(productID)
+       .then(function(productos) {
+            return res.render('index', { productos: productos });
+        })
+        .catch(function(error) {
+            return res.render("index", { error: "Error al mostrar el catálogo" });
+        });
+    },
 
        /* const productos = datos.productos;
         const masComentados = [];
