@@ -95,6 +95,12 @@ const profileController = {
             });
     },
 
+
+    mostrarLogout: function(req, res){
+        
+        };       
+    },
+
     logout: function(req, res){
         
         req.session.destroy();    
