@@ -60,7 +60,7 @@ app.use(function(err, req, res, next) {
 
 // Usar nombre de usuario
 app.use(function (req,res,next) {
-  res.locals.usuarioLogueado ={
+  res.locals.usuarioLogueado ={     /*si el usuario esta logueado y si no esta logueado, con la cookie*/
     
   }
   return next();
