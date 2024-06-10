@@ -36,6 +36,13 @@ app.use(function(req, res, next) {
      }
 return next();
 });
+// Usar nombre de usuario
+app.use(function (req,res,next) {
+  if(req.session.usuarioLogueado != undefined){
+    res.locals.user =req.session.usuarioLogueado
+  }
+  return next();
+})
 
 app.use('/', indexRouter);
 app.use('/profile', usersRouter);
@@ -57,14 +64,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// Usar nombre de usuario
-app.use(function (req,res,next) {
-  res.locals.usuarioLogueado ={
-    
-  }
-  return next();
-})
 
 
 module.exports = app;
