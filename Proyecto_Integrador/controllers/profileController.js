@@ -92,7 +92,13 @@ const profileController = {
             })
             .catch(function (error) {
                 return res.render("login", { error: "Error al buscar usuario" });
-            });
+           });
+    },
+
+
+    mostrarLogout: function(req, res){
+        
+        };       
     },
 
     logout: function(req, res){
