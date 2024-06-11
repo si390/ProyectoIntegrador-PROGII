@@ -57,19 +57,11 @@ const profileController = {
     }, 
 
     mostrarLogin: function (req, res) {  
-        db.Usuario.findAll({
-            order: ['created_at', 'DESC'], 
-            limit: 10 
-        })
-        .then(function(mostrarLogin){
             if (req.session.user == undefined) {      
-                return res.render('login', { mostrarLogin: mostrarLogin});
-         } else {
-                return res.redirect('/index');
-         }})
-         .catch(function(error) {
-                return res.render("login", {error: "Error al cargar página de login"})
-         }) 
+                res.render('login');
+            } else {
+                res.redirect('/index');
+            }
     },
 
     login: function(req, res) {
