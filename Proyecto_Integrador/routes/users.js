@@ -6,8 +6,8 @@ let db = require("../database/models")
 
 
 /*Mi perfil*/
-router.get('/', profileController.mostrarPerfil);
-router.get('/edit', profileController.edit);
+router.get('/', profileController.miPerfil.mostrarPerfil);
+router.get('/edit', profileController.miPerfil.edit);
 
 /*Register*/
 let registroValidations = [
@@ -38,7 +38,8 @@ let registroValidations = [
     body("fotoPerfil")
         .isAlphanumeric(),
 ];
-router.get('/register', registroValidations, profileController.registro);
+router.get('/register', registroValidations, profileController.register.mostrarRegistro);
+router.get('/register', registroValidations, profileController.register.registro);
 
 
 /*Login */
@@ -52,16 +53,11 @@ let validacionesLogin = [
         .isLength({ min: 6 }).withMessage("La contraseña debe tener al menos 6 caracteres"),
 ];
 
-router.get('/login', validacionesLogin, profileController.mostrarLogin);
-router.post('/login', validacionesLogin, profileController.login);
+router.get('/login', validacionesLogin, profileController.login.mostrarLogin);
+router.post('/login', validacionesLogin, profileController.login.login);
 
 /*Logout*/
-<<<<<<< HEAD
 router.post('/logout', profileController.logout)
-=======
-router.get('/logout', profileController.mostrarLogout)
-router.post('/logout', profileController.mostrarLogout)
->>>>>>> ce1e16a85b983859d78ee89088c258eb672f9fe0
 
 
 module.exports = router;

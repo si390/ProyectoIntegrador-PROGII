@@ -5,30 +5,40 @@ const {validationResult} =require("express-validator");
 
 const Controller = {
 
-    mostrarIndex: function(req, res) {                               /*agregar include con comentarios*/
-        db.Product.findAll({
-            order: ['created_at', 'DESC'], 
-            limit: 10 ,
-            include:[ {association: "comentarios"},{association: "usuario"}]
-        })
+index: {
+
+        mostrarIndex: function(req, res) {                               /*agregar include con comentarios*/
+            db.Product.findAll({
+                order: ['created_at', 'DESC'], 
+                limit: 10 ,
+                include:[ {association: "comentarios"},{association: "usuario"}]
+            })
+            .then(function(productos) {
+                return res.render('index', { productos: productos });
+            })
+            .catch(function(error) {
+                return res.render("index", { error: "Error al mostrar el catálogo" });
+            });
+        },
+
+},
+
+detalle: {
+
+        detalleProducto: function(req, res){
+            const productId = parseInt(req.params.id, );
+            db.Product.findByPK(productID)
         .then(function(productos) {
-            return res.render('index', { productos: productos });
-        })
-        .catch(function(error) {
-            return res.render("index", { error: "Error al mostrar el catálogo" });
-        });
-    },
+                return res.render('index', { productos: productos });
+            })
+            .catch(function(error) {
+                return res.render("index", { error: "Error al mostrar el catálogo" });
+            });
+        },
+
+},
     
-    detalleProducto: function(req, res){
-        const productId = parseInt(req.params.id, );
-        db.Product.findByPK(productID)
-       .then(function(productos) {
-            return res.render('index', { productos: productos });
-        })
-        .catch(function(error) {
-            return res.render("index", { error: "Error al mostrar el catálogo" });
-        });
-    },
+   
 
        /* const productos = datos.productos;
         const masComentados = [];
