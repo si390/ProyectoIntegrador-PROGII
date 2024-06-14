@@ -130,6 +130,6 @@ const profileController = {
             return res.render('profile', { nombre: user.nombre, email: user.email, foto: user.fotoPerfil });
     
         },*/
-    },
+},
 
-module.exports = profileController
+module.exports = profileController;

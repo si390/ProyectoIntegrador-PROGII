@@ -4,7 +4,6 @@ const { validationResult } = require("express-validator");
 
 const commentController = {
 
-    
     crearComentario: function (req, res) {
         let errors = validationResult(req);
 

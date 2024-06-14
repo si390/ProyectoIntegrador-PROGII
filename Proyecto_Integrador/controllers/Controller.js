@@ -11,7 +11,7 @@ index: {
             db.Product.findAll({
                 order: ['created_at', 'DESC'], 
                 limit: 10 ,
-                include:[ {association: "comentarios"},{association: "usuario"}]
+                include:[ {association: "usuario"}],
             })
             .then(function(productos) {
                 return res.render('index', { productos: productos });
@@ -30,9 +30,8 @@ detail: {
 
                 db.Product.findByPk(productId, {
                     include: [
-                        { association: "comentarios" },
-                        { association: "usuario" }
-                    ]
+                        { association: "comentarios",
+                            include : [  {association: "usuarios"}] }]
                 })
                 .then(function(producto) {
                 
@@ -44,11 +43,17 @@ detail: {
                 },
         
         editar:function(req, res) {
-            
+
+            const userId = req.session.userId;
+            const productId = req.params.id;
+        
 
         },
 
         borrar:function(req, res) {
+
+            const userId = req.session.userId;
+            const productId = req.params.id;
 
         },
 },
