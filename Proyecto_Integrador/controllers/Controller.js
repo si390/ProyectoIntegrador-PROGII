@@ -7,7 +7,7 @@ const Controller = {
 
 index: {
 
-        mostrarIndex: function(req, res) {                               /*agregar include con comentarios*/
+        mostrarIndex: function(req, res) {                             
             db.Product.findAll({
                 order: ['created_at', 'DESC'], 
                 limit: 10 ,
@@ -17,27 +17,45 @@ index: {
                 return res.render('index', { productos: productos });
             })
             .catch(function(error) {
-                return res.render("index", { error: "Error al mostrar el catálogo" });
+                return res.render("index", { error: "Error al mostrar los productos" });
             });
         },
 
 },
 
 detalle: {
+    
+        detalle: function(req, res) {
+            const productId = parseInt(req.params.id);
 
-        detalleProducto: function(req, res){
-            const productId = parseInt(req.params.id, );
-            db.Product.findByPK(productID)
-        .then(function(productos) {
-                return res.render('index', { productos: productos });
+            db.Product.findByPk(productId, {
+                include: [
+                    { association: "comentarios" },
+                    { association: "usuario" }
+                ]
+            })
+            .then(function(producto) {
+            
+            return res.render('product', { /*completar*/});
             })
             .catch(function(error) {
-                return res.render("index", { error: "Error al mostrar el catálogo" });
+                return res.render('product', { error: "Error al mostrar el detalle del producto" });
             });
-        },
+            },
 
+        
+        editar:function(req, res) {
+
+        },
 },
     
+ busqueda:{
+
+        search:function(req, res) {
+
+        },
+    
+},
    
 
        /* const productos = datos.productos;

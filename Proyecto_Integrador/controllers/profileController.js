@@ -7,7 +7,7 @@ const { validationResult } = require("express-validator");
 
 const profileController = {
 
-register: {
+    register: {
 
         mostrarRegistro: function (req, res) {
 
@@ -17,7 +17,7 @@ register: {
         registro: function (req, res) {
             let errors = validationResult(req);
             if (errors.isEmpty()) {
-                //No hay errores, seguimos adelante
+
             } else {
                 res.render('register', { errors: errors.mapped(), old: req.body });
             }
@@ -31,7 +31,7 @@ register: {
 
     },
 
-login: {
+    login: {
 
         mostrarLogin: function (req, res) {
             if (req.session.user == undefined) {
@@ -74,14 +74,8 @@ login: {
     },
 
 
-miPerfil: {
+    miPerfil: {
 
-        edit: function (req, res) {
-
-            const user = datos.usuarios[0];
-            return res.render('profile-edit', { nombre: user.nombre, email: user.email });
-
-        },
 
         mostrarPerfil: function (req, res) {
             db.Usuario.findAll({
@@ -103,7 +97,7 @@ miPerfil: {
 
     },
 
-logout: {
+    logout: {
 
         mostrarLogout: function (req, res) {
             req.session.destroy()
@@ -127,6 +121,12 @@ logout: {
          return res.render('login', {nombre: user.nombre, email: user.email }); 
          
      },
+     editarperfil: function (req, res) {
+
+            const user = datos.usuarios[0];
+            return res.render('profile-edit', { nombre: user.nombre, email: user.email });
+
+        },
      mostrarPerfil: function (req, res) {
         const user = datos.usuarios[0];
 
