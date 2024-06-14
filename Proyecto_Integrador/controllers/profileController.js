@@ -3,6 +3,7 @@ const db = require('../database/models');
 let bcrypt = require('bcryptjs');
 let op = db.Sequelize.Op;
 const { validationResult } = require("express-validator");
+const { Association } = require('sequelize');
 
 
 const profileController = {
@@ -76,63 +77,59 @@ const profileController = {
 
     miPerfil: {
 
-
         mostrarPerfil: function (req, res) {
-            db.Usuario.findAll({
-                order: ['created_at', 'DESC'],
-                limit: 10
-            })
-                .then(function (mostrarPerfil) {
-                    if (req.session.user !== undefined) {       /*Cambiar, tengo que agregar los productos*/
-                        const user = req.session.user;
-                        return res.render('profile', { nombre: user.nombre, email: user.email, foto: user.fotoPerfil });
-                    } else {
-                        return res.redirect('/login');
+
+            if (req.session.userId) {
+                const userId = req.session.userId;
+                Usuario.findByPk(userId, {              /*Cambiar esto*/
+                    include: {
+                        association: "productos",
+                        order: [['created_at', 'DESC']]
                     }
                 })
-                .catch(function (error) {
-                    return res.render("profile", { error: "Error al cargar página de perfil de usuario" })
-                })
+                    .then(function (mostrarPerfil) {
+                        if (req.session.user !== undefined) {
+                            const user = req.session.user;
+                            return res.render('profile', { nombre: user.nombre, email: user.email, foto: user.fotoPerfil });
+                        } else {
+                            return res.redirect('/login');
+                        }
+                    })
+                    .catch(function (error) {
+                        return res.render("profile", { error: "Error al cargar página de perfil de usuario" })
+                    })
+            }
+
         },
 
-    },
+        logout: {
 
-    logout: {
+            logout: function (req, res) {
+                req.session.destroy(function (error) {
+                    res.clearCookie('UsuarioNuevo');
+                    res.redirect('/index');
+                });
+            },
 
-        mostrarLogout: function (req, res) {
-            req.session.destroy()
-                .then(function (salir) {
-                    return res.redirect('/login');
-                })
-                .catch(function (error) {
-                    return res.render("/index", { error: "Error al cerrar sesión" });
-                })
         },
 
-
-    },
-
-
-
-
-
-    /* mostrarLogin: function (req, res) {
-         const user = datos.usuarios[0];
-         return res.render('login', {nombre: user.nombre, email: user.email }); 
-         
-     },
-     editarperfil: function (req, res) {
-
+        /* mostrarLogin: function (req, res) {
+             const user = datos.usuarios[0];
+             return res.render('login', {nombre: user.nombre, email: user.email }); 
+             
+         },
+         editarperfil: function (req, res) {
+    
+                const user = datos.usuarios[0];
+                return res.render('profile-edit', { nombre: user.nombre, email: user.email });
+    
+            },
+         mostrarPerfil: function (req, res) {
             const user = datos.usuarios[0];
-            return res.render('profile-edit', { nombre: user.nombre, email: user.email });
-
-        },
-     mostrarPerfil: function (req, res) {
-        const user = datos.usuarios[0];
-
-        return res.render('profile', { nombre: user.nombre, email: user.email, foto: user.fotoPerfil });
-
-    },*/
-}
+    
+            return res.render('profile', { nombre: user.nombre, email: user.email, foto: user.fotoPerfil });
+    
+        },*/
+    },
 
 module.exports = profileController

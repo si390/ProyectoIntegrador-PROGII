@@ -23,35 +23,47 @@ index: {
 
 },
 
-detalle: {
+detail: {
     
         detalle: function(req, res) {
-            const productId = parseInt(req.params.id);
+                const productId = parseInt(req.params.id);
 
-            db.Product.findByPk(productId, {
-                include: [
-                    { association: "comentarios" },
-                    { association: "usuario" }
-                ]
-            })
-            .then(function(producto) {
-            
-            return res.render('product', { /*completar*/});
-            })
-            .catch(function(error) {
-                return res.render('product', { error: "Error al mostrar el detalle del producto" });
-            });
-            },
-
+                db.Product.findByPk(productId, {
+                    include: [
+                        { association: "comentarios" },
+                        { association: "usuario" }
+                    ]
+                })
+                .then(function(producto) {
+                
+                return res.render('product', { producto: producto});
+                })
+                .catch(function(error) {
+                    return res.render('product', { error: "Error al mostrar el detalle del producto" });
+                });
+                },
         
         editar:function(req, res) {
+            
+
+        },
+
+        borrar:function(req, res) {
 
         },
 },
-    
- busqueda:{
 
-        search:function(req, res) {
+productAdd: {
+
+     crearProducto: function(req, res) {                             
+        
+        },
+
+},
+    
+search:{
+
+        busqueda:function(req, res) {
 
         },
     

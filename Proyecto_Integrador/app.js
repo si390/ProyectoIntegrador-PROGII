@@ -65,11 +65,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// Usar nombre de usuario
+
 app.use(function (req,res,next) {
-  res.locals.usuarioLogueado ={     /*si el usuario esta logueado y si no esta logueado, con la cookie*/
-    
-  }
+  res.locals.usuario = req.session.user     /*para usar en las vistas*/
   return next();
 })
 
