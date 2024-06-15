@@ -44,16 +44,16 @@ detail: {
         
         editar:function(req, res) {
 
-            const userId = req.session.userId;
-            const productId = req.params.id;
+            const usuarioId = req.session.userId;
+            const productoId = req.params.id;
         
 
         },
 
         borrar:function(req, res) {
 
-            const userId = req.session.userId;
-            const productId = req.params.id;
+            const usuarioId = req.session.userId;
+            const productoId = req.params.id;
 
         },
 },

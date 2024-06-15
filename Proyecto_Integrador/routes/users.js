@@ -7,7 +7,7 @@ let db = require("../database/models")
 
 /*Mi perfil*/
 router.get('/', profileController.miPerfil.mostrarPerfil);
-router.get('/edit', profileController.miPerfil.edit);
+router.get('/edit', profileController.miPerfil.edit);           //*cambiar*//
 
 /*Register*/
 let registroValidations = [
@@ -39,7 +39,7 @@ let registroValidations = [
         .isAlphanumeric(),
 ];
 router.get('/register', registroValidations, profileController.register.mostrarRegistro);
-router.get('/register', registroValidations, profileController.register.registro);
+router.post('/register', registroValidations, profileController.register.registro);
 
 
 /*Login */
@@ -57,7 +57,7 @@ router.get('/login', validacionesLogin, profileController.login.mostrarLogin);
 router.post('/login', validacionesLogin, profileController.login.login);
 
 /*Logout*/
-router.post('/logout', profileController.logout)
+router.post('/logout', profileController.logout.logout)
 
 
 module.exports = router;

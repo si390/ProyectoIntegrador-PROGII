@@ -11,8 +11,11 @@ const profileController = {
     register: {
 
         mostrarRegistro: function (req, res) {
-
-
+            if (req.session.user == undefined) {
+                res.render('register');
+            } else {
+                res.redirect('/index');
+            }
         },
 
         registro: function (req, res) {
@@ -77,29 +80,37 @@ const profileController = {
 
     miPerfil: {
 
-        mostrarPerfil: function (req, res) {
-
-            if (req.session.userId) {
-                const userId = req.session.userId;
-                Usuario.findByPk(userId, {              /*Cambiar esto*/
-                    include: {
-                        Association: "productos",
-                        order: [['created_at', 'DESC']]
-                    }
-                })
-                    .then(function (mostrarPerfil) {
-                        if (req.session.user !== undefined) {
-                            const user = req.session.user;
-                            return res.render('profile', { nombre: user.nombre, email: user.email, foto: user.fotoPerfil });
+            mostrarPerfil: function(req, res) {
+                if (req.session.userId) {
+                    const userId = req.session.userId;
+                    db.Usuario.findByPk(userId, {
+                        include: {
+                            association: 'productos',
+                            order: [['created_at', 'DESC']]
+                        }
+                    })
+                    .then(function(usuario) {
+                        if (usuario) {
+                            return res.render('profile', {
+                                nombre: usuario.nombre,
+                                email: usuario.email,
+                                foto: usuario.fotoPerfil,
+                                productos: usuario.productos,
+                                numProductos: usuario.productos.length
+                            });
                         } else {
                             return res.redirect('/login');
                         }
                     })
-                    .catch(function (error) {
-                        return res.render("profile", { error: "Error al cargar página de perfil de usuario" })
-                    })
+                    .catch(function(error) {
+                        return res.render('profile', {
+                            error: 'Error al cargar página de perfil de usuario'
+                        });
+                    });
+                } else {
+                    return res.redirect('/login');
+                }
             }
-
         },
 
         logout: {
@@ -112,24 +123,6 @@ const profileController = {
             },
 
         },
-
-        /* mostrarLogin: function (req, res) {
-             const user = datos.usuarios[0];
-             return res.render('login', {nombre: user.nombre, email: user.email }); 
-             
-         },
-         editarperfil: function (req, res) {
-    
-                const user = datos.usuarios[0];
-                return res.render('profile-edit', { nombre: user.nombre, email: user.email });
-    
-            },
-         mostrarPerfil: function (req, res) {
-            const user = datos.usuarios[0];
-    
-            return res.render('profile', { nombre: user.nombre, email: user.email, foto: user.fotoPerfil });
-    
-        },*/
 },
 
 module.exports = profileController;
