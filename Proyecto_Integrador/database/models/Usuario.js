@@ -7,6 +7,10 @@ module.exports = function(sequelize, dataTypes){
             primaryKey: true,
             type: dataTypes.INTEGER,
         },
+        username: {
+            type: dataTypes.STRING,      
+            unique: true              
+        },
         nombre:{
             type: dataTypes.STRING,
         },
@@ -34,9 +38,9 @@ module.exports = function(sequelize, dataTypes){
     }
 
     let config = {
-        //tableName: "usuarios",
-        //timestamps: true,
-        //underscored: true
+        tableName: "usuarios",
+        timestamps: true,
+        underscored: true,
         createdAt: "created_at",
         updated_at: "updated_at",
     }
@@ -44,7 +48,7 @@ module.exports = function(sequelize, dataTypes){
     let Usuario = sequelize.define(alias, cols, config);
 
     Usuario.associate = function(models){
-        Usuario.belongsTo(models.Product,{
+        Usuario.hasMany(models.Product,{
             as: 'producto',
             foreignKey: 'usuarioId',
             timestamps: true,

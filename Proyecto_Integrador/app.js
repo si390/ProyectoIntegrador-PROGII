@@ -36,6 +36,7 @@ app.use(function(req, res, next) {
      }
 return next();
 });
+
 // Usar nombre de usuario
 app.use(function (req,res,next) {
   if(req.session.usuarioLogueado != undefined){
@@ -64,12 +65,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
-app.use(function (req,res,next) {
-  res.locals.usuario = req.session.user     /*para usar en las vistas*/
-  return next();
-})
-
 
 module.exports = app;

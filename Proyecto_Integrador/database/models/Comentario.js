@@ -9,17 +9,9 @@ module.exports = function(sequelize, dataTypes){
         },
         usuarioId: { 
             type: dataTypes.INTEGER,
-            references: {
-                model: 'Usuario',
-                key: 'id'
-            }
         },
         productoId: { 
             type: dataTypes.INTEGER,
-            references: {
-                model: 'Product',
-                key: 'id'
-            }
         },
         texto:{
             type: dataTypes.STRING,

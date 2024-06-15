@@ -25,7 +25,7 @@ const profileController = {
             const user = datos.usuarios[0];
             let nuevoUsuario = req.body.email;
             req.session.newUser = nuevoUsuario;
-            res.cookie('UsuarioNuevo', nuevoUsuario, { maxAge: 1000 * 60 * 1 })
+            res.cookie('UsuarioNuevo', nuevoUsuario, {  maxAge: 1000 * 60 * 60 * 24 * 7})
             return res.render('register', { nombre: user.nombre, email: user.email });
 
         },
@@ -61,7 +61,7 @@ const profileController = {
                         } else {
                             req.session.user = usuarioLogueado;
                             if (req.body.recordarme) {
-                                res.cookie('user', usuarioLogueado.id, { maxAge: 1000 * 60 * 1 });
+                                res.cookie('UsuarioNuevo', usuarioLogueado.id, { maxAge: 1000 * 60 * 60 * 24 * 7});
                             }
                             return res.redirect('/profile');
                         }
@@ -83,7 +83,7 @@ const profileController = {
                 const userId = req.session.userId;
                 Usuario.findByPk(userId, {              /*Cambiar esto*/
                     include: {
-                        association: "productos",
+                        Association: "productos",
                         order: [['created_at', 'DESC']]
                     }
                 })
