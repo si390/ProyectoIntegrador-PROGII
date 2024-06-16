@@ -1,27 +1,33 @@
-const datos = require('../db/index');
 const db = require('../database/models');
-const op = db.Sequelize.Op;
-const {validationResult} =require("express-validator");
+const { Op } = db.Sequelize;
+const { validationResult } = require("express-validator");
 
 const Controller = {
+    index: {
+        mostrarIndex: async function (req, res) {
+            try {
+                const novedades = await db.Product.findAll({
+                    order: [['created_at', 'DESC']],
+                    limit: 10,
+                    include: [{ association: "usuario" }],
+                });
 
-index: {
+                const masComentados = await db.Product.findAll({
+                    include: [
+                        { association: "usuario" },
+                        { association: "comentarios" }
+                    ],
+                    order: [[db.Sequelize.fn('COUNT', db.Sequelize.col('comentarios.Id')), 'DESC']],
+                    group: ['producto.Id'],
+                    limit: 10,
+                });
 
-        mostrarIndex: function(req, res) {                             
-            db.Product.findAll({
-                order: ['created_at', 'DESC'], 
-                limit: 10 ,
-                include:[ {association: "usuario"}],
-            })
-            .then(function(productos) {
-                return res.render('index', { productos: productos });
-            })
-            .catch(function(error) {
-                return res.render("index", { error: "Error al mostrar los productos" });
-            });
+                res.render('index', { novedades, masComentados });
+            } catch (error) {
+                res.render("index", { error: "Error al mostrar los productos" });
+            }
         },
-
-},
+    },
 
 detail: {
     

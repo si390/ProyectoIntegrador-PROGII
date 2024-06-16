@@ -7,7 +7,7 @@ let db = require("../database/models")
 
 /*Mi perfil*/
 router.get('/', profileController.miPerfil.mostrarPerfil);
-router.get('/edit', profileController.miPerfil.edit);           //*cambiar*//
+//router.get('/edit', profileController.miPerfil.edit);           //*cambiar*//
 
 /*Register*/
 let registroValidations = [

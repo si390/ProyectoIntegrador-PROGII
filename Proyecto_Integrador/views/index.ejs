@@ -9,67 +9,57 @@
       <%- include('partials/header') -%>
   <% } %>
       <!-- Novedades -->
-<div class="container products-wrapper">
-  <div class="row">
-    <div class="col-12">
-      <h2 class="products-title">Novedades</h2>
-    </div>
-
-    <% for (let i=0; i < novedades.length; i++) { %>
-      <div class="col-12 col-sm-6 col-lg-3">
-        <section class="product-box">
-          <a href="/product/<%= novedades[i].id %>">
-            <figure class="product-box_image">
-              <img src="<%= novedades[i].imagen %>" alt="<%= novedades[i].nombre %>">
-            </figure>
-            <article class="product-box_data">
-              <h2>
-                <%= novedades[i].nombre %>
-              </h2>
-              <p>
-                <%= novedades[i].descripcion %>
-              </p>
-              <p>Comentarios: <%= novedades[i].comentarios.length %>
-              </p>
-            </article>
-          </a>
-        </section>
+      <div class="container products-wrapper">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="products-title">Novedades</h2>
+          </div>
+      
+          <% for (let i = 0; i < novedades.length; i++) { %>
+            <div class="col-12 col-sm-6 col-lg-3">
+              <section class="product-box">
+                <a href="/product/<%= novedades[i].id %>">
+                  <figure class="product-box_image">
+                    <img src="<%= novedades[i].imagen %>" alt="<%= novedades[i].nombre %>">
+                  </figure>
+                  <article class="product-box_data">
+                    <h2><%= novedades[i].nombre %></h2>
+                    <p><%= novedades[i].descripcion %></p>
+                    <p>Comentarios: <%= novedades[i].comentarios.length %></p>
+                  </article>
+                </a>
+              </section>
+            </div>
+          <% } %>
+        </div>
       </div>
-    <% } %>
-  </div>
-</div>
-<!-- /Novedades -->
-
-<!-- Más comentados -->
-<div class="container products-wrapper">
-  <div class="row">
-    <div class="col-12">
-      <h2 class="products-title">Más comentados</h2>
-    </div>
-
-    <% for (let i=0; i < masComentados.length; i++) { %>
-      <div class="col-12 col-sm-6 col-lg-3">
-        <section class="product-box">
-          <a href="/product/<%= masComentados[i].id %>">
-            <figure class="product-box_image">
-              <img src="<%= masComentados[i].imagen %>" alt="<%= masComentados[i].nombre %>">
-            </figure>
-            <article class="product-box_data">
-              <h2>
-                <%= masComentados[i].nombre %>
-              </h2>
-              <p>
-                <%= masComentados[i].descripcion %>
-              </p>
-              <p>Comentarios: <%= masComentados[i].comentarios.length %>
-              </p>
-            </article>
-          </a>
-        </section>
+      <!-- /Novedades -->
+      
+      <!-- Más comentados -->
+      <div class="container products-wrapper">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="products-title">Más comentados</h2>
+          </div>
+      
+          <% for (let i = 0; i < masComentados.length; i++) { %>
+            <div class="col-12 col-sm-6 col-lg-3">
+              <section class="product-box">
+                <a href="/product/<%= masComentados[i].id %>">
+                  <figure class="product-box_image">
+                    <img src="<%= masComentados[i].imagen %>" alt="<%= masComentados[i].nombre %>">
+                  </figure>
+                  <article class="product-box_data">
+                    <h2><%= masComentados[i].nombre %></h2>
+                    <p><%= masComentados[i].descripcion %></p>
+                    <p>Comentarios: <%= masComentados[i].comentarios.length %></p>
+                  </article>
+                </a>
+              </section>
+            </div>
+          <% } %>
+        </div>
       </div>
-    <% } %>
-  </div>
-</div>
 
       <%- include('partials/footer.ejs'); -%>
 </body>

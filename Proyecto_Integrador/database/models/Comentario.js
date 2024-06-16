@@ -32,7 +32,7 @@ module.exports = function(sequelize, dataTypes){
 
     let Comentario = sequelize.define(alias, cols, config)
 
-    /*Comentario es una tabla intermedia*/
+
 
     Comentario.associate = function(models){
         

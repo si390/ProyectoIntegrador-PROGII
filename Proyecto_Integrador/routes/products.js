@@ -10,7 +10,7 @@ const {body}=require("express-validator");
 router.get('/:id', productController.detail.detalle);
 
 /*agregar producto*/
-router.get('/add', productController.mostrarProducto);
+//router.get('/add', productController.mostrarProducto);
 
 /*búsqueda*/
 router.post('/results', productController.search.busqueda);
