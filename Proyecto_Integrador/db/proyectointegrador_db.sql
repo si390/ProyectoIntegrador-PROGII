@@ -3,31 +3,30 @@ USE proyectointegradorfinal;
 
 
 CREATE TABLE usuarios (
-    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    contrasenia VARCHAR(255) NOT NULL,  
-    fecha DATE NOT NULL,  
-    dni INT UNIQUE NOT NULL,
-    foto TEXT,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deletedAt TIMESTAMP NULL 
+    Id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    nombre VARCHAR(255),
+    email VARCHAR(255),
+    contrasenia VARCHAR(255),
+    fecha INT,
+    dni INT,
+    fotoPerfil VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
 CREATE TABLE productos (
-    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(100) NOT NULL,  
-    descripcion VARCHAR(255) NOT NULL,  
+    Id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    imagen VARCHAR(100) NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion VARCHAR(255) NOT NULL,
     color VARCHAR(100) NOT NULL,
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deletedAt TIMESTAMP NULL, 
-
-
-    usuario_id INT UNSIGNED,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+    deletedAt TIMESTAMP NULL,
+    usuario_Id INT UNSIGNED,
+    FOREIGN KEY (usuario_Id) REFERENCES usuarios(Id)
 );
 
 
@@ -36,62 +35,62 @@ CREATE TABLE comentarios (
     usuario_id INT UNSIGNED NOT NULL, 
     producto_id INT UNSIGNED NOT NULL, 
     texto VARCHAR(255) NOT NULL,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deletedAt TIMESTAMP NULL, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP NULL, 
 
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
-    FOREIGN KEY (producto_id) REFERENCES productos(id)
+    FOREIGN KEY (usuario_Id) REFERENCES usuarios(Id),
+    FOREIGN KEY (producto_Id) REFERENCES productos(Id)
 );
 
 
-INSERT INTO usuarios (nombre, email, contrasenia, fecha, dni, foto)
+INSERT INTO usuarios (username, nombre, email, contrasenia, fecha, dni, fotoPerfil) 
 VALUES
-("Agostina Rios", "agosrios@gmail.com", "contraseña1", '1993-02-19', 99999999, "/images/users/agostina.jpg"),
-("Alberto Olmedo", "alolmedo@gmail.com", "contraseña2", '1982-03-24', 33658954, "/images/users/alberto.jpg"),
-("Alejandro Lerner", "alelerner@gmail.com", "contraseña3", '2003-07-18', 22548902, "/images/users/alejandro.jpg"),
-("Baby Etchecopar", "baby5@gmail.com", "contraseña4", '1996-10-14', 10257836, "/images/users/baby.jpg"),
-("Baltazar Carusso", "baltocar@gmail.com", "contraseña5", '2001-07-06', 45856321, "/images/users/baltazar.jpg"),
-("Benicio Grazzi", "benigr@gmail.com", "contraseña1", '1993-02-19', 1234567, "/images/users/benicio.jpg"),
-("Camila Ford", "camiford@gmail.com", "contraseña2", '1982-03-24', 23245687, "/images/users/camila.jpg"),
-("Carlos Perez", "carlospe@gmail.com", "contraseña3", '2003-07-18', 3325468, "/images/users/carlos.jpg"),
-("Cristina Roble", "crisrob@gmail.com", "contraseña4", '1996-10-14', 1548762, "/images/users/cristina.jpg"),
-("Daddy", "daddy@gmail.com", "contraseña5", '2001-07-06', 12470200, "/images/users/daddy.jpg"),
-("Gaspar Ayuso", "gaspayu@gmail.com", "contraseña4", '1996-10-14', 13920420, "/images/users/gaspar.jpg"),
-("Javier Chau", "javich@gmail.com", "contraseña5", '2001-07-06', 95212233, "/images/users/javier.jpg"),
-("Juan Soto", "jusoto@gmail.com", "contraseña1", '1993-02-19', 6542236, "/images/users/juan.jpg"),
-("Karina Jimenez", "karimenez@gmail.com", "contraseña2", '1982-03-24', 8552342, "/images/users/karina.jpg"),
-("Lorna Williams", "lwilliams@gmail.com", "contraseña3", '2003-07-18', 3232145, "/images/users/lorna.jpg"),
-("Luis Prescott", "luisp@gmail.com", "contraseña4", '1996-10-14', 3458772, "/images/users/luis.jpg"),
-("Mabel Collins", "mcollins1@gmail.com", "contraseña5", '2001-07-06', 2102688, "/images/users/mabel.jpg"),
-("Maria Ryan", "maryan@gmail.com", "contraseña4", '1996-10-14', 20786321, "/images/users/maria.jpg"),
-("Martina Schino", "martisch@gmail.com", "contraseña5", '2001-07-06', 126888, "/images/users/martina.jpg"),
-("Mauricio Fernandez", "maurifer@gmail.com", "contraseña1", '1993-02-19', 7525265, "/images/users/mauricio.jpg"),
-("Milagros Rey", "milirey@gmail.com", "contraseña2", '1982-03-24', 6325586, "/images/users/milagros.jpg"),
-("Nestor Piazolla", "nestorp@gmail.com", "contraseña3", '2003-07-18', 5742202, "/images/users/nestor.jpg"),
-("Nicolas Grey", "nicogr@gmail.com", "contraseña4", '1996-10-14', 3005822, "/images/users/nicolas.jpg"),
-("Patricia Monroe", "pato1monroe@gmail.com", "contraseña5", '2001-07-06', 5478520, "/images/users/patricia.jpg"),
-("Pedro Fozzi", "pfozzi4@gmail.com", "contraseña4", '1996-10-14', 4578200, "/images/users/pedro.jpg"),
-("Sebastian Lopez", "sebalopez5@gmail.com", "contraseña5", '2001-07-06', 40369712, "/images/users/sebastian.jpg"),
-("Pilar Attias", "piliatto2@gmail.com", "contraseña1", '1993-02-19', 8515000, "/images/users/pilar.jpg"),
-("Valentina Zerene", "valenz9@gmail.com", "contraseña2", '1982-03-24', 1115563, "/images/users/valentina.jpg"),
-("Valeria Mazza", "vmazza@gmail.com", "contraseña3", '2003-07-18', 22536700, "/images/users/valeria.jpg"),
-("Victoria Lagos", "vicky60@gmail.com", "contraseña4", '1996-10-14', 11230088, "/images/users/victoria.jpg"),
-("Walter Giardino", "wgiardino8@gmail.com", "contraseña5", '2001-07-06', 6200146, "/images/users/walter.jpg");
+("agosrios25","Agostina Rios", "agosrios@gmail.com", "dndfksoe", 19930219, 99999999, "/images/users/agostina.jpg"),
+("albertol13","Alberto Olmedo", "alolmedo@gmail.com", "sdwdvb12", 19820324, 33658954, "/images/users/alberto.jpg"),
+("ale12lerner","Alejandro Lerner", "alelerner@gmail.com", "sdas28c", 20030718, 22548902, "/images/users/alejandro.jpg"),
+("baby45","Baby Etchecopar", "baby5@gmail.com", "ewfwegmm25", 19961014, 10257836, "/images/users/baby.jpg"),
+("balto80","Baltazar Carusso", "baltocar@gmail.com", "wqergs90", 20010706, 45856321, "/images/users/baltazar.jpg"),
+("benig950","Benicio Grazzi", "benigr@gmail.com", "vmnbkfg21", 19930219, 1234567, "/images/users/benicio.jpg"),
+("camif75","Camila Ford", "camiford@gmail.com", "5d4fsdfnu", 19820324, 23245687, "/images/users/camila.jpg"),
+("cperez45","Carlos Perez", "carlospe@gmail.com", "9dsf1ggd", 20030718, 3325468, "/images/users/carlos.jpg"),
+("croble968","Cristina Roble", "crisrob@gmail.com", "mnkh875", 19961014, 1548762, "/images/users/cristina.jpg"),
+("da820","Daddy", "daddy@gmail.com", "mi85dlei", 20010706, 12470200, "/images/users/daddy.jpg"),
+("gaspi100","Gaspar Ayuso", "gaspayu@gmail.com", "fei5snm", 19961014, 13920420, "/images/users/gaspar.jpg"),
+("javo76","Javier Chau", "javich@gmail.com", "t1n1ckk", 20010706, 95212233, "/images/users/javier.jpg"),
+("janso93","Juan Soto", "jusoto@gmail.com", "d8u2sa", 19930219, 6542236, "/images/users/juan.jpg"),
+("karijs8","Karina Jimenez", "karimenez@gmail.com", "familds44", 19820324, 8552342, "/images/users/karina.jpg"),
+("lw63a","Lorna Williams", "lwilliams@gmail.com", "gagsjd495", 20030718, 3232145, "/images/users/lorna.jpg"),
+("lpro682","Luis Prescott", "luisp@gmail.com", "sarkfmb02", 19961014, 3458772, "/images/users/luis.jpg"),
+("mabel12","Mabel Collins", "mcollins1@gmail.com", "passwodj58", 20010706, 2102688, "/images/users/mabel.jpg"),
+("marury89","Maria Ryan", "maryan@gmail.com", "mvdjdjsoy2", 19961014, 20786321, "/images/users/maria.jpg"),
+("martu69z","Martina Schino", "martisch@gmail.com", "hol4885a", 20010706, 126888, "/images/users/martina.jpg"),
+("mfer714","Mauricio Fernandez", "maurifer@gmail.com", "qwufjv78", 19930219, 7525265, "/images/users/mauricio.jpg"),
+("milirey02","Milagros Rey", "milirey@gmail.com", "hallel54", 19820324, 6325586, "/images/users/milagros.jpg"),
+("asti54","Astor Piazzolla", "astorp@gmail.com", "obadma4v4", 20030718, 5742202, "/images/users/nestor.jpg"),
+("nico007","Nicolas Grey", "nicogr@gmail.com", "csdbind15", 19961014, 3005822, "/images/users/nicolas.jpg"),
+("pato12s","Patricia Monroe", "pato1monroe@gmail.com", "szizjs87", 20010706, 5478520, "/images/users/patricia.jpg"),
+("pedro028","Pedro Fozzi", "pfozzi4@gmail.com", "wovb2c5", 19961014, 4578200, "/images/users/pedro.jpg"),
+("seba0358","Sebastian Lopez", "sebaslopez5@gmail.com", "mbfopepl5", 20010706, 40369712, "/images/users/sebastian.jpg"),
+("pili863","Pilar Attias", "piliatto2@gmail.com", "cpekfmjdte2", 19930219, 8515000, "/images/users/pilar.jpg"),
+("valezene30","Valentina Zerene", "valenz9@gmail.com", "ajdsdjjfk3", 19820324, 1115563, "/images/users/valentina.jpg"),
+("vale49","Valeria Mazza", "vmazza@gmail.com", "fg8sd6v2", 20030718, 22536700, "/images/users/valeria.jpg"),
+("vicky99","Victoria Lagos", "vicky60@gmail.com", "abidm98v", 19961014, 11230088, "/images/users/victoria.jpg"),
+("walter740","Walter Giardino", "wgiardino8@gmail.com", "cs28df5", 20010706, 6200146, "/images/users/walter.jpg");
 
 
-INSERT INTO productos (nombre, descripcion, color)
+INSERT INTO productos (nombre, imagen, descripcion, color)
 VALUES
-("Buzo Red", "Cómodo buzo color blanco y rojo.", "Rojo"),
-("Buzo Butterfly", "Buzo con explosión visual.", "Blanco"),
-("Buzo Car", "Buzo inspirado en la serie de Fast and Furious.", "Blanco"),
-("Buzo Future", "Buzo en tendencia con tela extra suave.", "Verde"),
-("Buzo Eminem", "Buzo inspirado en el albúm de Eminem", "Blanco"),
-("Buzo Astrowold", "Buzo con colores vibrantes", "Beige"),
-("Buzo King of the Kongo", "Hermoso buzo Buenos Aires a la moda", "Azul"),
-("Buzo Tupac", "Buzo inspirado en el gran artista Tupac", "Naranja"),
-("Buzo Undefined", "Buzo de gran calidad, nueva colección undefined.", "Negro"),
-("Buzo Los Ángeles", "Buzo estilo oversize de gran calidad.", "Marrón");
+("Buzo Red", "/images/products/buzored.jpg","Cómodo buzo color blanco y rojo.", "Rojo"),
+("Buzo Butterfly","/images/products/buzobutterfly.jpg", "Buzo con explosión visual.", "Blanco"),
+("Buzo Car","/images/products/buzocar.jpg", "Buzo inspirado en la serie de Fast and Furious.", "Blanco"),
+("Buzo Future","/images/products/buzofuture.jpg", "Buzo en tendencia con tela extra suave.", "Verde"),
+("Buzo Eminem","/images/products/buzoeminem.jpg", "Buzo inspirado en el albúm de Eminem", "Blanco"),
+("Buzo Astrowold","/images/products/buzoastroworld.jpg", "Buzo con colores vibrantes", "Beige"),
+("Buzo King of the Kongo","/images/products/buzokingofthekongo.jpg", "Hermoso buzo Buenos Aires a la moda", "Azul"),
+("Buzo Tupac","/images/products/buzotupac.jpg", "Buzo inspirado en el gran artista Tupac", "Naranja"),
+("Buzo Undefined","/images/products/buzoundefined.jpg", "Buzo de gran calidad, nueva colección undefined.", "Negro"),
+("Buzo Los Ángeles","/images/products/buzolosangeles.jpg", "Buzo estilo oversize de gran calidad.", "Marrón");
 
 
 INSERT INTO comentarios (usuario_id, producto_id, texto)

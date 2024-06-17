@@ -2,14 +2,12 @@ var express = require('express');
 var router = express.Router();
 const profileController = require('../controllers/profileController');
 const { body } = require("express-validator");
-let db = require("../database/models")
+let db = require("../database/models");
 
-
-/*Mi perfil*/
+/* Mi perfil */
 router.get('/', profileController.miPerfil.mostrarPerfil);
-//router.get('/edit', profileController.miPerfil.edit);           //*cambiar*//
 
-/*Register*/
+/* Register */
 let registroValidations = [
     body("email")
         .notEmpty().withMessage("Debes agregar un email").bail()
@@ -30,7 +28,7 @@ let registroValidations = [
     body("contrasenia")
         .notEmpty().withMessage("No puedes dejar el campo contraseña vacío").bail()
         .isAscii()
-        .isLength({ min: 4 }).withMessage("La contraseña debe tener al menos 6 caracteres"),
+        .isLength({ min: 6 }).withMessage("La contraseña debe tener al menos 6 caracteres"),
     body("fechaNacimiento")
         .isDate(),
     body("nroDocumento")
@@ -38,29 +36,25 @@ let registroValidations = [
     body("fotoPerfil")
         .isAlphanumeric(),
 ];
-router.get('/register', registroValidations, profileController.register.mostrarRegistro);
+
+router.get('/register', profileController.register.mostrarRegistro);
 router.post('/register', registroValidations, profileController.register.registro);
 
-
-/*Login */
+/* Login */
 let validacionesLogin = [
     body("email")
         .notEmpty().withMessage("El email no puede estar vacío")
         .isEmail().withMessage("Debe ser un correo electrónico válido"),
 
-    body("contraseña")
+    body("contrasenia")
         .notEmpty().withMessage("La contraseña no puede estar vacía")
         .isLength({ min: 6 }).withMessage("La contraseña debe tener al menos 6 caracteres"),
 ];
 
-router.get('/login', validacionesLogin, profileController.login.mostrarLogin);
+router.get('/login', profileController.login.mostrarLogin);
 router.post('/login', validacionesLogin, profileController.login.login);
 
-/*Logout*/
-router.post('/logout', profileController.logout.logout)
-
+/* Logout */
+router.post('/logout', profileController.logout.logout);
 
 module.exports = router;
-
-
-

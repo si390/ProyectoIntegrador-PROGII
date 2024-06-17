@@ -2,31 +2,31 @@ module.exports = function(sequelize, dataTypes){
     let alias = "Usuario"
 
     let cols = {
-        usuarioId:{
+        Id: {
             autoIncrement: true,
             primaryKey: true,
             type: dataTypes.INTEGER,
         },
         username: {
-            type: dataTypes.STRING,      
-            unique: true              
+            type: dataTypes.STRING,
+            unique: true,
         },
-        nombre:{
+        nombre: {
             type: dataTypes.STRING,
         },
-        email:{
+        email: {
             type: dataTypes.STRING,
         },
-        contrasenia:{
+        contrasenia: {
             type: dataTypes.STRING,
         },
-        fecha:{
+        fecha: {
             type: dataTypes.INTEGER,
         },
-        dni:{
+        dni: {
             type: dataTypes.INTEGER,
         },
-        fotoPerfil:{
+        fotoPerfil: {
             type: dataTypes.STRING,
         },
         created_at: {
@@ -42,24 +42,22 @@ module.exports = function(sequelize, dataTypes){
         timestamps: true,
         underscored: true,
         createdAt: "created_at",
-        updated_at: "updated_at",
+        updatedAt: "updated_at",
     }
 
     let Usuario = sequelize.define(alias, cols, config);
 
     Usuario.associate = function(models){
-        Usuario.hasMany(models.Product,{
+        Usuario.hasMany(models.Product, {
             as: 'productos',
             foreignKey: 'usuarioId',
-            timestamps: true,
         });
-        Usuario.belongsToMany(models.Comentario,{
+        Usuario.belongsToMany(models.Comentario, {
             as: 'usuarioComentarios',
-            through: "comentarios",
+            through: 'comentarios',
             foreignKey: 'usuarioId',
-            timestamps: true,
         });
     };
 
-    return Usuario
+    return Usuario;
 }

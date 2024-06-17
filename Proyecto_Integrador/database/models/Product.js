@@ -1,57 +1,69 @@
 module.exports = function(sequelize, dataTypes){
-    let alias = "Product"
+    let alias = "Product";
 
     let cols = {
-        productoId:{
+        Id: {
             autoIncrement: true,
             primaryKey: true,
-            type: dataTypes.INTEGER,
+            type: dataTypes.INTEGER.UNSIGNED,
         },
-        imagen:{
-            type: dataTypes.STRING,
+        imagen: {
+            type: dataTypes.STRING(100),
         },
-        nombre:{
-            type: dataTypes.STRING,
+        nombre: {
+            type: dataTypes.STRING(100),
+            allowNull: false,
         },
-        descripcion:{
-            type: dataTypes.STRING,
+        descripcion: {
+            type: dataTypes.STRING(255),
+            allowNull: false,
         },
-        color:{
-            type: dataTypes.STRING,
+        color: {
+            type: dataTypes.STRING(100),
+            allowNull: false,
         },
         created_at: {
             type: dataTypes.DATE,
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
         },
         updated_at: {
             type: dataTypes.DATE,
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+            onUpdate: sequelize.literal('CURRENT_TIMESTAMP'),
         },
-        usuarioId: { 
-            type: dataTypes.INTEGER,
+        deleted_at: {
+            type: dataTypes.DATE,
+            allowNull: true,
         },
-        
-    }
+        usuarioId: {
+            type: dataTypes.INTEGER.UNSIGNED,
+            allowNull: true,
+        },
+    };
 
     let config = {
         tableName: "productos",
         timestamps: true,
-        underscored: true
-    }
+        underscored: true,
+        paranoid: true,
+        createdAt: "created_at",
+        updatedAt: "updated_at",
+        deletedAt: "deleted_at",
+    };
 
-    let Product = sequelize.define(alias, cols, config)
+    let Product = sequelize.define(alias, cols, config);
 
     Product.associate = function(models){
         Product.belongsTo(models.Usuario, {
             as: 'usuario',
             foreignKey: 'usuarioId',
-            timestamps: true,
         });
         Product.belongsToMany(models.Comentario, {
             as: 'productComentarios',
-            through: "comentarios",
+            through: 'comentarios',
             foreignKey: 'productoId',
-            timestamps: true,
         });
     };
 
-    return Product
+    return Product;
 }

@@ -8,23 +8,30 @@
 <h2 class="col-12"> 
 
 	 <!-- Formulario de inicio --> 
-	<section class="formularios">
+	 <section class="formularios">
 		<form action="/login" method="POST">
 			<div>
 				<label for="usuario">Usuario:</label>
-				<input id="usuario" type="text" name="usuario" value="">
+				<input id="usuario" type="text" name="email" value="<%= old.email || '' %>">
+				<% if (errors && errors.email) { %>
+					<p><%= errors.email.msg %></p>
+				<% } %>
 			</div>
 			<div>
 				<label for="contraseña">Contraseña:</label>
-				<input id="contraseña" type="password" name="contraseña" value="">
+				<input id="contraseña" type="password" name="contrasenia">
+				<% if (errors && errors.contrasenia) { %>
+					<p><%= errors.contrasenia.msg %></p>
+				<% } %>
 			</div>
 			<div>
 				<label for="recordarme">¿Recordarme?</label>
-				<input id="recordarme" type="checkbox" name="recordarme">
+				<input id="recordarme" type="checkbox" name="recordarme" value="true">
 			</div>
 			<div>
 				<button class="boton" type="submit">Ingresar</button>
 			</div>
+		</form>
 	</section>
 </h2>
 <%- include('partials/footer.ejs'); -%>
