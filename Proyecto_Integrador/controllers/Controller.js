@@ -9,25 +9,35 @@ const Controller = {
                 const novedades = db.Product.findAll({
                     order: [['created_at', 'DESC']],
                     limit: 10,
-                    include: [{ association: "usuario" }],
+                    include: [{ association: 'usuario' }],
                 });
-
+        
                 const masComentados = db.Product.findAll({
-                    include: [
-                        { association: "usuario" },
-                        { association: "comentarios" }
+                    attributes: [
+                        'id',
+                        'imagen',
+                        'nombre',
+                        'descripcion',
+                        [db.sequelize.fn('COUNT', db.sequelize.col('productComentarios.id')), 'numComentarios']
                     ],
-                    order: [[db.Sequelize.fn('COUNT', db.Sequelize.col('comentarios.Id')), 'DESC']],
-                    group: ['producto.Id'],
+                    include: [
+                        { association: 'usuario' },
+                        { 
+                            association: 'productComentarios',
+                            attributes: []
+                        }
+                    ],
+                    group: ['Product.id'],
+                    order: [[db.sequelize.literal('numComentarios'), 'DESC']],
                     limit: 10,
                 });
-
+        
                 res.render('index', { novedades, masComentados });
             } catch (error) {
-                res.render("index", { error: "Error al mostrar los productos" });
+                console.error('Error al mostrar los productos:', error);
+                res.render('index', { error: 'Error al mostrar los productos' });
             }
-        }
-    },
+        }},
 
     detail: {
     
