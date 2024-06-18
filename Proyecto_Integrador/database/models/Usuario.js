@@ -54,7 +54,9 @@ module.exports = function(sequelize, dataTypes){
         });
         Usuario.belongsToMany(models.Comentario, {
             as: 'usuarioComentarios',
+            through: 'comentarios',
             foreignKey: 'usuarioId',
+            otherKey: 'comentarioId',
         });
     };
 
