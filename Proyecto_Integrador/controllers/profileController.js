@@ -1,4 +1,3 @@
-const datos = require('../db/index');
 const db = require('../database/models');
 let bcrypt = require('bcryptjs');
 let op = db.Sequelize.Op;
@@ -18,21 +17,27 @@ const profileController = {
             }
         },
 
-        registro: function (req, res) {
+        registro:  function (req, res) {
             let errors = validationResult(req);
-            if (errors.isEmpty()) {
-
-            } else {
-                res.render('register', { errors: errors.mapped(), old: req.body });
+            if (!errors.isEmpty()) {
+                return res.render('register', { errors: errors.mapped(), old: req.body });
             }
-            const user = datos.usuarios[0];
-            let nuevoUsuario = req.body.email;
-            req.session.newUser = nuevoUsuario;
-            res.cookie('UsuarioNuevo', nuevoUsuario, {  maxAge: 1000 * 60 * 60 * 24 * 7})
-            return res.render('register', { nombre: user.nombre, email: user.email });
-
-        },
-
+            try {
+                let hashedPassword = bcrypt.hashSync(req.body.contrasenia, 10);
+                 db.Usuario.create({
+                    username: req.body.username,
+                    nombre: req.body.nombre,
+                    email: req.body.email,
+                    contrasenia: hashedPassword,
+                    fecha: req.body.fecha,
+                    dni: req.body.dni,
+                    fotoPerfil: req.body.fotoPerfil
+                });
+                res.redirect('/login');
+            } catch (error) {
+                res.render('register', { error: "Error al registrar el usuario", old: req.body });
+            }
+        }
     },
 
     login: {

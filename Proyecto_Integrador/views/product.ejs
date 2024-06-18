@@ -8,7 +8,7 @@
     <div class="container products-wrapper">
         <div class="d-flex align-items-center">
             <p class="product-detail-description">
-                <a href="/product/add"><%= nombre %></a>
+                <a href="/product/add">Add a New Product</a>
             </p>
         </div>
 
@@ -16,22 +16,22 @@
         <div class="product-detail">
             <div class="row">
                 <article class="col-12 col-lg-8 product-detail-info">
-                    <img src="<%= fotoproducto %>" alt="<%= nombre %>" class="product-detail-img">
+                    <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>" class="product-detail-img">
 
-                    <p class="product-detail-description"><%= descripcion %></p>
+                    <p class="product-detail-description"><%= producto.descripcion %></p>
                 </article>
 
                 <!-- Comentarios del producto -->
                 <div class="col-12 col-lg-4">
                     <section class="comments">
-                        <% if (comentarios && comentarios.length > 0) { %>
-                            <% comentarios.forEach(comentario => { %>
+                        <% if (producto.comentarios && producto.comentarios.length > 0) { %>
+                            <% producto.comentarios.forEach(comentario => { %>
                                 <article class="comment">
-                                    <img src="<%= comentario.fotoPerfil %>" alt="Usuario" class="comment-avatar">
+                                    <img src="<%= comentario.usuario.fotoPerfil %>" alt="Usuario" class="comment-avatar">
                                     <div class="comment-data">
                                         <p class="comment-user">
                                             <strong>
-                                                <a href="/profile"><%= comentario.usuario %></a>
+                                                <a href="/user/<%= comentario.usuario.id %>"><%= comentario.usuario.username %></a>
                                             </strong>
                                             <br>
                                             <%= comentario.mensaje %>
@@ -44,10 +44,8 @@
                         <% } %>
                     </section>
                     
-                    <form class="comment-form" action="/product/<%= id %>" method="post">
-
-                        <input class="form-input" type="text" name="comment" placeholder="Agregar comentario" required>
-                        
+                    <form class="comment-form" action="/product/<%= producto.id %>/comment" method="post">
+                        <input class="form-input" type="text" name="comentario" placeholder="Agregar comentario" required>
                         <button type="submit" class="add-comment-button">AGREGAR COMENTARIO</button>
                     </form>
                     <hr>
@@ -55,5 +53,6 @@
             </div>
         </div>
     </div>
+
 </section>
 <%- include('partials/footer.ejs'); -%>

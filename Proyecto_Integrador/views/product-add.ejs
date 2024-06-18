@@ -7,29 +7,39 @@
 
 <!-- Novedades -->
 <div class="container products-wrapper">
-    <div class="row">
         <div class="col-12">
             <h2 class="products-title">Agregar productos</h2>
         </div>
         <!-- Show the "ultimos" products -->
         <h2 class="col-12"> 
         
-        <!-- Formulario para agregar producto-->
-			<h2 class="col-12">
-                <form action="" method="GET">
-                    <div>
-                        <label for="imagen">Imagen:<%= fotoproducto %></label>
-                        <input id="imagen" type="text" name="imagen" required>
-                    </div>
-                    <div>
-                        <label for="nombreProducto">Nombre del Producto: <%= nombre %></label>
-                        <input id="nombreProducto" type="text" name="nombreProducto" required>
-                    </div>
-                    <div>
-                        <label for="descripcion">Descripción:<%= descripcioncorta %></label>
-                        <input id="descripcion" type="text" name="descripcion" required>
-                    </div>
-                    <button type="submit">Agregar Producto</button>
-                </form>
-</div> 
+        <!-- Formulario para agregar producto -->
+        <div class="container">
+            <h2>Agregar Producto</h2>
+            <form action="/product/add" method="POST">
+                <div>
+                    <label for="imagen">Imagen:</label>
+                    <input id="imagen" type="text" name="imagen" value="<%= old.imagen || '' %>" required>
+                    <% if (errors && errors.imagen) { %>
+                        <p><%= errors.imagen.msg %></p>
+                    <% } %>
+                </div>
+                <div>
+                    <label for="nombreProducto">Nombre del Producto:</label>
+                    <input id="nombreProducto" type="text" name="nombreProducto" value="<%= old.nombreProducto || '' %>" required>
+                    <% if (errors && errors.nombreProducto) { %>
+                        <p><%= errors.nombreProducto.msg %></p>
+                    <% } %>
+                </div>
+                <div>
+                    <label for="descripcion">Descripción:</label>
+                    <input id="descripcion" type="text" name="descripcion" value="<%= old.descripcion || '' %>" required>
+                    <% if (errors && errors.descripcion) { %>
+                        <p><%= errors.descripcion.msg %></p>
+                    <% } %>
+                </div>
+                <button type="submit">Agregar Producto</button>
+            </form>
+        </div>
+</div>
 <%- include('partials/footer.ejs'); -%>

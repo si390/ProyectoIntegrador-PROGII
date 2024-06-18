@@ -5,6 +5,7 @@ const {body}=require("express-validator");
 
 
 
+// Home page
 router.get('/', Controller.index.mostrarIndex);
 
 module.exports = router;
