@@ -29,11 +29,14 @@ let productoValidations = [
         .isLength({ min: 5 }).withMessage("La descripción debe tener al menos 5 caracteres")
 ];
 
-router.get('/add', (req, res) => {
-    res.render('product-add');
-});
-router.post('/add', productoValidations, productController.productAdd.crearProducto);
-
+router.get('/add/:id', (req, res) => {
+    const productId = req.params.id;
+    res.render('product-add', { 
+        productId,
+        old: req.session.oldInput || {}, 
+        errors: req.session.errors || {} 
+    })});
+router.post('/add/:id', productoValidations, productController.productAdd.crearProducto);
 
 // Buscar productos
 router.get('/search', productController.search.busqueda);

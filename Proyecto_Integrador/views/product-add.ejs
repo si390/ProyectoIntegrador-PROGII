@@ -1,9 +1,9 @@
 <%- include('partials/head.ejs'); -%>
 
-<% if (locals.user != undefined) { %>
+<% if (locals.user !== undefined) { %>
     <%- include('/partials/headerLogueado') %>
 <% } else { %>
-    <%- include('partials/header') -%>
+    <%- include('partials/header') %>
 <% } %>
 
 <div class="container products-wrapper">
@@ -13,24 +13,24 @@
 
     <div class="container">
         <h2>Agregar Producto</h2>
-        <form action="/product/add" method="POST">
+        <<form action="/product/add/<%= productId %>" method="POST">
             <div>
                 <label for="imagen">Imagen:</label>
-                <input id="imagen" type="text" name="imagen" value="<%= old.imagen || '' %>" required>
+                <input id="imagen" type="text" name="imagen" value="<%= old && old.imagen ? old.imagen : '' %>" required>
                 <% if (errors && errors.imagen) { %>
                     <p><%= errors.imagen.msg %></p>
                 <% } %>
             </div>
             <div>
                 <label for="nombreProducto">Nombre del Producto:</label>
-                <input id="nombreProducto" type="text" name="nombreProducto" value="<%= old.nombreProducto || '' %>" required>
+                <input id="nombreProducto" type="text" name="nombreProducto" value="<%= old && old.nombreProducto ? old.nombreProducto : '' %>" required>
                 <% if (errors && errors.nombreProducto) { %>
                     <p><%= errors.nombreProducto.msg %></p>
                 <% } %>
             </div>
             <div>
                 <label for="descripcion">Descripción:</label>
-                <input id="descripcion" type="text" name="descripcion" value="<%= old.descripcion || '' %>" required>
+                <input id="descripcion" type="text" name="descripcion" value="<%= old && old.descripcion ? old.descripcion : '' %>" required>
                 <% if (errors && errors.descripcion) { %>
                     <p><%= errors.descripcion.msg %></p>
                 <% } %>

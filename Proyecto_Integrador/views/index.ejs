@@ -1,3 +1,4 @@
+<!-- index.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +24,8 @@
                     <section class="product-box">
                         <article class="product-box_data">
                             <div>
-                                <h2><%= product.nombre %></h2>
+
+                                <h2><a href="/product/<%= product.id %>"><%= product.nombre %></a></h2>
                                 <p><%= product.descripcion %></p>
                                 <p>Comentarios: <%= product.comentarios ? product.comentarios.length : 0 %></p>
                                 <% if (product.imagen) { %>
