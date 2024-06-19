@@ -4,15 +4,15 @@ const { validationResult } = require("express-validator");
 
 const Controller = {
     index: {
-        mostrarIndex: (req, res) => {
+        mostrarIndex : async (req, res) => {
             try {
-                const novedades = db.Product.findAll({
+                const novedades = await db.Product.findAll({
                     order: [['createdAt', 'DESC']],
                     limit: 10,
                     include: [{ association: "usuario" }],
                 });
         
-                const masComentados = db.Product.findAll({
+                const masComentados = await db.Product.findAll({
                     include: [
                         { association: "usuario" },
                         { association: "comentarios" }

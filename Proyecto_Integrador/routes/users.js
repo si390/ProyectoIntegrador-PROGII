@@ -1,21 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const profileController = require('../controllers/profileController');
-const { body } = require("express-validator");
+const { body, check, validationResult } = require('express-validator');
 const db = require("../database/models");
 
-/* Mi perfil */
-router.get('/', profileController.miPerfil.mostrarPerfil);
-
-/* Register */
+// Validation rules
 const registroValidations = [
     body("email")
         .notEmpty().withMessage("Debes agregar un email")
         .bail()
         .isEmail().withMessage("Debe ser un correo electrónico válido")
         .bail()
-        .custom((value) => {
-            const user =  db.Usuario.findOne({ where: { email: value } });
+        .custom(async (value) => {
+            const user = await db.Usuario.findOne({ where: { email: value } });
             if (user) {
                 throw new Error('El email ingresado ya se encuentra registrado');
             }
@@ -41,25 +38,27 @@ const registroValidations = [
         .isAlphanumeric().withMessage("La URL de la foto de perfil solo puede contener letras y números")
 ];
 
-router.get('/register', profileController.register.mostrarRegistro);
-router.post('/register', registroValidations, profileController.register.registro);
+router.post('/register', registroValidations, (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        req.flash('errors', errors.mapped());
+        return res.render('register', { old: req.body, errors: errors.mapped() });
+    }
 
-/* Login */
-const validacionesLogin = [
-    body("email")
-        .notEmpty().withMessage("El email no puede estar vacío")
-        .bail()
-        .isEmail().withMessage("Debe ser un correo electrónico válido"),
-    body("contrasenia")
-        .notEmpty().withMessage("La contraseña no puede estar vacía")
-        .bail()
-        .isLength({ min: 6 }).withMessage("La contraseña debe tener al menos 6 caracteres"),
-];
 
+});
+
+router.get('/register', (req, res) => {
+    res.render('register', {
+        old: req.flash('old')[0] || {},
+        errors: req.flash('errors')[0] || {}
+    });
+});
+
+// Other routes
+router.get('/', profileController.miPerfil.mostrarPerfil);
 router.get('/login', profileController.login.mostrarLogin);
-router.post('/login', validacionesLogin, profileController.login.login);
-
-/* Logout */
+router.post('/login', profileController.login.login);
 router.get('/logout', profileController.logout.logout);
 
 module.exports = router;

@@ -8,7 +8,7 @@
 <!-- form para registrarse-->
 <%= locals.newUser %>
 <section class="formularios">
-    <form action="/profile" method="POST">
+    <form action="/profile/register" method="POST">
         <div>
             <label for="email">Email:</label>
             <input id="email" type="email" name="email" value="<%= old.email || '' %>">

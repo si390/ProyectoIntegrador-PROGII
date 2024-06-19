@@ -9,13 +9,11 @@ const profileController = {
 
     register: {
 
-        mostrarRegistro: function (req, res) {
-            if (req.session.user == undefined) {
-                res.render('register');
-            } else {
-                res.redirect('/index');
-            }
-        },
+        mostrarRegistro : (req, res) => {
+            const old = req.body || {}; 
+            const errors = req.flash('errors') || {}; 
+        
+            res.render('register', { old, errors })},
 
         registro:  function (req, res) {
             let errors = validationResult(req);
