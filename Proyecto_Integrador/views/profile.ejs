@@ -1,42 +1,40 @@
 <%- include('partials/head.ejs'); -%>
-  <% if(locals.user != undefined){ %>
-      <%- include('/partials/headerLogueado') %>
-  <%} else { %>
-      <%- include('partials/header') -%>
-  <% } %>
+
+<% if (locals.user != undefined) { %>
+    <%- include('/partials/headerLogueado') %>
+<% } else { %>
+    <%- include('partials/header') %>
+<% } %>
 
 <!-- Datos del usuario -->
 <section class="info-usuario container products-wrapper">
-		
-<%= locals.newUser %>		
-		
-		<div class="row">
-			<div class="img-container offset-3 col-2">
-				<img src= "<%= fotoPerfil %>"" alt="foto de perfil" class="foto-perfil">
-			</div>
-			
-			<div class="data-container col-6">
-				<div class="d-flex align-items-center ">
-					
-					<h1 class="main-title"><%= nombre %>
-						<a href="/profile/edit">
-							<i class="fas fa-cog"></i>
-						</a>
-					</h1>
-					<a class="btn mt-3 ml-4" href="/profile">SEGUIR</a>
-				</div>
-				<div>
-					<ul class="">
-						<li><%= email %></li>
-						<li>8 productos</li>
-						<li>200 seguidores</li>
-						<li>300 comentarios</li>
-					</ul>
-				</div>
-			</div>
-		
-		
-		</div>
-	</section>
-	<!-- /Datos del usuario -->
+    <%= locals.newUser %>
+    <div class="row">
+        <div class="img-container offset-3 col-2">
+            <img src="<%= fotoPerfil %>" alt="foto de perfil" class="foto-perfil">
+        </div>
+
+        <div class="data-container col-6">
+            <div class="d-flex align-items-center">
+                <h1 class="main-title">
+                    <%= nombre %>
+                    <a href="/profile/edit">
+                        <i class="fas fa-cog"></i>
+                    </a>
+                </h1>
+                <a class="btn mt-3 ml-4" href="/profile">SEGUIR</a>
+            </div>
+            <div>
+                <ul class="">
+                    <li><%= email %></li>
+                    <li>8 productos</li>
+                    <li>200 seguidores</li>
+                    <li>300 comentarios</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Datos del usuario -->
+
 <%- include('partials/footer.ejs'); -%>

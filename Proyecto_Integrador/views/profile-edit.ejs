@@ -1,18 +1,30 @@
 <%- include('partials/head.ejs'); -%>
-  <% if(locals.user != undefined){ %>
-      <%- include('/partials/headerLogueado') %>
-  <%} else { %>
-      <%- include('partials/header') -%>
-  <% } %>
+
+<% if (locals.user != undefined) { %>
+    <%- include('/partials/headerLogueado') %>
+<% } else { %>
+    <%- include('partials/header') %>
+<% } %>
+
 <%= locals.newUser %>
-    <ul class="right-navbar">
-        <li><a href="/profile">
-            Nombre de usuario: <%= nombre %> <i class="fas fa-user"></i>
-            </a>
-         </li>
-        <li>Mail: <%= email %></li>
-		<li>Productos: 8 productos</li>
-		<li>Seguidores: 200 seguidores</li>
-		<li>Comentarios: 300 comentarios</li>
-    </ul>
+
+<section class="container products-wrapper">
+    <h2>Editar Perfil</h2>
+    <form action="/profile/edit" method="POST">
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" type="text" name="nombre" value="<%= nombre %>" required>
+        </div>
+        <div>
+            <label for="email">Correo Electrónico:</label>
+            <input id="email" type="email" name="email" value="<%= email %>" required>
+        </div>
+        <div>
+            <label for="fotoPerfil">URL de la Foto de Perfil:</label>
+            <input id="fotoPerfil" type="text" name="fotoPerfil" value="<%= fotoPerfil %>">
+        </div>
+        <button type="submit">Guardar Cambios</button>
+    </form>
+</section>
+
 <%- include('partials/footer.ejs'); -%>

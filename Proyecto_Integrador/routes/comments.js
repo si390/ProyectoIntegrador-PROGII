@@ -9,6 +9,7 @@ let validacionesComentarios = [
         .isLength({ min: 3, max: 250 }).withMessage("Debe contener mínimo 3 letras"),
 ];
 
+
 router.post('/:productoId/comment', validacionesComentarios, commentController.crearComentario);
 
 module.exports = router;

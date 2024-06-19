@@ -6,6 +6,13 @@ const {body}=require("express-validator");
 
 
 // Home page
-router.get('/', Controller.index.mostrarIndex);
+router.get('/', Controller.getAllProducts);
+router.post('/login', async (req, res) => {
 
+    req.session.user = {
+        id: user.id,
+        email: user.email,
+    };
+    res.redirect('/');
+});
 module.exports = router;

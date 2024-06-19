@@ -5,16 +5,16 @@ const {body}=require("express-validator");
 
 
 
-router.get('/', productController.index.mostrarIndex);
+router.get('/', productController.index);
 
 // Detalle del producto
-router.get('/:id', productController.detail.detail.detalle);
+router.get('/:id', productController.detail);
 
 // Editar el producto
-router.get('/:id/edit', productController.detail.editar);
+router.get('/:id/edit', productController.editar);
 
 // Eliminar el producto
-router.delete('/:id/delete', productController.detail.borrar);
+router.delete('/:id/delete', productController.borrar);
 
 // Añadir un nuevo producto
 let productoValidations = [
@@ -36,7 +36,7 @@ router.post('/add', productoValidations, productController.productAdd.crearProdu
 
 
 // Buscar productos
-router.get('/search', productController.productAdd.search.busqueda);
+router.get('/search', productController.search.busqueda);
 
 module.exports = router;
 

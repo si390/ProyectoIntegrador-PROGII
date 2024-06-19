@@ -1,82 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs') -%>
+</head>
+<body>
+    <% if (locals.user) { %>
+        <%- include('partials/headerLogueado') %>
+    <% } else { %>
+        <%- include('partials/header') %>
+    <% } %>
 
-<<body>
-  <%- include('partials/head.ejs') -%>
-  <% if (user) { %>
-    <%- include('partials/headerLogueado') %>
-  <% } else { %>
-    <%- include('partials/header') %>
-  <% } %>
-  <!-- Novedades -->
-  <div class="products-wrapper">
-      <div class="row">
-          <div class="col-12">
-              <h2 class="products-title">Novedades</h2>
-          </div>
-  
-          <% if (novedades.length > 0) { %>
-              <% novedades.forEach(function(product) { %>
-                  <div class="col-12 col-sm-6 col-lg-3">
-                      <section class="product-box">
-                          <a href="product/<%= product.id %>">
-                              <figure class="product-box_image">
-                                  <img src="<%= product.imagen %>" alt="<%= product.nombre %>">
-                              </figure>
-                              <article class="product-box_data">
-                                  <h2><%= product.nombre %></h2>
-                                  <p><%= product.descripcion %></p>
-                                  <p>Comentarios: <%= product.comentarios.length %></p>
-                                  <p>Subido por: <a href="/profile/<%= product.usuario.id %>"><%= product.usuario.email %></a></p>
-                              </article>
-                          </a>
-                      </section>
-                  </div>
-              <% }); %>
-          <% } else { %>
-              <div class="col-12">
-                  <p>No hay novedades disponibles.</p>
-              </div>
-          <% } %>
-      </div>
-  </div>
-  <!-- /Novedades -->
+    <%= locals.newUser %>
 
-  <!-- Más comentados -->
-  <div class="products-wrapper">
-      <div class="row">
-          <div class="col-12">
-              <h2 class="products-title">Más comentados</h2>
-          </div>
-  
-          <% if (masComentados.length > 0) { %>
-              <% masComentados.forEach(function(product) { %>
-                  <div class="col-12 col-sm-6 col-lg-3">
-                      <section class="product-box">
-                          <a href="/product/<%= product.id %>">
-                              <figure class="product-box_image">
-                                  <img src="<%= product.imagen %>" alt="<%= product.nombre %>">
-                              </figure>
-                              <article class="product-box_data">
-                                  <h2><%= product.nombre %></h2>
-                                  <p><%= product.descripcion %></p>
-                                  <p>Comentarios: <%= product.comentarios.length %></p>
-                                  <p>Subido por: <a href="/profile/<%= product.usuario.id %>"><%= product.usuario.email %></a></p>
-                              </article>
-                          </a>
-                      </section>
-                  </div>
-              <% }); %>
-          <% } else { %>
-              <div class="col-12">
-                  <p>No hay productos comentados disponibles.</p>
-              </div>
-          <% } %>
-      </div>
-  </div>
-  <!-- /Más comentados -->
-</div>
+    <!-- Novedades -->
+    <div class="container products-wrapper">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="products-title">Novedades</h1>
+            </div>
+            <% products.forEach(product => { %>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <section class="product-box">
+                        <article class="product-box_data">
+                            <div>
+                                <h2><%= product.nombre %></h2>
+                                <p><%= product.descripcion %></p>
+                                <p>Comentarios: <%= product.comentarios ? product.comentarios.length : 0 %></p>
+                                <% if (product.imagen) { %>
+                                    <img src="/images/products/<%= product.imagen %>" alt="<%= product.nombre %>">
+                                    <% if (product.usuario) { %>
+                                        <p>Subido por: <a href="/profile/<%= product.usuario.id %>"><%= product.usuario.email %></a></p>
+                                    <% } else { %>
+                                        <p>Subido por: Anónimo</p>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+            <% }); %>
+        </div>
+    </div>
 
-      <%- include('partials/footer.ejs'); -%>
+    <%- include('partials/footer.ejs') -%>
 </body>
 </html>
