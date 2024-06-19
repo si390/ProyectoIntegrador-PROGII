@@ -604,7 +604,20 @@ textarea.form-input {
   color: #000000;
 }
 
+/* Banner */
+.banner {
+  text-align: center; 
+  margin-top: 20px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden; 
+  border-radius: 8px;
+}
 
+.banner img {
+  width: 100%; 
+  height: auto; 
+  border-radius: 8px; 
+}
 /*====== Media-Queries ======*/
 @media (min-width: 768px) {
   .main-header_credit-link {
