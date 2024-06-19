@@ -1,29 +1,18 @@
 	<!-- Header -->
-	<header class="main-header">
-	
-			<nav class="main-navbar">
-				<ul class="left-navbar">
-					<li><a href="/">Todos los productos</a></li>
-					<li><a href="/product/edit">Cargar productos</a></li>
-				</ul>
-	
-				<ul class="right-navbar">
-					<li><a href="/profile">
-							Bienvenid@ <%= locals.usuarioLogueado %> <i class="fas fa-user"></i>
-						</a>
-					</li>
-					<li> 
-						<form action="/logout" method="post">		<!-- botón para cerrar sesión -->
-							<button type="submit">
-								Cerrar sesión <i class="fas fa-sign-in-alt"></i>
-							</button>
-						</form>
-					</li>
-				</ul>
-			</nav>
-			<div class="banner">
-				<img src="/images/bannerti.png" alt="Banner de ofertas">
-			</div>
+	<header>
+		<nav class="main-navbar">
+			<ul class="left-navbar">
+				<li><a href="/">Todos los productos</a></li>
+				<li><a href="/product/add">Cargar productos</a></li>
+			</ul>
+		
+			<ul class="right-navbar">
+				<li><a href="/profile"><%= user.username %> <i class="far fa-user"></i></a></li>
+				<li><a href="/profile/logout">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a></li>
+			</ul>
+		</nav>
+		<div class="banner">
+			<img src="/images/bannerti.png" alt="Banner de ofertas">
 		</div>
 	</header>
 	<!-- /Header -->

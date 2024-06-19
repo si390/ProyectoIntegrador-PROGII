@@ -29,12 +29,13 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-
-// Set locals for newUser and user
-app.use(function(req, res, next) {
-  res.locals.newUser = req.session.newUser;
-  res.locals.user = req.session.usuarioLogueado;
-  next();
+// Logueado
+app.use(function (req, res, next) {
+  console.log('Session Data:', req.session);
+  if (req.session.usuarioLogueado != undefined) {
+    res.locals.user = req.session.usuarioLogueado;
+  }
+  return next();
 });
 
 // Routes

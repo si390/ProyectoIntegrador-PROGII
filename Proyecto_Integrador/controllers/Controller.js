@@ -4,38 +4,28 @@ const { validationResult } = require("express-validator");
 
 const Controller = {
     index: {
-        mostrarIndex: function (req, res) {
+        mostrarIndex: (req, res) => {
             try {
                 const novedades = db.Product.findAll({
-                    order: [['created_at', 'DESC']],
+                    order: [['createdAt', 'DESC']],
                     limit: 10,
-                    include: [{ association: 'usuario' }],
+                    include: [{ association: "usuario" }],
                 });
         
                 const masComentados = db.Product.findAll({
-                    attributes: [
-                        'id',
-                        'imagen',
-                        'nombre',
-                        'descripcion',
-                        [db.sequelize.fn('COUNT', db.sequelize.col('productComentarios.id')), 'numComentarios']
-                    ],
                     include: [
-                        { association: 'usuario' },
-                        { 
-                            association: 'productComentarios',
-                            attributes: []
-                        }
+                        { association: "usuario" },
+                        { association: "comentarios" }
                     ],
+                    order: [[db.Sequelize.fn('COUNT', db.Sequelize.col('comentarios.id')), 'DESC']],
                     group: ['Product.id'],
-                    order: [[db.sequelize.literal('numComentarios'), 'DESC']],
                     limit: 10,
                 });
         
-                res.render('index', { novedades, masComentados });
+                res.render('index', { novedades, masComentados, user: req.session.user });
             } catch (error) {
-                console.error('Error al mostrar los productos:', error);
-                res.render('index', { error: 'Error al mostrar los productos' });
+                console.error(error);
+                res.render('index', { error: "Error al mostrar los productos", novedades: [], masComentados: [], user: req.session.user });
             }
         }},
 
@@ -77,12 +67,12 @@ const Controller = {
                     });
                 
                     if (producto) {
-                        res.render('editProduct', { producto });
+                        res.render('product-edit', { producto });
                     } else {
-                        res.render('editProduct', { error: "No tienes permiso para editar este producto." });
+                        res.render('product-edit', { error: "No tienes permiso para editar este producto." });
                     }
                 } catch (error) {
-                    res.render('editProduct', { error: "Error al cargar el producto." });
+                    res.render('product-edit', { error: "Error al cargar el producto." });
                 }
             },
 
@@ -123,7 +113,7 @@ const Controller = {
                 try {
                     const newProduct =  db.Product.create({
                         imagen: req.body.imagen,
-                        nombre: req.body.nombreProducto,
+                        nombre: req.body.nombre,
                         descripcion: req.body.descripcion,
                         usuarioId: req.session.user.id,
                         created_at: new Date(),
@@ -152,9 +142,9 @@ const Controller = {
                     include: [{ association: "usuario" }]
                 });
         
-                res.render('searchResults', { productos });
+                res.render('search-results', { productos });
             } catch (error) {
-                res.render('searchResults', { error: "Error al buscar productos." });
+                res.render('search-results', { error: "Error al buscar productos." });
             }
         }    
     }

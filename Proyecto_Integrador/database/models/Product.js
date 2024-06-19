@@ -1,42 +1,43 @@
-module.exports = function(sequelize, dataTypes){
+module.exports = (sequelize, DataTypes) => {
     let alias = "Product";
 
     let cols = {
-        Id: {
+        id: {
             autoIncrement: true,
             primaryKey: true,
-            type: dataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER.UNSIGNED,
         },
         imagen: {
-            type: dataTypes.STRING(100),
+            type: DataTypes.STRING(100),
+            allowNull: false,
         },
         nombre: {
-            type: dataTypes.STRING(100),
+            type: DataTypes.STRING(100),
             allowNull: false,
         },
         descripcion: {
-            type: dataTypes.STRING(255),
+            type: DataTypes.STRING(255),
             allowNull: false,
         },
         color: {
-            type: dataTypes.STRING(100),
+            type: DataTypes.STRING(100),
             allowNull: false,
         },
-        created_at: {
-            type: dataTypes.DATE,
-            defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+        createdAt: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW,
         },
-        updated_at: {
-            type: dataTypes.DATE,
-            defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
-            onUpdate: sequelize.literal('CURRENT_TIMESTAMP'),
+        updatedAt: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW,
+            onUpdate: DataTypes.NOW,
         },
-        deleted_at: {
-            type: dataTypes.DATE,
+        deletedAt: {
+            type: DataTypes.DATE,
             allowNull: true,
         },
-        usuarioId: {
-            type: dataTypes.INTEGER.UNSIGNED,
+        usuario_Id: {
+            type: DataTypes.INTEGER.UNSIGNED,
             allowNull: true,
         },
     };
@@ -44,26 +45,23 @@ module.exports = function(sequelize, dataTypes){
     let config = {
         tableName: "productos",
         timestamps: true,
-        underscored: true,
+        underscored: false,
         paranoid: true,
-        createdAt: "created_at",
-        updatedAt: "updated_at",
-        deletedAt: "deleted_at",
     };
 
     let Product = sequelize.define(alias, cols, config);
 
-    Product.associate = function(models){
+    Product.associate = (models) => {
         Product.belongsTo(models.Usuario, {
-            as: 'usuario',
-            foreignKey: 'usuarioId',
+            as: "usuario",
+            foreignKey: "usuario_Id",
         });
-        Product.belongsToMany(models.Comentario, {
-            as: 'productComentarios',
-            through: 'comentarios',
-            foreignKey: 'productoId',
+
+        Product.hasMany(models.Comentario, {
+            as: "comentarios",
+            foreignKey: "producto_Id",
         });
     };
 
     return Product;
-}
+};

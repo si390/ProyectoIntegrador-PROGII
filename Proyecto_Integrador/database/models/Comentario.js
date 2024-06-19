@@ -1,59 +1,59 @@
-module.exports = function(sequelize, dataTypes){
-    let alias = "Comentario"
+module.exports = function(sequelize, DataTypes) {
+    let alias = "Comentario";
 
     let cols = {
-        id:{
+        id: {
             autoIncrement: true,
-            primaryKey: true,               
-            type: dataTypes.INTEGER,
+            primaryKey: true,
+            type: DataTypes.INTEGER.UNSIGNED,
         },
-        usuarioId: { 
-            type: dataTypes.INTEGER.UNSIGNED,
+        usuario_id: {
+            type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
         },
-        productoId: { 
-            type: dataTypes.INTEGER.UNSIGNED,
+        producto_id: {
+            type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
         },
-        texto:{
-            type: dataTypes.STRING(255),
+        texto: {
+            type: DataTypes.STRING(255),
             allowNull: false,
         },
         created_at: {
-            type: dataTypes.DATE,
-            defaultValue: dataTypes.NOW,
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW,
         },
         updated_at: {
-            type: dataTypes.DATE,
-            defaultValue: dataTypes.NOW,
-            onUpdate: dataTypes.NOW,
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW,
+            onUpdate: DataTypes.NOW,
         },
         deleted_at: {
-            type: dataTypes.DATE,
+            type: DataTypes.DATE,
             allowNull: true,
         },
-    }
+    };
 
     let config = {
         tableName: "comentarios",
         timestamps: true,
         underscored: true,
         paranoid: true,
-    }
+    };
 
-    let Comentario = sequelize.define(alias, cols, config)
+    let Comentario = sequelize.define(alias, cols, config);
 
-    Comentario.associate = function(models){
-        Comentario.belongsTo(models.Product, { 
+    Comentario.associate = function(models) {
+        Comentario.belongsTo(models.Product, {
             as: "producto",
-            foreignKey: 'productoId', 
+            foreignKey: "producto_id",
         });
 
-        Comentario.belongsTo(models.Usuario, { 
+        Comentario.belongsTo(models.Usuario, {
             as: "usuario",
-            foreignKey: 'usuarioId', 
+            foreignKey: "usuario_id",
         });
     };
 
     return Comentario;
-}
+};
