@@ -1,35 +1,31 @@
 const db = require('../database/models');
-let bcrypt = require('bcryptjs');
-let op = db.Sequelize.Op;
+const bcrypt = require('bcryptjs');
 const { validationResult } = require("express-validator");
-const { Association } = require('sequelize');
-
 
 const profileController = {
-
     register: {
+        mostrarRegistro: (req, res) => {
+            const old = req.body || {};
+            const errors = req.flash('errors') || {};
+            res.render('register', { old, errors });
+        },
 
-        mostrarRegistro : (req, res) => {
-            const old = req.body || {}; 
-            const errors = req.flash('errors') || {}; 
-        
-            res.render('register', { old, errors })},
-
-        registro:  function (req, res) {
+        registro: async (req, res) => {
             let errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.render('register', { errors: errors.mapped(), old: req.body });
             }
             try {
                 let hashedPassword = bcrypt.hashSync(req.body.contrasenia, 10);
-                 db.Usuario.create({
-                    username: req.body.username,
-                    nombre: req.body.nombre,
+                await db.Usuario.create({
+                    username: req.body.usuario,
+                    nombre: req.body.nombre || null,
                     email: req.body.email,
                     contrasenia: hashedPassword,
-                    fecha: req.body.fecha,
-                    dni: req.body.dni,
-                    fotoPerfil: req.body.fotoPerfil
+                    fecha: req.body.fechaNacimiento || null,
+                    dni: req.body.nroDocumento || null,
+                    fotoPerfil: req.body.fotoPerfil || null,
+                    created_at: new Date()
                 });
                 res.redirect('/login');
             } catch (error) {
@@ -39,16 +35,15 @@ const profileController = {
     },
 
     login: {
-
-        mostrarLogin: function (req, res) {
-            if (req.session.user == undefined) {
+        mostrarLogin: (req, res) => {
+            if (!req.session.user) {
                 res.render('login');
             } else {
-                res.redirect('/index');
+                res.redirect('/');
             }
         },
 
-        login: function (req, res) {
+        login: async (req, res) => {
             let errors = validationResult(req);
             const { email, contrasenia } = req.body;
 
@@ -56,76 +51,65 @@ const profileController = {
                 return res.render("login", { errors: errors.mapped(), old: req.body });
             }
 
-            db.Usuario.findOne({ where: { email: email } })
-                .then(function (usuarioLogueado) {
-                    if (!usuarioLogueado) {
-                        return res.render("login", { error: "Usuario no registrado" });
-                    } else {
-                        let comparacion = bcrypt.compareSync(contrasenia, usuarioLogueado.contrasenia);
-                        if (!comparacion) {
-                            return res.render("login", { errorContraseña: "Contraseña incorrecta" });
-                        } else {
-                            req.session.user = usuarioLogueado;
-                            if (req.body.recordarme) {
-                                res.cookie('UsuarioNuevo', usuarioLogueado.id, { maxAge: 1000 * 60 * 60 * 24 * 7});
-                            }
-                            return res.redirect('/profile');
-                        }
-                    }
-                })
-                .catch(function (error) {
-                    return res.render("login", { error: "Error al buscar usuario" });
-                });
-        },
+            try {
+                const usuarioLogueado = await db.Usuario.findOne({ where: { email } });
+                if (!usuarioLogueado) {
+                    return res.render("login", { error: "Usuario no registrado" });
+                }
 
+                const comparacion = bcrypt.compareSync(contrasenia, usuarioLogueado.contrasenia);
+                if (!comparacion) {
+                    return res.render("login", { errorContraseña: "Contraseña incorrecta" });
+                }
+
+                req.session.user = usuarioLogueado;
+                if (req.body.recordarme) {
+                    res.cookie('UsuarioNuevo', usuarioLogueado.id, { maxAge: 1000 * 60 * 60 * 24 * 7 });
+                }
+                res.redirect('/profile');
+            } catch (error) {
+                res.render("login", { error: "Error al buscar usuario" });
+            }
+        }
     },
 
-
     miPerfil: {
-
-            mostrarPerfil: function(req, res) {
-                if (req.session.userId) {
-                    const userId = req.session.userId;
-                    db.Usuario.findByPk(userId, {
-                        include: {
-                            association: 'productos',
-                            order: [['created_at', 'DESC']]
-                        }
-                    })
-                    .then(function(usuario) {
-                        if (usuario) {
-                            return res.render('profile', {
-                                nombre: usuario.nombre,
-                                email: usuario.email,
-                                foto: usuario.fotoPerfil,
-                                productos: usuario.productos,
-                                numProductos: usuario.productos.length
-                            });
-                        } else {
-                            return res.redirect('/login');
-                        }
-                    })
-                    .catch(function(error) {
-                        return res.render('profile', {
-                            error: 'Error al cargar página de perfil de usuario'
-                        });
+        mostrarPerfil: async (req, res) => {
+            if (req.session.user) {
+                const userId = req.session.user.id;
+                try {
+                    const usuario = await db.Usuario.findByPk(userId, {
+                        include: { association: 'productos' },
+                        order: [['created_at', 'DESC']]
                     });
-                } else {
-                    return res.redirect('/login');
+                    if (usuario) {
+                        return res.render('profile', {
+                            nombre: usuario.nombre,
+                            email: usuario.email,
+                            foto: usuario.fotoPerfil,
+                            productos: usuario.productos,
+                            numProductos: usuario.productos.length
+                        });
+                    } else {
+                        return res.redirect('/login');
+                    }
+                } catch (error) {
+                    return res.render('profile', { error: 'Error al cargar página de perfil de usuario' });
                 }
+            } else {
+                return res.redirect('/login');
             }
-        },
+        }
+    },
 
-        logout: {
-
-            logout: function (req, res) {
-                req.session.destroy(function (error) {
-                    res.clearCookie('UsuarioNuevo');
-                    res.redirect('/index');
-                });
-            },
-
-        },
+    logout: {
+        logout: (req, res) => {
+            req.session.destroy((error) => {
+                res.clearCookie('UsuarioNuevo');
+                res.redirect('/');
+            });
+        }
+    }
 };
 
 module.exports = profileController;

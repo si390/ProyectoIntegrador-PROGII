@@ -1,12 +1,11 @@
 <%- include('partials/head.ejs'); -%>
-  <% if(locals.user != undefined){ %>
-      <%- include('/partials/headerLogueado') %>
-  <%} else { %>
-      <%- include('partials/header') -%>
-  <% } %>
+<% if (locals.user) { %>
+    <%- include('/partials/headerLogueado'); %>
+<% } else { %>
+    <%- include('partials/header'); %>
+<% } %>
 
 <!-- form para registrarse-->
-<%= locals.newUser %>
 <section class="formularios">
     <form action="/profile/register" method="POST">
         <div>
