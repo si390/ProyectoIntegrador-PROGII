@@ -513,6 +513,73 @@ textarea.form-input {
   resize: vertical;
   padding: 15px;
 }
+/*====== Formulario Registro ======*/
+.formularios {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.formularios form {
+  display: grid;
+  gap: 15px;
+}
+
+.formularios label {
+  font-weight: bold;
+}
+
+.formularios input[type="text"],
+.formularios input[type="email"],
+.formularios input[type="password"],
+.formularios input[type="date"],
+.formularios input[type="number"],
+.formularios input[type="text"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.formularios input[type="text"]:focus,
+.formularios input[type="email"]:focus,
+.formularios input[type="password"]:focus,
+.formularios input[type="date"]:focus,
+.formularios input[type="number"]:focus,
+.formularios input[type="text"]:focus {
+  outline: none;
+  border-color: #6ab4ff;
+}
+
+.formularios p {
+  color: #ff6347; /* Red color for error messages */
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.formularios button.boton {
+  background-color: #4caf50; /* Green background color */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.formularios button.boton:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+
 
 /*====== Profile ======*/
 .info-usuario{
