@@ -10,14 +10,14 @@ const profileController = {
             res.render('register', { old, errors });
         },
 
-        registro: async (req, res) => {
+        registro: (req, res) => {
             let errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.render('register', { errors: errors.mapped(), old: req.body });
             }
             try {
                 let hashedPassword = bcrypt.hashSync(req.body.contrasenia, 10);
-                await db.Usuario.create({
+                db.Usuario.create({
                     username: req.body.usuario,
                     nombre: req.body.nombre || null,
                     email: req.body.email,
@@ -43,7 +43,7 @@ const profileController = {
             }
         },
 
-        login: async (req, res) => {
+        login: (req, res) => {
             let errors = validationResult(req);
             const { email, contrasenia } = req.body;
 
@@ -52,7 +52,7 @@ const profileController = {
             }
 
             try {
-                const usuarioLogueado = await db.Usuario.findOne({ where: { email } });
+                const usuarioLogueado = db.Usuario.findOne({ where: { email } });
                 if (!usuarioLogueado) {
                     return res.render("login", { error: "Usuario no registrado" });
                 }
@@ -74,11 +74,11 @@ const profileController = {
     },
 
     miPerfil: {
-        mostrarPerfil: async (req, res) => {
+        mostrarPerfil: (req, res) => {
             if (req.session.user) {
                 const userId = req.session.user.id;
                 try {
-                    const usuario = await db.Usuario.findByPk(userId, {
+                    const usuario = db.Usuario.findByPk(userId, {
                         include: { association: 'productos' },
                         order: [['created_at', 'DESC']]
                     });

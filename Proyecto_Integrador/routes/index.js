@@ -7,7 +7,7 @@ const {body}=require("express-validator");
 
 // Home page
 router.get('/', Controller.getAllProducts);
-router.post('/login', async (req, res) => {
+router.post('/login', (req, res) => {
 
     req.session.user = {
         id: user.id,

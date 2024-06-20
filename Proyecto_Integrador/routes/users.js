@@ -9,8 +9,8 @@ const registroValidations = [
     body("email")
         .notEmpty().withMessage("Debes agregar un email")
         .isEmail().withMessage("Debe ser un correo electrónico válido")
-        .custom(async (value) => {
-            const user = await db.Usuario.findOne({ where: { email: value } });
+        .custom((value) => {
+            const user = db.Usuario.findOne({ where: { email: value } });
             if (user) {
                 throw new Error('El email ingresado ya se encuentra registrado');
             }

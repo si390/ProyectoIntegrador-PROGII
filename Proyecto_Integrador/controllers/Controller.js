@@ -3,150 +3,152 @@ const { Op } = db.Sequelize;
 const { validationResult } = require("express-validator");
 
 const Product = db.Product;
+const Usuario = db.Usuario;
+const Comentario = db.Comentario;
 
 const Controller = {
-    index: async (req, res) => {
-        try {
-            const products = await Product.findAll({
-                include: [
-                    { model: db.Comentario, as: 'comentarios' },
-                    { model: db.Usuario, as: 'usuario' } 
-                ]
-            });
-
+    index: (req, res) => {
+        Product.findAll({
+            include: [
+                { model: Comentario, as: 'comentarios' },
+                { model: Usuario, as: 'usuario' }
+            ]
+        })
+        .then(products => {
             const user = req.session.user; 
-
-            res.render('index', { products, user }); 
-        } catch (error) {
+            res.render('index', { products, user });
+        })
+        .catch(error => {
             console.error("Error fetching products:", error);
             res.status(500).send("Error fetching products");
-        }
+        });
     },
 
-    getAllProducts: async (req, res) => {
-        try {
-            const products = await db.Product.findAll();
+    getAllProducts: (req, res) => {
+        Product.findAll()
+        .then(products => {
             const user = req.session.user;
-
-            res.render('index', { products, user }); 
-        } catch (error) {
+            res.render('index', { products, user });
+        })
+        .catch(error => {
             console.error('Error fetching products:', error);
             res.status(500).send('Error fetching products');
-        }
+        });
     },
 
-    detail: async (req, res) => {
+    detail: (req, res) => {
         const productId = parseInt(req.params.id);
 
-        try {
-            const producto = await Product.findByPk(productId);
-            
+        Product.findByPk(productId)
+        .then(producto => {
             if (producto) {
-                res.render('product', { producto }); 
+                res.render('product', { producto });
             } else {
                 res.render('product', { error: "Producto no encontrado." });
             }
-        } catch (error) {
-            console.error("Error fetching product details:", error);
+        })
+        .catch(error => {
+            console.error("Error al mostrar los productos:", error);
             res.render('product', { error: "Error al mostrar el detalle del producto." });
-        }
+        });
     },
 
-    editar: async (req, res) => {
+    editar: (req, res) => {
         const usuarioId = req.session.user.id;
         const productoId = req.params.id;
 
-        try {
-            const producto = await Product.findOne({
-                where: {
-                    id: productoId,
-                    usuario_Id: usuarioId
-                },
-                include: [
-                    { model: db.Usuario, as: 'usuario' }
-                ]
-            });
-
+        Product.findOne({
+            where: {
+                id: productoId,
+                usuario_Id: usuarioId
+            },
+            include: [
+                { model: Usuario, as: 'usuario' }
+            ]
+        })
+        .then(producto => {
             if (producto) {
                 res.render('product-add', { producto });
             } else {
                 res.render('product-add', { error: "No tienes permiso para editar este producto." });
             }
-        } catch (error) {
+        })
+        .catch(error => {
             res.render('product-add', { error: "Error al cargar el producto." });
-        }
+        });
     },
 
-    borrar: async (req, res) => {
+    borrar: (req, res) => {
         const usuarioId = req.session.user.id;
         const productoId = req.params.id;
 
-        try {
-            const result = await Product.destroy({
-                where: {
-                    id: productoId,
-                    usuario_Id: usuarioId
-                }
-            });
-
+        Product.destroy({
+            where: {
+                id: productoId,
+                usuario_Id: usuarioId
+            }
+        })
+        .then(result => {
             if (result) {
                 res.redirect('/');
             } else {
                 res.render('index', { error: "No tienes permiso para borrar este producto." });
             }
-        } catch (error) {
+        })
+        .catch(error => {
             res.render('index', { error: "Error al borrar el producto." });
-        }
+        });
     },
 
     productAdd: {
-            crearProducto: async (req, res) => {
-                let errors = validationResult(req);
-                if (!errors.isEmpty()) {
-                    return res.render('product-add', { 
-                        errors: errors.mapped(),
-                        old: req.body 
-                    });
-                }
-    
-                try {
-                    await Product.create({
-                        imagen: req.body.imagen,
-                        nombre: req.body.nombre,
-                        descripcion: req.body.descripcion,
-                        color: req.body.color,
-                        usuario_Id: req.session.user.id,
-                        createdAt: new Date(),
-                        updatedAt: new Date()
-                    });
-                    res.redirect('/');
-                } catch (error) {
-                    res.render('product-add', { 
-                        error: "Error al agregar el producto",
-                        old: req.body  // Pass req.body to 'old' in case of render due to other errors
-                    });
-                }
+        crearProducto: (req, res) => {
+            let errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.render('product-add', { 
+                    errors: errors.mapped(),
+                    old: req.body 
+                });
             }
-        },
+
+            Product.create({
+                imagen: req.body.imagen,
+                nombre: req.body.nombre,
+                descripcion: req.body.descripcion,
+                color: req.body.color,
+                usuario_Id: req.session.user.id,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            })
+            .then(() => {
+                res.redirect('/');
+            })
+            .catch(error => {
+                res.render('product-add', { 
+                    error: "Error al agregar el producto",
+                    old: req.body
+                });
+            });
+        }
+    },
 
     search: {
-        busqueda: async (req, res) => {
+        busqueda: (req, res) => {
             const { query } = req.query;
 
-            try {
-                const productos = await Product.findAll({
-                    where: {
-                        nombre: {
-                            [Op.like]: `%${query}%`
-                        }
-                    },
-                    include: [{ model: db.Usuario, as: 'usuario' }]
-                });
-
+            Product.findAll({
+                where: {
+                    nombre: {
+                        [Op.like]: `%${query}%`
+                    }
+                },
+                include: [{ model: Usuario, as: 'usuario' }]
+            })
+            .then(productos => {
                 res.render('search-results', { productos });
-            } catch (error) {
+            })
+            .catch(error => {
                 res.render('search-results', { error: "Error al buscar productos." });
-            }
+            });
         }
     }
 };
