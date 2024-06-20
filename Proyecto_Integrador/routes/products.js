@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const productController = require('../controllers/Controller');
-const {body}=require("express-validator");
-
-
+const { body } = require("express-validator");
 
 router.get('/', productController.index);
 
@@ -35,11 +33,21 @@ router.get('/add/:id', (req, res) => {
         productId,
         old: req.session.oldInput || {}, 
         errors: req.session.errors || {} 
-    })});
-router.post('/add/:id', productoValidations, productController.productAdd.crearProducto);
+    });
+});
+
+router.post('/add/:id', productoValidations, (req, res) => {
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        req.session.errors = errors.mapped();
+        req.session.oldInput = req.body;
+        return res.redirect(`/add/${req.params.id}`);
+    }
+
+    productController.productAdd.crearProducto(req, res);
+});
 
 // Buscar productos
 router.get('/search', productController.search.busqueda);
 
 module.exports = router;
-
