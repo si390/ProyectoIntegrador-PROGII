@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require("express-validator");
 
 const profileController = {
-    register: {
+    /*register: { 
         mostrarRegistro: (req, res) => {
             const old = req.body || {};
             const errors = req.flash('errors') || {};
@@ -32,7 +32,7 @@ const profileController = {
                 res.render('register', { error: "Error al registrar el usuario", old: req.body });
             }
         }
-    },
+    },  */
 
     login: {
         mostrarLogin: (req, res) => {
