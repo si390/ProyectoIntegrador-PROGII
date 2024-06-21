@@ -1,43 +1,54 @@
 <%- include('partials/head.ejs'); -%>
 
-<% if (locals.user !== undefined) { %>
-    <%- include('/partials/headerLogueado') %>
+<% if (locals.user != undefined) { %>
+    <%- include('partials/headerLogueado') %>
 <% } else { %>
     <%- include('partials/header') %>
 <% } %>
 
-<div class="container products-wrapper">
-    <div class="col-12">
-        <h2 class="products-title">Agregar productos</h2>
-    </div>
-
+<section>
     <div class="container">
-        <h2>Agregar Producto</h2>
-        <<form action="/product/add/<%= productId %>" method="POST">
+        <h1>Agregar Producto</h1>
+
+        <% if (typeof errors !== 'undefined' && Object.keys(errors).length > 0) { %>
+            <ul>
+                <% Object.keys(errors).forEach((field) => { %>
+                    <li><%= errors[field].msg %></li>
+                <% }) %>
+            </ul>
+        <% } %>
+        
+        <form action="/product/add/<%= producto ? producto.id : '' %>" method="post">
             <div>
                 <label for="imagen">Imagen:</label>
-                <input id="imagen" type="text" name="imagen" value="<%= old && old.imagen ? old.imagen : '' %>" required>
-                <% if (errors && errors.imagen) { %>
-                    <p><%= errors.imagen.msg %></p>
-                <% } %>
+                <input type="text" id="imagen" name="imagen" value="<%= old.imagen || (producto ? producto.imagen : '') %>" required>
             </div>
             <div>
-                <label for="nombreProducto">Nombre del Producto:</label>
-                <input id="nombreProducto" type="text" name="nombreProducto" value="<%= old && old.nombreProducto ? old.nombreProducto : '' %>" required>
-                <% if (errors && errors.nombreProducto) { %>
-                    <p><%= errors.nombreProducto.msg %></p>
-                <% } %>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" value="<%= old.nombre || (producto ? producto.nombre : '') %>" required>
             </div>
             <div>
                 <label for="descripcion">Descripción:</label>
-                <input id="descripcion" type="text" name="descripcion" value="<%= old && old.descripcion ? old.descripcion : '' %>" required>
-                <% if (errors && errors.descripcion) { %>
-                    <p><%= errors.descripcion.msg %></p>
-                <% } %>
+                <textarea id="descripcion" name="descripcion" required><%= old.descripcion || (producto ? producto.descripcion : '') %></textarea>
             </div>
-            <button type="submit">Agregar Producto</button>
+            <div>
+                <label for="color">Color:</label>
+                <input type="text" id="color" name="color" value="<%= old.color || (producto ? producto.color : '') %>" required>
+            </div>
         </form>
+
+        <% if (producto) { %>
+            <div class="product-detail">
+                <h2>Producto Agregado</h2>
+                <div class="row">
+                    <article class="col-12 col-lg-8 product-detail-info">
+                        <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>" class="product-detail-img">
+                        <p class="product-detail-description"><%= producto.descripcion %></p>
+                    </article>
+                </div>
+            </div>
+        <% } %>
     </div>
-</div>
+</section>
 
 <%- include('partials/footer.ejs'); -%>

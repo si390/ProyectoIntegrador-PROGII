@@ -101,12 +101,26 @@ const Controller = {
     },
 
     productAdd: {
+        renderizarProductAdd: (req, res) => {
+            const productId = req.params.id;
+
+            Product.findByPk(productId)
+            .then(producto => {
+                res.render('product-add', { producto, errors: {}, old: {} });
+            })
+            .catch(error => {
+                console.error("Error al cargar el producto:", error);
+                res.render('product-add', { error: "Error al cargar el producto.", errors: {}, old: {} });
+            });
+        },
+
         crearProducto: (req, res) => {
             let errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.render('product-add', { 
                     errors: errors.mapped(),
-                    old: req.body 
+                    old: req.body,
+                    producto: null
                 });
             }
 
@@ -119,13 +133,19 @@ const Controller = {
                 createdAt: new Date(),
                 updatedAt: new Date()
             })
-            .then(() => {
-                res.redirect('/');
+            .then(newProduct => {
+                res.render('product-add', { 
+                    producto: newProduct, 
+                    errors: {}, 
+                    old: {} 
+                });
             })
             .catch(error => {
                 res.render('product-add', { 
                     error: "Error al agregar el producto",
-                    old: req.body
+                    errors: {}, 
+                    old: req.body,
+                    producto: null
                 });
             });
         }

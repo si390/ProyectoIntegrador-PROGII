@@ -1,9 +1,9 @@
 <%- include('partials/head.ejs'); -%>
 
 <% if (locals.user != undefined) { %>
-    <%- include('/partials/headerLogueado') %>
+    <%- include('partials/headerLogueado') %>
 <% } else { %>
-    <%- include('partials/header') -%>
+    <%- include('partials/header') %>
 <% } %>
 
 <section>
@@ -14,7 +14,6 @@
                 <a href="/product/add/<%= producto.id %>">Agregar producto</a>
             </p>
         </div>
-
   
         <div class="product-detail">
             <div class="row">
@@ -22,7 +21,6 @@
                     <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>" class="product-detail-img">
                     <p class="product-detail-description"><%= producto.descripcion %></p>
                 </article>
-
           
                 <div class="col-12 col-lg-4">
                     <section class="comments">
@@ -46,7 +44,6 @@
                         <% } %>
                     </section>
                     
-                   
                     <form class="comment-form" action="/product/<%= producto.id %>" method="post">
                         <input class="form-input" type="text" name="comment" placeholder="Agregar comentario" required>
                         <button type="submit" class="add-comment-button">AGREGAR COMENTARIO</button>
