@@ -13,7 +13,7 @@ router.get('/:id/edit', productController.editar);
 
 // Eliminar el producto
 router.delete('/:id/delete', productController.borrar);
-
+router.get('/add/:id', productController.productAdd.renderizarProductAdd);
 // Añadir un nuevo producto
 let productoValidations = [
     body("imagen")
@@ -27,14 +27,6 @@ let productoValidations = [
         .isLength({ min: 5 }).withMessage("La descripción debe tener al menos 5 caracteres")
 ];
 
-router.get('/add/:id', (req, res) => {
-    const productId = req.params.id;
-    res.render('product-add', { 
-        productId,
-        old: req.session.oldInput || {}, 
-        errors: req.session.errors || {} 
-    });
-});
 
 router.post('/add/:id', productoValidations, (req, res) => {
     let errors = validationResult(req);
