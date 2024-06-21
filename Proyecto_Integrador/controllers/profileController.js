@@ -3,36 +3,37 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require("express-validator");
 
 const profileController = {
-    /*register: { 
+    register: { 
         mostrarRegistro: (req, res) => {
             const old = req.body || {};
-            const errors = req.flash('errors') || {};
+            const errors = req.flash ? req.flash('errors') : {};
             res.render('register', { old, errors });
         },
 
-        registro: async (req, res) => {
+        registro: (req, res) => {
             let errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.render('register', { errors: errors.mapped(), old: req.body });
             }
-            try {
-                let hashedPassword = bcrypt.hashSync(req.body.contrasenia, 10);
-                await db.Usuario.create({
-                    username: req.body.usuario,
-                    nombre: req.body.nombre || null,
-                    email: req.body.email,
-                    contrasenia: hashedPassword,
-                    fecha: req.body.fechaNacimiento || null,
-                    dni: req.body.nroDocumento || null,
-                    fotoPerfil: req.body.fotoPerfil || null,
-                    created_at: new Date()
-                });
+            let hashedPassword = bcrypt.hashSync(req.body.contrasenia, 10);
+            db.Usuario.create({
+                username: req.body.usuario,
+                nombre: req.body.nombre || null,
+                email: req.body.email,
+                contrasenia: hashedPassword,
+                fecha: req.body.fechaNacimiento || null,
+                dni: req.body.nroDocumento || null,
+                fotoPerfil: req.body.fotoPerfil || null,
+                created_at: new Date()
+            })
+            .then(() => {
                 res.redirect('/login');
-            } catch (error) {
+            })
+            .catch((error) => {
                 res.render('register', { error: "Error al registrar el usuario", old: req.body });
-            }
+            });
         }
-    },  */
+    },  
 
     login: {
         mostrarLogin: (req, res) => {
@@ -43,7 +44,7 @@ const profileController = {
             }
         },
 
-        login: async (req, res) => {
+        login: (req, res) => {
             let errors = validationResult(req);
             const { email, contrasenia } = req.body;
 
@@ -53,6 +54,8 @@ const profileController = {
 
             try {
                 const usuarioLogueado = db.Usuario.findOne({ where: { email } });
+            db.Usuario.findOne({ where: { email } })
+            .then(usuarioLogueado => {
                 if (!usuarioLogueado) {
                     return res.render("login", { error: "Usuario no registrado" });
                 }
@@ -67,14 +70,15 @@ const profileController = {
                     res.cookie('UsuarioNuevo', usuarioLogueado.id, { maxAge: 1000 * 60 * 60 * 24 * 7 });
                 }
                 res.redirect('/profile');
-            } catch (error) {
+            })
+            .catch((error) => {
                 res.render("login", { error: "Error al buscar usuario" });
-            }
+            });
         }
     },
 
     miPerfil: {
-        mostrarPerfil: async (req, res) => {
+        mostrarPerfil: (req, res) => {
             if (req.session.user) {
                 const userId = req.session.user.id;
                 try {
@@ -83,7 +87,7 @@ const profileController = {
                         order: [['created_at', 'DESC']]
                     });
                     if (usuario) {
-                        return res.render('profile', {
+                        res.render('profile', {
                             nombre: usuario.nombre,
                             email: usuario.email,
                             foto: usuario.fotoPerfil,
@@ -91,13 +95,14 @@ const profileController = {
                             numProductos: usuario.productos.length
                         });
                     } else {
-                        return res.redirect('/login');
+                        res.redirect('/login');
                     }
-                } catch (error) {
-                    return res.render('profile', { error: 'Error al cargar página de perfil de usuario' });
-                }
+                })
+                .catch((error) => {
+                    res.render('profile', { error: 'Error al cargar página de perfil de usuario' });
+                });
             } else {
-                return res.redirect('/login');
+                res.redirect('/login');
             }
         }
     },

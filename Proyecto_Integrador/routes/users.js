@@ -4,16 +4,16 @@ const profileController = require('../controllers/profileController');
 const { body, validationResult } = require('express-validator');
 const db = require("../database/models");
 
-
 const registroValidations = [
     body("email")
         .notEmpty().withMessage("Debes agregar un email")
         .isEmail().withMessage("Debe ser un correo electrónico válido")
-        .custom(async (value) => {
-            const user = await db.Usuario.findOne({ where: { email: value } });
-            if (user) {
-                throw new Error('El email ingresado ya se encuentra registrado');
-            }
+        .custom(value => {
+            return db.Usuario.findOne({ where: { email: value } }).then(user => {
+                if (user) {
+                    return Promise.reject('El email ingresado ya se encuentra registrado');
+                }
+            });
         }),
     body("usuario")
         .notEmpty().withMessage("Debes agregar un usuario"),
@@ -31,13 +31,27 @@ const registroValidations = [
         .isAlphanumeric().withMessage("La URL de la foto de perfil solo puede contener letras y números")
 ];
 
-router.post('/register', registroValidations, profileController.register.registro);
+router.post('/register', registroValidations, (req, res) => {
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.render('register', { errors: errors.mapped(), old: req.body });
+    }
+
+    profileController.register.registro(req, res);
+});
 
 router.get('/register', profileController.register.mostrarRegistro);
 
 router.get('/', profileController.miPerfil.mostrarPerfil);
 router.get('/login', profileController.login.mostrarLogin);
-router.post('/login', profileController.login.login);
+router.post('/login', (req, res) => {
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.render("login", { errors: errors.mapped(), old: req.body });
+    }
+
+    profileController.login.login(req, res);
+});
 router.get('/logout', profileController.logout.logout);
 
 module.exports = router;
