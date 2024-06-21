@@ -6,7 +6,7 @@ const profileController = {
     register: { 
         mostrarRegistro: (req, res) => {
             const old = req.body || {};
-            const errors = req.flash ? req.flash('errors') : {};
+            const errors = {};
             res.render('register', { old, errors });
         },
 
@@ -52,8 +52,6 @@ const profileController = {
                 return res.render("login", { errors: errors.mapped(), old: req.body });
             }
 
-            try {
-                const usuarioLogueado = db.Usuario.findOne({ where: { email } });
             db.Usuario.findOne({ where: { email } })
             .then(usuarioLogueado => {
                 if (!usuarioLogueado) {
@@ -81,11 +79,11 @@ const profileController = {
         mostrarPerfil: (req, res) => {
             if (req.session.user) {
                 const userId = req.session.user.id;
-                try {
-                    const usuario = db.Usuario.findByPk(userId, {
-                        include: { association: 'productos' },
-                        order: [['created_at', 'DESC']]
-                    });
+                db.Usuario.findByPk(userId, {
+                    include: { association: 'productos' },
+                    order: [['created_at', 'DESC']]
+                })
+                .then(usuario => {
                     if (usuario) {
                         res.render('profile', {
                             nombre: usuario.nombre,
