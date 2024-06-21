@@ -52,7 +52,7 @@ const profileController = {
             }
 
             try {
-                const usuarioLogueado = await db.Usuario.findOne({ where: { email } });
+                const usuarioLogueado = db.Usuario.findOne({ where: { email } });
                 if (!usuarioLogueado) {
                     return res.render("login", { error: "Usuario no registrado" });
                 }
@@ -78,7 +78,7 @@ const profileController = {
             if (req.session.user) {
                 const userId = req.session.user.id;
                 try {
-                    const usuario = await db.Usuario.findByPk(userId, {
+                    const usuario = db.Usuario.findByPk(userId, {
                         include: { association: 'productos' },
                         order: [['created_at', 'DESC']]
                     });
