@@ -12,7 +12,8 @@ const Controller = {
             include: [
                 { model: Comentario, as: 'comentarios' },
                 { model: Usuario, as: 'usuario' }
-            ]
+            ],
+            order: [['createdAt', 'DESC']]
         })
         .then(products => {
             const user = req.session.user; 
