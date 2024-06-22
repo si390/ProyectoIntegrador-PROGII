@@ -158,7 +158,7 @@ const Controller = {
             Product.findAll({
                 where: {
                     nombre: {
-                        [Op.like]: %${query}%
+                        [Op.like]: `%${query}%`
                     }
                 },
                 include: [{ model: Usuario, as: 'usuario' }]
