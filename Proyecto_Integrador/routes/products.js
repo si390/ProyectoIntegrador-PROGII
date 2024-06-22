@@ -1,14 +1,13 @@
 var express = require('express');
 var router = express.Router();
 const productController = require('../controllers/Controller');
-const { body } = require("express-validator");
+const { body, validationResult } = require("express-validator")
 
 router.get('/', productController.index);
 
 // Detalle del producto
 router.get('/:id', productController.detail);
 
-// Editar el producto
 router.get('/:id/edit', productController.editar);
 
 // Eliminar el producto

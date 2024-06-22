@@ -35,6 +35,9 @@
                 <label for="color">Color:</label>
                 <input type="text" id="color" name="color" value="<%= old.color || (producto ? producto.color : '') %>" required>
             </div>
+            <div>
+                <button class="boton" type="submit">Agregar</button>
+            </div>
         </form>
 
         <% if (producto) { %>

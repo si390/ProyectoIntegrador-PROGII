@@ -46,32 +46,33 @@ const profileController = {
         
         login: (req, res) => {
             let errors = validationResult(req);
-            const { email, contrasenia } = req.body;
-        
             if (!errors.isEmpty()) {
                 return res.render("login", { errors: errors.mapped(), old: req.body });
             }
+
+            const { email, contrasenia } = req.body;
         
             db.Usuario.findOne({ where: { email } })
-            .then(usuarioLogueado => {
-                if (!usuarioLogueado) {
-                    return res.render("login", { error: "Usuario no registrado", old: req.body });
-                }
+                .then(usuarioLogueado => {
+                    if (!usuarioLogueado) {
+                        return res.render("login", { error: "Usuario no registrado", old: req.body });
+                    }
         
-                const comparacion = bcrypt.compareSync(contrasenia, usuarioLogueado.contrasenia);
-                if (!comparacion) {
-                    return res.render("login", { errorContraseña: "Contraseña incorrecta", old: req.body });
-                }
+                    const comparacion = bcrypt.compareSync(contrasenia, usuarioLogueado.contrasenia);
+                    if (!comparacion) {
+                        return res.render("login", { errorContraseña: "Contraseña incorrecta", old: req.body });
+                    }
         
-                req.session.user = usuarioLogueado;
-                if (req.body.recordarme) {
-                    res.cookie('UsuarioNuevo', usuarioLogueado.id, { maxAge: 1000 * 60 * 60 * 24 * 7 });
-                }
-                res.redirect('/profile');
-            })
-            .catch((error) => {
-                res.render("login", { error: "Error al buscar usuario", old: req.body });
-            });
+                    req.session.user = usuarioLogueado;
+                    if (req.body.recordarme) {
+                        res.cookie('UsuarioNuevo', usuarioLogueado.id, { maxAge: 1000 * 60 * 60 * 24 * 7 });
+                    }
+                    res.redirect('/profile'); 
+                })
+                .catch((error) => {
+                    console.error("Error al buscar usuario:", error);
+                    res.render("login", { error: "Error al buscar usuario", old: req.body });
+                });
         }
     },
 
