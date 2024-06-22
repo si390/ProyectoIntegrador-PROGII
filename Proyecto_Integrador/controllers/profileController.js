@@ -101,7 +101,7 @@ const profileController = {
                     res.render('profile', { error: 'Error al cargar página de perfil de usuario' });
                 });
             } else {
-                res.redirect('/login');
+                res.redirect('/profile/login');
             }
         }
     },

@@ -18,6 +18,7 @@
             </ul>
         <% } %>
         
+    <section class="formularios">
         <form action="/product/add/<%= producto ? producto.id : '' %>" method="post">
             <div>
                 <label for="imagen">Imagen:</label>
@@ -39,7 +40,8 @@
                 <button class="boton" type="submit">Agregar</button>
             </div>
         </form>
-
+    </section >
+    
         <% if (producto) { %>
             <div class="product-detail">
                 <h2>Producto Agregado</h2>
