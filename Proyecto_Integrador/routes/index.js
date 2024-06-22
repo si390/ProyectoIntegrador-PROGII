@@ -1,18 +1,15 @@
 var express = require('express');
 var router = express.Router();
 const Controller = require('../controllers/Controller')
+const commentController = require('../controllers/commentController');
+const productController = require('../controllers/Controller');
+const profileController = require('../controllers/profileController');
 const {body}=require("express-validator");
 
 
 
 // Home page
 router.get('/', Controller.getAllProducts);
-router.post('/login', (req, res) => {
+router.get('/logout', profileController.logout.logout);
 
-    req.session.user = {
-        id: user.id,
-        email: user.email,
-    };
-    res.redirect('/');
-});
 module.exports = router;
