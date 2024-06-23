@@ -16,7 +16,7 @@ const Controller = {
             order: [['createdAt', 'DESC']]
         })
         .then(products => {
-            const user = req.session.user; 
+            const user = req.session.user;
             res.render('index', { products, user });
         })
         .catch(error => {
@@ -56,7 +56,12 @@ const Controller = {
     },
 
     editar: (req, res) => {
-        const usuarioId = req.session.user.id;
+        const user = req.session.user;
+        if (!user) {
+            return res.render('product-add', { error: "Usuario no autenticado." });
+        }
+
+        const usuarioId = user.id;
         const productoId = req.params.id;
 
         Product.findOne({
@@ -81,7 +86,12 @@ const Controller = {
     },
 
     borrar: (req, res) => {
-        const usuarioId = req.session.user.id;
+        const user = req.session.user;
+        if (!user) {
+            return res.render('index', { error: "Usuario no autenticado." });
+        }
+
+        const usuarioId = user.id;
         const productoId = req.params.id;
 
         Product.destroy({
