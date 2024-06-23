@@ -4,6 +4,11 @@ const profileController = require('../controllers/profileController');
 const { body, validationResult } = require('express-validator');
 const db = require("../database/models");
 
+/* Mi perfil */
+router.get('/', profileController.miPerfil.mostrarPerfil);
+router.get('/logout', profileController.logout.logout);
+
+/* Registro */
 const registroValidations = [
     body("email")
         .notEmpty().withMessage("Debes agregar un email")
@@ -31,6 +36,7 @@ const registroValidations = [
         .isAlphanumeric().withMessage("La URL de la foto de perfil solo puede contener letras y números")
 ];
 
+router.get('/register', profileController.register.mostrarRegistro);
 router.post('/register', registroValidations, (req, res) => {
     let errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -40,18 +46,24 @@ router.post('/register', registroValidations, (req, res) => {
     profileController.register.registro(req, res);
 });
 
-router.get('/register', profileController.register.mostrarRegistro);
+/* Login */
+const loginValidations = [
+    body('email')
+        .notEmpty().withMessage('Ingresa email')
+        .isEmail().withMessage('Ingrese un email válido'),
+    body('contrasenia')
+        .notEmpty().withMessage('Ingrese contraseña'),
+];
 
-router.get('/', profileController.miPerfil.mostrarPerfil);
 router.get('/login', profileController.login.mostrarLogin);
-router.post('/login', (req, res) => {
+router.post('/login', loginValidations, (req, res) => {
     let errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.render("login", { errors: errors.mapped(), old: req.body });
+        return res.render('login', { errors: errors.mapped(), old: req.body });
     }
 
     profileController.login.login(req, res);
 });
-router.get('/logout', profileController.logout.logout);
+
 
 module.exports = router;

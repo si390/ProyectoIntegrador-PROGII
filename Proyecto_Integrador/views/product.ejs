@@ -18,8 +18,20 @@
         <div class="product-detail">
             <div class="row">
                 <article class="col-12 col-lg-8 product-detail-info">
+                    <p class="product-detail-description"><%= producto.nombre%></p>
                     <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>" class="product-detail-img">
                     <p class="product-detail-description"><%= producto.descripcion %></p>
+                
+               
+                  <!-- Formularios para editar y borrar -->
+                  <div class="d-flex justify-content-center mb-3">
+                  <form action="/product/add/<%= producto.id %>" method="GET">
+                    <button class="boton" type="submit">Editar </button>
+                  </form>
+                 <form action="/product/delete/<%= producto.id %>" method="POST">
+                    <button class="boton" type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">Borrar</button>
+                 </form>
+                </div>
                 </article>
           
                 <div class="col-12 col-lg-4">
@@ -48,6 +60,7 @@
                         <input class="form-input" type="text" name="comment" placeholder="Agregar comentario" required>
                         <button type="submit" class="add-comment-button">AGREGAR COMENTARIO</button>
                     </form>
+                    
                     <hr>
                 </div>
             </div>

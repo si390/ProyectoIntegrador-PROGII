@@ -12,7 +12,8 @@ const Controller = {
             include: [
                 { model: Comentario, as: 'comentarios' },
                 { model: Usuario, as: 'usuario' }
-            ]
+            ],
+            order: [['createdAt', 'DESC']]
         })
         .then(products => {
             const user = req.session.user;
@@ -39,7 +40,8 @@ const Controller = {
     detail: (req, res) => {
         const productId = parseInt(req.params.id);
 
-        Product.findByPk(productId)
+        Product.findByPk(productId, {
+            })
         .then(producto => {
             if (producto) {
                 res.render('product', { producto });

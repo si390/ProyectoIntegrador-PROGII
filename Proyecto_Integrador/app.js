@@ -50,6 +50,21 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+app.use(function(req,res,next){
+  if(req.cookies.userId != undefined && req.session.user == undefined){
+    let idCookie = req.cookies.userId;
+    db.Users.findBypk(idCookie)
+    .then(user => {
+      req.session.user = user;
+      res.locals = user;
+      return next();
+    })
+    .catch( e=> {console.log(e)})
+  }else {
+    return next();
+  }
+});
+
 // Error handler
 app.use(function(err, req, res, next) {
   // Set locals, only providing error in development

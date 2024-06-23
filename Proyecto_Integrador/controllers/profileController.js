@@ -38,40 +38,41 @@ const profileController = {
     login: {
         mostrarLogin: (req, res) => {
             if (!req.session.user) {
-                res.render('login');
+                res.render('login', { old: {}, errors: {} });
             } else {
                 res.redirect('/');
             }
         },
-
+        
         login: (req, res) => {
             let errors = validationResult(req);
-            const { email, contrasenia } = req.body;
-
             if (!errors.isEmpty()) {
                 return res.render("login", { errors: errors.mapped(), old: req.body });
             }
 
+            const { email, contrasenia } = req.body;
+        
             db.Usuario.findOne({ where: { email } })
-            .then(usuarioLogueado => {
-                if (!usuarioLogueado) {
-                    return res.render("login", { error: "Usuario no registrado" });
-                }
-
-                const comparacion = bcrypt.compareSync(contrasenia, usuarioLogueado.contrasenia);
-                if (!comparacion) {
-                    return res.render("login", { errorContraseña: "Contraseña incorrecta" });
-                }
-
-                req.session.user = usuarioLogueado;
-                if (req.body.recordarme) {
-                    res.cookie('UsuarioNuevo', usuarioLogueado.id, { maxAge: 1000 * 60 * 60 * 24 * 7 });
-                }
-                res.redirect('/profile');
-            })
-            .catch((error) => {
-                res.render("login", { error: "Error al buscar usuario" });
-            });
+                .then(usuarioLogueado => {
+                    if (!usuarioLogueado) {
+                        return res.render("login", { error: "Usuario no registrado", old: req.body });
+                    }
+        
+                    const comparacion = bcrypt.compareSync(contrasenia, usuarioLogueado.contrasenia);
+                    if (!comparacion) {
+                        return res.render("login", { errorContraseña: "Contraseña incorrecta", old: req.body });
+                    }
+        
+                    req.session.user = usuarioLogueado;
+                    if (req.body.recordarme) {
+                        res.cookie('UsuarioNuevo', usuarioLogueado.id, { maxAge: 1000 * 60 * 60 * 24 * 7 });
+                    }
+                    res.redirect('/profile'); 
+                })
+                .catch((error) => {
+                    console.error("Error al buscar usuario:", error);
+                    res.render("login", { error: "Error al buscar usuario", old: req.body });
+                });
         }
     },
 
@@ -93,14 +94,14 @@ const profileController = {
                             numProductos: usuario.productos.length
                         });
                     } else {
-                        res.redirect('/login');
+                        res.redirect('/profile/login');
                     }
                 })
                 .catch((error) => {
                     res.render('profile', { error: 'Error al cargar página de perfil de usuario' });
                 });
             } else {
-                res.redirect('/login');
+                res.redirect('/profile/login');
             }
         }
     },
