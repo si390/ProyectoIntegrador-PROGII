@@ -94,7 +94,7 @@ const profileController = {
                             numProductos: usuario.productos.length
                         });
                     } else {
-                        res.redirect('/login');
+                        res.redirect('/profile/login');
                     }
                 })
                 .catch((error) => {
