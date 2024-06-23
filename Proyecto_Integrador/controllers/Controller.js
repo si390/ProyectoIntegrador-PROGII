@@ -40,7 +40,8 @@ const Controller = {
     detail: (req, res) => {
         const productId = parseInt(req.params.id);
 
-        Product.findByPk(productId)
+        Product.findByPk(productId, {
+            })
         .then(producto => {
             if (producto) {
                 res.render('product', { producto });
