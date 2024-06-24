@@ -7,55 +7,55 @@
 
 <!-- form para registrarse-->
 <div class="mt-4">
-<p class="product-detail-description">Registrarse</p>
-<section class="formularios">
-    <form action="/profile/register" method="POST">
-        <div>
-            <label for="email">Email:</label>
-            <input id="email" type="email" name="email" value="<%= old.email || '' %>">
-            <% if (errors && errors.email) { %>
-                <p><%= errors.email.msg %></p>
-            <% } %>
-        </div>
-        <div>
-            <label for="usuario">Usuario:</label>
-            <input id="usuario" type="text" name="usuario" value="<%= old.usuario || '' %>">
-            <% if (errors && errors.usuario) { %>
-                <p><%= errors.usuario.msg %></p>
-            <% } %>
-        </div>
-        <div>
-            <label for="contraseña">Contraseña:</label>
-            <input id="contraseña" type="password" name="contrasenia" value="">
-            <% if (errors && errors.contrasenia) { %>
-                <p><%= errors.contrasenia.msg %></p>
-            <% } %>
-        </div>
-        <div>
-            <label for="fechaNacimiento">Nacimiento:</label>
-            <input id="fechaNacimiento" type="date" name="fechaNacimiento" value="<%= old.fechaNacimiento || '' %>">
-            <% if (errors && errors.fechaNacimiento) { %>
-                <p><%= errors.fechaNacimiento.msg %></p>
-            <% } %>
-        </div>
-        <div>
-            <label for="nroDocumento">Num. Documento:</label>
-            <input id="nroDocumento" type="number" name="nroDocumento" value="<%= old.nroDocumento || '' %>">
-            <% if (errors && errors.nroDocumento) { %>
-                <p><%= errors.nroDocumento.msg %></p>
-            <% } %>
-        </div>
-        <div>
-            <label for="fotoPerfil">Foto de Perfil:</label>
-            <input id="fotoPerfil" type="text" name="fotoPerfil" value="<%= old.fotoPerfil || '' %>">
-            <% if (errors && errors.fotoPerfil) { %>
-                <p><%= errors.fotoPerfil.msg %></p>
-            <% } %>
-        </div>
-        <div>
-            <button class="boton" type="submit">Registrarse</button>
-        </div>
-    </form>
-</section>
-</div>
+    <p class="product-detail-description">Registrarse</p>
+    <section class="formularios">
+        <form action="/profile/register" method="POST">
+            <div>
+                <label for="email">Email:</label>
+                <input id="email" type="email" name="email" value="<%= old.email || '' %>">
+                <% if (errors && errors.email) { %>
+                    <p><%= errors.email.msg %></p>
+                <% } %>
+            </div>
+            <div>
+                <label for="usuario">Usuario:</label>
+                <input id="usuario" type="text" name="usuario" value="<%= old.usuario || '' %>">
+                <% if (errors && errors.usuario) { %>
+                    <p><%= errors.usuario.msg %></p>
+                <% } %>
+            </div>
+            <div>
+                <label for="contraseña">Contraseña:</label>
+                <input id="contraseña" type="password" name="contrasenia" value="">
+                <% if (errors && errors.contrasenia) { %>
+                    <p><%= errors.contrasenia.msg %></p>
+                <% } %>
+            </div>
+            <div>
+                <label for="fechaNacimiento">Nacimiento:</label>
+                <input id="fechaNacimiento" type="date" name="fechaNacimiento" value="<%= old.fechaNacimiento || '' %>">
+                <% if (errors && errors.fechaNacimiento) { %>
+                    <p><%= errors.fechaNacimiento.msg %></p>
+                <% } %>
+            </div>
+            <div>
+                <label for="nroDocumento">Num. Documento:</label>
+                <input id="nroDocumento" type="number" name="nroDocumento" value="<%= old.nroDocumento || '' %>">
+                <% if (errors && errors.nroDocumento) { %>
+                    <p><%= errors.nroDocumento.msg %></p>
+                <% } %>
+            </div>
+            <div>
+                <label for="fotoPerfil">Foto de Perfil:</label>
+                <input id="fotoPerfil" type="text" name="fotoPerfil" value="<%= old.fotoPerfil || '' %>">
+                <% if (errors && errors.fotoPerfil) { %>
+                    <p><%= errors.fotoPerfil.msg %></p>
+                <% } %>
+            </div>
+            <div>
+                <button class="boton" type="submit">Registrarse</button>
+            </div>
+        </form>
+    </section>
+    </div>
 <%- include('partials/footer.ejs'); -%>

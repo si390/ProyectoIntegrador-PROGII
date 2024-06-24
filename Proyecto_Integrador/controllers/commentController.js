@@ -1,6 +1,8 @@
 const db = require('../database/models');
 const { validationResult } = require("express-validator");
-
+const Product = db.Product;
+const Usuario = db.Usuario;
+const Comentario = db.Comentario;
 const commentController = {
 
     crearComentario: function (req, res) {

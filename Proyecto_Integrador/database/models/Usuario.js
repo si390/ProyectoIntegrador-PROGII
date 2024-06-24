@@ -32,10 +32,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: true,
         },
-        fotoPerfil: {
-            type: DataTypes.STRING(255),
-            allowNull: true,
-        },
         created_at: {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW,
@@ -51,7 +47,7 @@ module.exports = function(sequelize, DataTypes) {
         tableName: "usuarios",
         timestamps: true,
         underscored: true,
-        paranoid: true,
+        deletedAt: 'deleted_at',
     };
 
     let Usuario = sequelize.define(alias, cols, config);

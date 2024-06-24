@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const profileController = require('../controllers/profileController');
-const { body, validationResult } = require('express-validator');
+const { body } = require('express-validator');
 const db = require("../database/models");
 
 /* Mi perfil */
@@ -37,14 +37,7 @@ const registroValidations = [
 ];
 
 router.get('/register', profileController.register.mostrarRegistro);
-router.post('/register', registroValidations, (req, res) => {
-    let errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.render('register', { errors: errors.mapped(), old: req.body });
-    }
-
-    profileController.register.registro(req, res);
-});
+router.post('/register', registroValidations, profileController.register.registro);
 
 /* Login */
 const loginValidations = [
@@ -56,14 +49,6 @@ const loginValidations = [
 ];
 
 router.get('/login', profileController.login.mostrarLogin);
-router.post('/login', loginValidations, (req, res) => {
-    let errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.render('login', { errors: errors.mapped(), old: req.body });
-    }
-
-    profileController.login.login(req, res);
-});
-
+router.post('/login', loginValidations, profileController.login.login);
 
 module.exports = router;

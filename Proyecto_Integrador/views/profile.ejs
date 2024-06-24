@@ -1,23 +1,20 @@
 <%- include('partials/head.ejs'); -%>
-
-<% if (locals.user != undefined) { %>
-    <%- include('/partials/headerLogueado') %>
+<% if (user) { %>
+    <%- include('partials/headerLogueado'); %>
 <% } else { %>
-    <%- include('partials/header') %>
+    <%- include('partials/header'); %>
 <% } %>
 
-<!-- Datos del usuario -->
 <section class="info-usuario container products-wrapper">
-    <%= locals.newUser %>
     <div class="row">
         <div class="img-container offset-3 col-2">
-            <img src="<%= fotoPerfil %>" alt="foto de perfil" class="foto-perfil">
+            <img src="<%= user.fotoPerfil %>" alt="foto de perfil" class="foto-perfil">
         </div>
 
         <div class="data-container col-6">
             <div class="d-flex align-items-center">
                 <h1 class="main-title">
-                    <%= nombre %>
+                    <%= user.nombre %>
                     <a href="/profile/edit">
                         <i class="fas fa-cog"></i>
                     </a>
@@ -26,8 +23,8 @@
             </div>
             <div>
                 <ul class="">
-                    <li><%= email %></li>
-                    <li><%= numProductos %> productos</li>
+                    <li><%= user.email %></li>
+                    <li><%= user.productos ? user.productos.length : 0 %> productos</li>
                     <li>200 seguidores</li>
                     <li>300 comentarios</li>
                 </ul>
@@ -35,6 +32,5 @@
         </div>
     </div>
 </section>
-<!-- /Datos del usuario -->
 
 <%- include('partials/footer.ejs'); -%>

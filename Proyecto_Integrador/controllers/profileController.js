@@ -2,12 +2,13 @@ const db = require('../database/models');
 const bcrypt = require('bcryptjs');
 const { validationResult } = require("express-validator");
 
+const Product = db.Product;
+const Usuario = db.Usuario;
+const Comentario = db.Comentario;
 const profileController = {
     register: { 
         mostrarRegistro: (req, res) => {
-            const old = req.body || {};
-            const errors = {};
-            res.render('register', { old, errors });
+            res.render('register', { old: {}, errors: {} });
         },
 
         registro: (req, res) => {
@@ -15,7 +16,9 @@ const profileController = {
             if (!errors.isEmpty()) {
                 return res.render('register', { errors: errors.mapped(), old: req.body });
             }
+
             let hashedPassword = bcrypt.hashSync(req.body.contrasenia, 10);
+
             db.Usuario.create({
                 username: req.body.usuario,
                 nombre: req.body.nombre || null,
@@ -26,14 +29,16 @@ const profileController = {
                 fotoPerfil: req.body.fotoPerfil || null,
                 created_at: new Date()
             })
-            .then(() => {
-                res.redirect('/login');
+            .then(newUser => {
+                req.session.user = newUser;
+                res.redirect('/profile');
             })
-            .catch((error) => {
+            .catch(error => {
+                console.error("Error al registrar el usuario:", error);
                 res.render('register', { error: "Error al registrar el usuario", old: req.body });
             });
         }
-    },  
+    },
 
     login: {
         mostrarLogin: (req, res) => {
@@ -43,7 +48,7 @@ const profileController = {
                 res.redirect('/');
             }
         },
-        
+
         login: (req, res) => {
             let errors = validationResult(req);
             if (!errors.isEmpty()) {
@@ -51,28 +56,28 @@ const profileController = {
             }
 
             const { email, contrasenia } = req.body;
-        
+
             db.Usuario.findOne({ where: { email } })
-                .then(usuarioLogueado => {
-                    if (!usuarioLogueado) {
-                        return res.render("login", { error: "Usuario no registrado", old: req.body });
-                    }
-        
-                    const comparacion = bcrypt.compareSync(contrasenia, usuarioLogueado.contrasenia);
-                    if (!comparacion) {
-                        return res.render("login", { errorContraseña: "Contraseña incorrecta", old: req.body });
-                    }
-        
-                    req.session.user = usuarioLogueado;
-                    if (req.body.recordarme) {
-                        res.cookie('UsuarioNuevo', usuarioLogueado.id, { maxAge: 1000 * 60 * 60 * 24 * 7 });
-                    }
-                    res.redirect('/profile'); 
-                })
-                .catch((error) => {
-                    console.error("Error al buscar usuario:", error);
-                    res.render("login", { error: "Error al buscar usuario", old: req.body });
-                });
+            .then(usuarioLogueado => {
+                if (!usuarioLogueado) {
+                    return res.render("login", { error: "Usuario no registrado", old: req.body });
+                }
+
+                const comparacion = bcrypt.compareSync(contrasenia, usuarioLogueado.contrasenia);
+                if (!comparacion) {
+                    return res.render("login", { errorContraseña: "Contraseña incorrecta", old: req.body });
+                }
+
+                req.session.user = usuarioLogueado;
+                if (req.body.recordarme) {
+                    res.cookie('UsuarioNuevo', usuarioLogueado.id, { maxAge: 1000 * 60 * 60 * 24 * 7 });
+                }
+                res.redirect('/profile');
+            })
+            .catch(error => {
+                console.error("Error al buscar usuario:", error);
+                res.render("login", { error: "Error al buscar usuario", old: req.body });
+            });
         }
     },
 

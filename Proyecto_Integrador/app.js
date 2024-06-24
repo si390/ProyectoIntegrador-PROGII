@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
@@ -28,15 +27,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: "proyectointegradorfinal",
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 }));
-// Logueado
-app.use(function (req, res, next) {
-  console.log('Session Data:', req.session);
-  if (req.session.usuarioLogueado != undefined) {
-    res.locals.user = req.session.usuarioLogueado;
-  }
-  return next();
+
+// Middleware to add logged user to locals
+app.use((req, res, next) => {
+  if (req.session && req.session.user) {
+    res.locals.user = req.session.user;
+} else {
+    res.locals.user = null;
+}
+next();
 });
 
 // Routes
@@ -46,32 +47,14 @@ app.use('/product', productsRouter);
 app.use('/comments', commentsRouter);
 
 // Catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
-app.use(function(req,res,next){
-  if(req.cookies.userId != undefined && req.session.user == undefined){
-    let idCookie = req.cookies.userId;
-    db.Users.findBypk(idCookie)
-    .then(user => {
-      req.session.user = user;
-      res.locals = user;
-      return next();
-    })
-    .catch( e=> {console.log(e)})
-  }else {
-    return next();
-  }
-});
-
 // Error handler
-app.use(function(err, req, res, next) {
-  // Set locals, only providing error in development
+app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // Render the error page
   res.status(err.status || 500);
   res.render('error');
 });
