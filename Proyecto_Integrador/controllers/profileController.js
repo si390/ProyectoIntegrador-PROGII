@@ -5,6 +5,8 @@ const { validationResult } = require("express-validator");
 const Product = db.Product;
 const Usuario = db.Usuario;
 const Comentario = db.Comentario;
+
+
 const profileController = {
     register: { 
         mostrarRegistro: (req, res) => {
@@ -54,20 +56,15 @@ const profileController = {
             if (!errors.isEmpty()) {
                 return res.render("login", { errors: errors.mapped(), old: req.body });
             }
-
-            const { email, contrasenia } = req.body;
-
+    
+            const { email } = req.body;
+    
             db.Usuario.findOne({ where: { email } })
             .then(usuarioLogueado => {
                 if (!usuarioLogueado) {
                     return res.render("login", { error: "Usuario no registrado", old: req.body });
                 }
-
-                const comparacion = bcrypt.compareSync(contrasenia, usuarioLogueado.contrasenia);
-                if (!comparacion) {
-                    return res.render("login", { errorContraseña: "Contraseña incorrecta", old: req.body });
-                }
-
+    
                 req.session.user = usuarioLogueado;
                 if (req.body.recordarme) {
                     res.cookie('UsuarioNuevo', usuarioLogueado.id, { maxAge: 1000 * 60 * 60 * 24 * 7 });

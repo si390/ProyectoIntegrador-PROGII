@@ -3,6 +3,7 @@ const router = express.Router();
 const profileController = require('../controllers/profileController');
 const { body } = require('express-validator');
 const db = require("../database/models");
+const bcrypt = require('bcryptjs');
 
 /* Mi perfil */
 router.get('/', profileController.miPerfil.mostrarPerfil);
@@ -42,10 +43,23 @@ router.post('/register', registroValidations, profileController.register.registr
 /* Login */
 const loginValidations = [
     body('email')
-        .notEmpty().withMessage('Ingresa email')
-        .isEmail().withMessage('Ingrese un email válido'),
+       .notEmpty().withMessage('Ingresa email')
+       .isEmail().withMessage('Ingrese un email válido'),
     body('contrasenia')
-        .notEmpty().withMessage('Ingrese contraseña'),
+       .notEmpty().withMessage('Ingrese contraseña')
+       .custom(function(value, {req}) {
+            return db.Usuario.findOne({
+                where: {email: req.body.email} 
+            }).then(function(user) {
+                if (user) {
+                    const contrasenia = user.contrasenia; 
+                    const contraseniaComp = bcrypt.compareSync(value, contrasenia);
+                    if (!contraseniaComp) {
+                        throw new Error("Contraseña incorrecta");
+                    }
+                }
+            });
+        })
 ];
 
 //Editar el perfil
