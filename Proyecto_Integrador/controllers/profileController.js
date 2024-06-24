@@ -118,6 +118,58 @@ const profileController = {
                 res.redirect('/');
             });
         }
+    },
+    formularioeditarperfil: function(req, res) {
+        if (!req.session.user) {
+            return res.redirect('/profile/login');
+        }
+
+        db.Usuario.findByPk(req.session.user.id)
+            .then(user => {
+                res.render('profile-edit', { user });
+            })
+            .catch(error => {
+                res.status(500).send(error.message);
+            });
+    },
+
+    actualizarperfil: function(req, res) {
+        if (!req.session.user) {
+            return res.redirect('/profile/login');
+        }
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.render('profile-edit', {
+                user: req.session.user,
+                errors: errors.mapped()
+            });
+        }
+
+        const { nombre, email, fotoPerfil, password } = req.body;
+        const updatedData = {
+            nombre,
+            email,
+            fotoPerfil
+        };
+
+        if (password) {
+            updatedData.password = bcrypt.hashSync(password, 10);
+        }
+
+        db.Usuario.update(updatedData, {
+            where: { id: req.session.user.id }
+        })
+            .then(() => {
+                return db.Usuario.findByPk(req.session.user.id);
+            })
+            .then(user => {
+                req.session.user = user;
+                res.redirect('/profile');
+            })
+            .catch(error => {
+                res.status(500).send(error.message);
+            });
     }
 };
 

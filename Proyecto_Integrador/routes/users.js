@@ -48,7 +48,21 @@ const loginValidations = [
         .notEmpty().withMessage('Ingrese contraseña'),
 ];
 
+//Editar el perfil
+const perfilvalidaciones = [
+    body('nombre')
+        .notEmpty().withMessage('El nombre es obligatorio.')
+        .isLength({ min: 3 }).withMessage('El nombre debe tener al menos 3 caracteres.'),
+    body('email')
+        .notEmpty().withMessage('El correo electrónico es obligatorio.')
+        .isEmail().withMessage('Debe ser un correo electrónico válido.'),
+    body('password')
+        .optional()
+        .isLength({ min: 6 }).withMessage('La contraseña debe tener al menos 6 caracteres.')
+];
+
 router.get('/login', profileController.login.mostrarLogin);
 router.post('/login', loginValidations, profileController.login.login);
-
+router.get('/edit', profileController.formularioeditarperfil);
+router.post('/edit', perfilvalidaciones, profileController.actualizarperfil);
 module.exports = router;

@@ -36,12 +36,12 @@ app.use((req, res, next) => {
     res.locals.user = req.session.user;
 } else {
     res.locals.user = null;
-}
+} 
 next();
 });
 
 // Routes
-app.use('/', indexRouter);
+app.use('/', indexRouter); 
 app.use('/profile', usersRouter);
 app.use('/product', productsRouter);
 app.use('/comments', commentsRouter);
