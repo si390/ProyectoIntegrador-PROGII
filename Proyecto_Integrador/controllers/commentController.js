@@ -13,10 +13,13 @@ const commentController = {
         const errors = validationResult(req);
         if (errors.isEmpty()) {
             const { comment } = req.body;
+            const productoId = req.params.productoId;
+            const userId = req.session.user.id;
+
             db.Comentario.create({
                 texto: comment,
-                usuario_id: req.session.user.id,
-                producto_id: req.params.productoId,
+                usuario_id: userId,
+                producto_id: productoId,
                 created_at: new Date()
             })
            .then(() => {
