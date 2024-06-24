@@ -19,7 +19,8 @@ let productoValidations = [
 // product detail
 router.get('/:id', productController.detail);
 
-router.get('/:id/delete', productController.borrar);
+router.post('/delete/:id', productController.borrar);
+
 router.get('/:id/edit', productController.editar);
 
 // Búsqueda
