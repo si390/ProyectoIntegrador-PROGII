@@ -5,8 +5,9 @@
     <%- include('partials/header'); %>
 <% } %>
 
-<section class="editarperfilpagina">
-    <h2 class="tituloeditarperfil">Editar Perfil</h2>
+<div class="mt-5">
+<section class="formularios">>
+    <h2 class="tituloeditarperfil">Editar mi perfil</h2>
     <form action="/profile/edit" method="POST">
         <div class="edicionperfil">
             <label class="perfilado" for="nombre">Nombre:</label>
@@ -24,8 +25,8 @@
             <label class="perfilado" for="password">Nueva Contraseña:</label>
             <input id="password" type="password" name="password" placeholder="Dejar en blanco para no cambiar">
         </div>
-        <button class="botonedicionperfil" type="submit">Guardar Cambios</button>
+        <button class="boton" type="submit">Guardar Cambios</button>
     </form>
 </section>
-
+  </div>
 <%- include('partials/footer.ejs'); -%>

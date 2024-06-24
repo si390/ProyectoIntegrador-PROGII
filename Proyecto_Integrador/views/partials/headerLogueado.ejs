@@ -1,12 +1,13 @@
 	<!-- Header -->
 	<header>
 		<nav class="main-navbar">
+			<div class="ml-2">
 			<ul class="left-navbar">
 				<li><a href="/">Todos los productos</a></li>
 				<li><a href="/product/add">Cargar productos</a></li>
-				<li>¡Bienvenid@, <%= user.username %>!♡</li>
+				<li>¡Bienvenid@, <%= user.username %>💖!</li>
 			</ul>
-		
+		</div>
 			<ul class="right-navbar">
 				<li><a href="/profile"><%= user.username %> <i class="far fa-user"></i></a></li>
 				<li><a href="/profile/logout">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a></li>
