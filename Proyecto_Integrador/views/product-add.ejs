@@ -1,10 +1,10 @@
 <%- include('partials/head.ejs'); -%>
-
-<% if (locals.user != undefined) { %>
-    <%- include('partials/headerLogueado') %>
+<% if (user) { %>
+    <%- include('partials/headerLogueado'); %>
 <% } else { %>
-    <%- include('partials/header') %>
+    <%- include('partials/header'); %>
 <% } %>
+
 
 <section>
     <div class="container">

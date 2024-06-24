@@ -1,9 +1,10 @@
 <%- include('partials/head.ejs'); -%>
-  <% if(locals.user != undefined){ %>
-      <%- include('/partials/headerLogueado') %>
-  <%} else { %>
-      <%- include('partials/header') -%>
-  <% } %>
+<% if (user) { %>
+    <%- include('partials/headerLogueado'); %>
+<% } else { %>
+    <%- include('partials/header'); %>
+<% } %>
+
 <!-- form login-->
  
 	<p class="product-detail-description">Login</p>
