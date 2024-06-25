@@ -10,8 +10,8 @@ const Controller = {
     index: (req, res) => {
         Product.findAll({
             include: [
-                { model: Comentario, as: 'comentarios' },
-                { model: Usuario, as: 'usuario' }
+                { association: 'usuario' },
+                { association: 'comentarios', include:[{association:'usuario'}]},
             ],
             order: [['createdAt', 'DESC']]
         })
