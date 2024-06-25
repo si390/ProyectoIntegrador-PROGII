@@ -7,26 +7,15 @@ const Usuario = db.Usuario;
 const Comentario = db.Comentario;
 
 const Controller = {
-    index: (req, res) => {
-        Product.findAll({
+
+    getAllProducts: (req, res) => {
+        Product.findAll(/*{
             include: [
                 { association: 'usuario' },
                 { association: 'comentarios', include:[{association:'usuario'}]},
             ],
             order: [['createdAt', 'DESC']]
-        })
-        .then(products => {
-            const user = req.session.user;
-            res.render('index', { products, user });
-        })
-        .catch(error => {
-            console.error("Error fetching products:", error);
-            res.status(500).send("Error fetching products");
-        });
-    },
-
-    getAllProducts: (req, res) => {
-        Product.findAll()
+        }*/)
         .then(products => {
             const user = req.session.user;
             res.render('index', { products, user });
