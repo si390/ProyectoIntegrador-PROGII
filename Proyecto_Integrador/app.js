@@ -30,7 +30,7 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// Middleware to add logged user to locals
+// Locals en vistas 
 app.use((req, res, next) => {
   if (req.session && req.session.user) {
     res.locals.user = req.session.user;
@@ -39,6 +39,24 @@ app.use((req, res, next) => {
 } 
 next();
 });
+
+// Configuración cookie
+app.use((req, res, next) => {
+  if (req.cookies.userId!= undefined && req.session.user == undefined) {
+    let userId = req.cookies.userId;
+    db.User.findByPk(userId)
+     .then(user => {
+        req.session.user = user;
+        res.locals.user = user;
+        return next();
+      })
+     .catch(e => {
+        console.log(e)
+      })
+  } else {
+    return next();
+  }
+})
 
 // Routes
 app.use('/', indexRouter); 
