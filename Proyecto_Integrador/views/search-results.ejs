@@ -12,19 +12,35 @@
             <h2 class="products-title">BÚSQUEDA</h2>
         </div>
           
-        <!-- Show mis productos -->
-        <div class="col-12 col-sm-6 col-lg-3">
-            <section class="product-box">
-                <h2>Resultados</h2>
-                <a href="/product">
-                    <nav><%= resultados %></nav>
-                    <img src="/images/products/buzored.jpg" alt="cafetera moulinex">
-                    <article class="product-box_data">
-                        <nav><%= resultados %></nav>
-                    </article>
-                </a>
-            </section>
+       <!-- Resultados de búsqueda -->
+<div class="container products-wrapper">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="products-title">Resultados de búsqueda</h1>
         </div>
+        <% if (productos.length > 0) { %>
+            <% productos.forEach(producto => { %>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <section class="product-box">
+                        <article class="product-box_data">
+                            <div>
+                                <h2><a href="/product/<%= producto.id %>"><%= producto.nombre %></a></h2>
+                                <p><%= producto.descripcion %></p>
+                                <p>Comentarios: <%= producto.comentarios? producto.comentarios.length : 0 %></p>
+                                <% if (producto.imagen) { %>
+                                    <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>">
+                                    <% if (producto.usuario) { %>
+                                        <p>Subido por: <a href="/profile/<%= producto.usuario.id %>"><%= producto.usuario.email %></a></p>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p class="product-detail-description">No se encontraron productos que coincidan con la búsqueda</p>
+        <% } %>
     </div>
-</div> 
+</div>
 <%- include('partials/footer.ejs'); -%>

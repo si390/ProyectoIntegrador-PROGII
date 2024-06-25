@@ -173,8 +173,11 @@ const Controller = {
                         [Op.like]: `%${query}%`
                     }
                 },
-                include: [{ model: Usuario, as: 'usuario' }]
-            })
+                include: [
+                    { association: 'usuario' },
+                    { association: 'comentarios', include:[{association:'usuario'}]},
+    
+            ]})
             .then(productos => {
                 res.render('search-results', { productos });
             })
