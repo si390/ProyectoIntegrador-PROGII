@@ -66,7 +66,7 @@ const profileController = {
                 }
     
                 req.session.user = usuarioLogueado;
-                if (req.body.recordarme) {
+                if (req.body.recordarme =='true') {
                     res.cookie('UsuarioNuevo', usuarioLogueado.id, { maxAge: 1000 * 60 * 60 * 24 * 7 });
                 }
                 res.redirect('/profile');
